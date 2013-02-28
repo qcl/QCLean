@@ -1,0 +1,14 @@
+{
+    "name":"No Facebook Page Recommand",
+    "version":"0.1",
+    "manifest_version":2,
+
+    "description":"移除Facebook專頁推薦。",
+
+    "content_scripts":[{
+        "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
+        "css":["remove.css"]
+    }],
+
+    "homepage_url":"http://blog.qcl.tw/"
+}
