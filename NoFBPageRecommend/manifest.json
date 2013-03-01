@@ -1,14 +1,17 @@
 {
     "name":"No Facebook Page Recommand",
-    "version":"0.1",
+    "version":"0.1.1",
     "manifest_version":2,
 
-    "description":"移除Facebook專頁推薦。",
+    "description":"移除Facebook專頁推薦與其他討厭的東西。",
 
     "content_scripts":[{
         "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
-        "css":["remove.css"]
+        "css":["remove.css"],
+        "js":["remove.js"]
     }],
 
-    "homepage_url":"http://blog.qcl.tw/"
+    "web_accessible_resources":["kerker.js"],
+
+    "homepage_url":"https://github.com/qcl/NoFacebookPageRecommend"
 }
