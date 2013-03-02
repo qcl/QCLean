@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.example.org/helloworld">
+	<name>No Facebook Page Recommend Fork</name>
+	<description>Remove Facebook Page Recommend uuuuu</description>
+	<author href="http://blog.qcl.tw/" email="qc.linux@gmail.com">qcl</author>
+	<icon src="icons/icon-64.png"/>
+</widget>
