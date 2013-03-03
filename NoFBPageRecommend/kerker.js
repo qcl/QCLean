@@ -1,4 +1,4 @@
-var f = Element.prototype.appendChild;
+var f = HTMLUListElement.prototype.appendChild;
 
 var removeLikePage = function(){
 
@@ -17,7 +17,7 @@ var removeLikePage = function(){
             if(found){
                 n = n.parentNode;
                 n.parentNode.removeChild(n);
-                //console.log('Remove!');
+                console.log('Remove!');
             }
         }
     }
@@ -41,7 +41,7 @@ var removeLikePage = function(){
             if(found){
                 n = n.parentNode;
                 n.parentNode.removeChild(n);
-                //console.log('Remove!!');
+                console.log('Remove!!');
             }
         }
     }
@@ -50,7 +50,7 @@ var removeLikePage = function(){
 //removeLikePage();
 
 //Override appendChild function
-Element.prototype.appendChild = function(){
+HTMLUListElement.prototype.appendChild = function(){
     f.apply(this,arguments);
     removeLikePage();
 }
