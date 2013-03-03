@@ -1,9 +1,15 @@
 {
     "name":"No Facebook Page Recommand",
-    "version":"0.1.1",
+    "version":"0.1.2",
     "manifest_version":2,
 
-    "description":"移除Facebook專頁推薦與其他討厭的東西。",
+    "description":"Remove recommended page on Facebook news feed.",
+
+    "icons":{
+        "16":"nofbpage16.png",
+        "48":"nofbpage48.png",
+        "128":"nofbpage128"
+    },
 
     "content_scripts":[{
         "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
