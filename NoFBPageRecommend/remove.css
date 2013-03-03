@@ -1,3 +1,8 @@
 .uiStreamStoryAttachmentOnly{
     display: none;
 }
+
+/* fix the header of facebook. */
+div#blueBar.fixed_elem{
+    position: fixed !important;
+}
