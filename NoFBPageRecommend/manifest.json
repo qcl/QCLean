@@ -1,9 +1,12 @@
 {
-    "name":"Remove Facebook Suggested Pages and Posts",
+    
+    "default_locale":"en",
+
+    "name":"__MSG_extName__",
     "version":"0.1.3",
     "manifest_version":2,
 
-    "description":"Remove suggested pages and posts on News feed of Facebook.",
+    "description":"__MSG_extDescription__",
 
     "icons":{
         "16":"nofbpage16.png",
