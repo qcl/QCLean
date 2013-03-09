@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.2",
+    "version":"0.2.1",
     "manifest_version":2,
 
     "description":"__MSG_extDescription__",
@@ -24,5 +24,5 @@
 
     "update_url":"http://qcl.github.com/NoFacebookPageRecommend/chrome_update.xml",
 
-    "homepage_url":"https://github.com/qcl/NoFacebookPageRecommend"
+    "homepage_url":"http://qcl.github.com/NoFacebookPageRecommend"
 }
