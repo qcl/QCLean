@@ -65,16 +65,29 @@ removeSuggestedPage();
 removeADsLink();
 
 //Override appendChild function
-var rfbspULappend = HTMLUListElement.prototype.appendChild;
-HTMLUListElement.prototype.appendChild = function(){
-    rfbspULappend.apply(this,arguments);
+var rfbspAppend = HTMLElement.prototype.appendChild;
+HTMLElement.prototype.appendChild = function(){
+    rfbspAppend.apply(this,arguments);
     removeLikePage();
     removeSuggestedPage();
-}
-
-var rfbspDIVappend = HTMLDivElement.prototype.appendChild;
-HTMLDivElement.prototype.appendChild = function(){
-    rfbspDIVappend.apply(this,arguments);
     removeADsLink();
 }
+
+/*
+//Override xhr
+var rfbspXHR = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function(){
+    if(arguments.length>2&&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+        console.log('Block ads ajax request'); 
+    }else{
+        rfbspXHR.apply(this,arguments);
+        var xhr = this;
+        var xhrfnt = xhr.onreadystatechange;
+        xhr.onreadystatechange = function(){
+            xhrfnt.apply(this,arguments);
+            removeADsLink();
+        }
+    }
+}
+*/
 
