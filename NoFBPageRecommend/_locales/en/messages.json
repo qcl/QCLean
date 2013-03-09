@@ -1,10 +1,10 @@
 {
     "extName":{
-        "message":"Remove Facebook Suggested Pages and Posts",
+        "message":"Remove Facebook Ads, Suggested Pages and Posts",
         "description":"Extension name"
     },
     "extDescription":{
-        "message":"Remove suggested pages and posts on News feed of Facebook.",
+        "message":"Remove ads, suggested pages and posts on News feed of Facebook.",
         "description":"Extension description"
     }
 }

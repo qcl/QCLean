@@ -4,7 +4,7 @@
     Qing-Cheng Li
 
 */
-
+console.log('Load remove.js');
 
 /* 
     In order to override the HTMLUlistElement.appendChild function for 
@@ -14,13 +14,6 @@
     at that time, my script will check if the <li> is a suggested post or 
     not.
 */
-var script = document.createElement("script");
-script.src = chrome.extension.getURL("kerker.js");
-(document.head||document.documentElement).appendChild(script);
-
-/*
-var mayHasAdsDiv = document.getElementsByClassName("ego_column");
-for(var i=0;i<mayHasAdsDiv.length;i++){
-    var div = mayHasAdsDiv[i];
-    var mayContainAdsDiv = div.getElementsByClassName("ego")
-}*/
+var rfbspScript = document.createElement("script");
+rfbspScript.src = chrome.extension.getURL("kerker.js");
+(document.head||document.documentElement).appendChild(rfbspScript);

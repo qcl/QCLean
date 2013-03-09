@@ -1,26 +1,39 @@
-var f = HTMLUListElement.prototype.appendChild;
+console.log('Load kerker.js');
 
-var removeLikePage = function(){
+var removeADsLink = function(){
 
-    var k = document.getElementsByClassName("uiLikePage");
-    if(k.length>0){
-        for(var i=0;i<k.length;i++){
-            var n = k[i];
-            var found = true;
-            while(n.parentNode.nodeName!="LI"){
-                if(n.parentNode.nodeName=="BODY"){
-                    break;
-                    found = false;
-                }
-                n = n.parentNode;
+    var rfbspADsLink = document.getElementsByClassName("adsCategoryTitleLink");
+
+    for(var i=0;i<rfbspADsLink.length;i++){
+        //XXX
+        rfbspADsLink[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+        console.log('Remove ads');
+    }
+
+}
+
+var removeSuggestedPage = function(){
+
+    var fbsp = document.getElementsByClassName("uiLikePage");
+    for(var i=0;i<fbsp.length;i++){
+        var sp = fbsp[i];
+        var found = true;
+        while(sp.parentNode.nodeName!="LI"){
+            if(sp.parentNode.nodeName=="BODY"){
+                break;
+                found = false;
             }
-            if(found){
-                n = n.parentNode;
-                n.parentNode.removeChild(n);
-                console.log('Remove!');
-            }
+            sp = sp.parentNode;
+        }
+        if(found){
+            sp = sp.parentNode;
+            sp.remove();
+            console.log('Remove suggested page/post');
         }
     }
+}
+
+var removeLikePage = function(){
 
     var fk = document.getElementsByClassName("uiLikePageButton");
     if(fk.length>0){
@@ -41,17 +54,27 @@ var removeLikePage = function(){
             if(found){
                 n = n.parentNode;
                 n.parentNode.removeChild(n);
-                console.log('Remove!!');
+                console.log('Remove suggested page/post');
             }
         }
     }
 }
 
-//removeLikePage();
+removeLikePage();
+removeSuggestedPage();
+removeADsLink();
 
 //Override appendChild function
+var rfbspULappend = HTMLUListElement.prototype.appendChild;
 HTMLUListElement.prototype.appendChild = function(){
-    f.apply(this,arguments);
+    rfbspULappend.apply(this,arguments);
     removeLikePage();
+    removeSuggestedPage();
+}
+
+var rfbspDIVappend = HTMLDivElement.prototype.appendChild;
+HTMLDivElement.prototype.appendChild = function(){
+    rfbspDIVappend.apply(this,arguments);
+    removeADsLink();
 }
 
