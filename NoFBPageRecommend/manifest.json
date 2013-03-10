@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.2.3",
+    "version":"0.2.4",
     "manifest_version":2,
 
     "description":"__MSG_extDescription__",
@@ -14,6 +14,10 @@
         "128":"nofbpage128.png"
     },
 
+    "background":{
+        "scripts": ["background.js"]
+    },
+
     "content_scripts":[{
         "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
         "css":["remove.css"],
@@ -21,7 +25,15 @@
         "run_at":"document_start"
     }],
 
-    "web_accessible_resources":["kerker.js"],
+    "permissions":["tabs"],
+
+    "page_action":{
+        "default_icon":"nofbpage38.png",
+        "default_title":"__MSG_extPageActionTitle__",
+        "default_popup":"popup.html"
+    },
+
+    "web_accessible_resources":["kerker.js","nofbpage48.png"],
 
     "update_url":"http://qcl.github.com/NoFacebookPageRecommend/chrome_update.xml",
 
