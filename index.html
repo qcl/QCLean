@@ -2,138 +2,18 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Remove FB Suggested Post</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./css/bootstrap-responsive.min.css" rel="stylesheet" />
-        <style>
-            
-            /* GLOBAL STYLES
-             -------------------------------------------------- */
-            /* Padding below the footer and lighter body text */
-            
-            body {
-                padding-bottom: 40px;
-                color: #5a5a5a;
-            }
-            
-            
-            
-            /* CUSTOMIZE THE NAVBAR
-             -------------------------------------------------- */
-            
-            /* Special class on .container surrounding .navbar, used for positioning it into place. */
-            .navbar-wrapper {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 10;
-                margin-top: 20px;
-                margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-            }
-            .navbar-wrapper .navbar {
-                
-            }
-            
-            /* Remove border and change up box shadow for more contrast */
-            .navbar .navbar-inner {
-                border: 0;
-                -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-                -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-                box-shadow: 0 2px 10px rgba(0,0,0,.25);
-            }
-            
-            /* Downsize the brand/project name a bit */
-            .navbar .brand {
-                padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-                font-size: 16px;
-                font-weight: bold;
-                text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-            }
-            
-            /* Navbar links: increase padding for taller navbar */
-            .navbar .nav > li > a {
-                padding: 15px 20px;
-            }
-            
-            /* Offset the responsive button for proper vertical alignment */
-            .navbar .btn-navbar {
-                margin-top: 10px;
-            }
-            
-            
-            
-            /* CUSTOMIZE THE CAROUSEL
-             -------------------------------------------------- */
-            
-            /* Carousel base class */
-            .carousel {
-                margin-bottom: 60px;
-            }
-            
-            .carousel .container {
-                position: relative;
-                z-index: 9;
-            }
-            
-            .carousel-control {
-                height: 80px;
-                margin-top: 0;
-                font-size: 120px;
-                text-shadow: 0 1px 1px rgba(0,0,0,.4);
-                background-color: transparent;
-                border: 0;
-                z-index: 10;
-            }
-            
-            .carousel .item {
-                height: 500px;
-            }
-            .carousel img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                min-width: 100%;
-                height: 500px;
-            }
-            
-            .carousel-caption {
-                background-color: transparent;
-                position: static;
-                max-width: 550px;
-                padding: 0 20px;
-                margin-top: 200px;
-            }
-            .carousel-caption h1,
-            .carousel-caption .lead {
-                margin: 0;
-                line-height: 1.25;
-                color: #fff;
-                text-shadow: 0 1px 1px rgba(0,0,0,.4);
-            }
-            .carousel-caption .btn {
-                margin-top: 10px;
-            }
-            
-            
-            
-            /* MARKETING CONTENT
-             -------------------------------------------------- */
-            
-            /* Center align the text within the three columns below the carousel */
-            .marketing .span4 {
-                text-align: center;
-            }
-            .marketing h2 {
-                font-weight: normal;
-            }
-            .marketing .span4 p {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            
-            
+    <title>Remove FB Ads/Suggested Post&Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Remove ads and suggested post, page on facebook." />
+    <meta name="author" content="qcl" />
+
+    <link rel="shortcut icon" href="./icons/nofbpage16.png" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <style>
+        body{
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
             /* Featurettes
              ------------------------- */
             
@@ -145,7 +25,7 @@
                 overflow: hidden; /* Vertically center images part 2: clear their floats. */
             }
             .featurette-image {
-                margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+                margin-top: -60px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
             }
             
             /* Give some space on the sides of the floated elements so text doesn't run right into it. */
@@ -163,178 +43,233 @@
                 line-height: 1;
                 letter-spacing: -1px;
             }
-            
-            
-            
-            /* RESPONSIVE CSS
-             -------------------------------------------------- */
-            
-            @media (max-width: 979px) {
-                
-                .container.navbar-wrapper {
-                    margin-bottom: 0;
-                    width: auto;
-                }
-                .navbar-inner {
-                    border-radius: 0;
-                    margin: -20px 0;
-                }
-                
-                .carousel .item {
-                    height: 500px;
-                }
-                .carousel img {
-                    width: auto;
-                    height: 500px;
-                }
-                
-                .featurette {
-                    height: auto;
-                    padding: 0;
-                }
-                .featurette-image.pull-left,
-                .featurette-image.pull-right {
-                    display: block;
-                    float: none;
-                    max-width: 40%;
-                    margin: 0 auto 20px;
-                }
-            }
-            
-            
-            @media (max-width: 767px) {
-                
-                .navbar-inner {
-                    margin: -20px;
-                }
-                
-                .carousel {
-                    margin-left: -20px;
-                    margin-right: -20px;
-                }
-                .carousel .container {
-                    
-                }
-                .carousel .item {
-                    height: 300px;
-                }
-                .carousel img {
-                    height: 300px;
-                }
-                .carousel-caption {
-                    width: 65%;
-                    padding: 0 70px;
-                    margin-top: 100px;
-                }
-                .carousel-caption h1 {
-                    font-size: 30px;
-                }
-                .carousel-caption .lead,
-                .carousel-caption .btn {
-                    font-size: 18px;
-                }
-                
-                .marketing .span4 + .span4 {
-                    margin-top: 40px;
-                }
-                
-                .featurette-heading {
-                    font-size: 30px;
-                }
-                .featurette .lead {
-                    font-size: 18px;
-                    line-height: 1.5;
-                }
-                
-            }
-            </style>
+    
+        #downloadlist .span3{
+            text-align: center;
+        }
+
+    </style>
+    <link rel="stylesheet" href="./css/bootstrap-responsive.min.css" />
+
 </head>
 <body>
-    <!-- NAVBAR
-     ================================================== -->
-    <div class="navbar-wrapper">
-        <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
         <div class="container">
-            
-            <div class="navbar navbar-inverse">
-                <div class="navbar-inner">
-                    <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="#">Remove Facebook Suggested Pages and Posts</a>
-                    <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="https://github.com/qcl/NoFacebookPageRecommend">Source Code</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Download Extension<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#chrome">Chrome</a></li>
-                                    <li><a href="#firefox">Firefox</a></li>
-                                    <li><a href="#safari">Safari</a></li>
-                                    <li><a href="#opera">Opera</a></li>
-                                </ul>
-                            </li>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Remove Facebook Ads, suggested pages and posts</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#features">Features</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/qcl/NoFacebookPageRecommend">Source Code</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Download<b class="caret"></b></a>
+                        <ul class="dropdown-menu" >
+                            <li><a href="#chrome_install_guide" data-toggle="modal" >Chrome</a></li>
+                            <li><a href="https://addons.mozilla.org/firefox/addon/no-facebook-page-recommend/" >Firefox</a></li>
+                            <li><a href="#safari_install_guide" data-toggle="modal" >Safari</a></li>
+                            <li><a href="https://addons.opera.com/zh-tw/extensions/details/remove-facebook-suggested-pages-and-posts/" >Opera</a></li>
                         </ul>
-                    </div><!--/.nav-collapse -->
-                </div><!-- /.navbar-inner -->
-            </div><!-- /.navbar -->
-            
-        </div> <!-- /.container -->
-    </div><!-- /.navbar-wrapper -->
-    
-<div class="container marketing">
-    <hr class="featurette-divider">
-    
-    <div class="featurette" id="chrome">
-        <img class="featurette-image pull-right" src="./browser-icon-chrome.png">
-            <h2 class="featurette-heading">Chrome<br/><span class="muted">0.2.2</span></h2>
-            <p class="lead">
-                <a href="./NoFBPageRecommend.crx" class="btn btn-warning">Download</a>
-                <button class="btn btn-info">Installation Guide</button>
-                <br/>
-            </p>
+                    </li>
+                </ul>
             </div>
-    
-    <hr class="featurette-divider">
-    
-    <div class="featurette" id="firefox">
-        <img class="featurette-image pull-left" src="./browser-icon-firefox.png">
-            <h2 class="featurette-heading">Firefox<br/><span class="muted">alpha</span></h2>
-            <p class="lead">
-            <a href="https://addons.mozilla.org/firefox/addon/no-facebook-page-recommend/" class="btn btn-success">Download</a> from Mozilla Firefox Add-ons.<br/>
-            Or directly <a href="./no-facebook-page-recommend.xpi" class="btn btn-danger">download the .xpi file</a>
-            </p>
-            </div>
-    
-    <hr class="featurette-divider">
-    
-    <div class="featurette" id="safari">
-        <img class="featurette-image pull-right" src="./browser-icon-safari.png">
-            <h2 class="featurette-heading">Safari<br/><span class="muted">0.1</span></h2>
-            <p class="lead">
-            <a href="./RemoveFBSuggestedPage.safariextz" class="btn btn-warning">Download</a>
-            <button class="btn btn-info">Installation Guide</button>
-                </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="hero-unit">
+        <img src="./icons/nofbpage156.png" />
+        <h2>Remove Facebook Ads, Suggested Pages & Posts</h2>
+        <p>A extension/add-on that removing ads, suggested pages and posts on facebook news feed for Chrome/Firefox/Safari/Opera users.</p>
+        <p>移除Facebook廣告、建議貼文與推薦粉絲專頁的瀏覽器附加元件</p>
+        <p><a href="#features" class="btn btn-primary btn-large">Learn more features</a> <a href="#download" class="btn btn-success btn-large">Download &raquo;</a></p>
+
     </div>
     
+    <h1 id="download">Download</h1>
+
+    <div class="row" id="downloadlist">
+        <div class="span3">
+            <img class="img-circle" width="140" src="./img/browser-icon-chrome.png" />
+            <h3>Chrome Extension</h3>
+            <p class="muted">0.2.2</p>
+            <p>
+                <a href="#chrome_install_guide" data-toggle="modal" class="btn btn-success" ><i class="icon-download icon-white"></i> Download</a>
+            </p>
+
+            <div id="chrome_install_guide" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="cig" aria-idden="true" style="text-align:left;">
+                <div class="modal-header">
+                    <h3 id="cig">Chrome Installation Guide</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>1. Download <i>NoFBRecommend.crx</i></h4>
+                    <a href="./NoFBPageRecommend.crx" class="btn btn-warning"><i class="icon-download icon-white"></i> Download</a>
+                    <p>下載 <i>NoFBRecommend.crx</i> 檔案，由於並非由Chrome Web Store下載，因此會出現提示訊息，無法直接新增至瀏覽器內。</p>
+                    <img src="./img/01warningmsg.png" />
+                    <h4>2. Goto <i>chrome://extensions</i></h4>
+                    <p>於瀏覽器網址列輸入 <i>chrome://extnesions</i> 進入瀏覽器擴充功能管理界面。</p>
+                    <img src="./img/02type.png" />
+                    <h4>3. Drag <i>NoFBRecommend.crx</i> into Chrome</h4>
+                    <p>將 <i>NoFBRecommend.crx</i> 拖動進入瀏覽器即可開始安裝。</p>
+                    <img src="./img/03dragintochrome.png" />
+                    <h4>4. Add into Chrome</h4>
+                    <p>按下「新增」完成安裝。</p>
+                    <img src="./img/04add.png" />
+                    <h4>5. Finish</h4>
+                    <p>完成安裝。</p>
+                    <img src="./img/05done.png" />
+                    <p>安裝後若未來釋出新版本，毋需至本站下載新版本替換，目前已經支援自動更新。</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="span3">
+            <img class="img-circle" width="140" src="./img/browser-icon-firefox.png" />
+            <h3>Firefox Add-on</h3>
+            <p class="muted">alpha</p>
+            <p>
+                <a href="https://addons.mozilla.org/firefox/addon/no-facebook-page-recommend/" class="btn btn-success" ><i class="icon-download icon-white"></i> Download</a>
+            </p>
+        </div>
+        <div class="span3">
+            <img class="img-circle" width="140" src="./img/browser-icon-safari.png" />
+            <h3>Safari Extension</h3>
+            <p class="muted">0.1</p>
+            <p>
+                <a href="#safari_install_guide" class="btn btn-success" data-toggle="modal" ><i class="icon-download icon-white"></i> Download</a>
+            </p>
+            <div id="safari_install_guide" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="sig" aria-idden="true" style="text-align:left;">
+                <div class="modal-header">
+                    <h3 id="sig">Safari Installation Guide</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>1. Download <i>RemoveFBSuggestedPage.safariextz</i> ,then double click it.</h4>
+                    <a href="./RemoveFBSuggestedPage.safariextz" class="btn btn-warning"><i class="icon-download icon-white"></i> Download</a>
+                    <p>下載 <i>RemoveFBSuggestedPage.safariextz</i> 檔案，並點擊開啓之。</p>
+                    <img src="./img/sa01download.png" />
+                    <h4>2. Click <i>Install</i></h4>
+                    <p>按下「安裝」完成安裝。</p>
+                    <img src="./img/sa02add.png" />
+                    <h4>3. Finish</h4>
+                    <p>完成安裝。您可以在偏好設定中的延伸功能中找到它。</p>
+                    <img src="./img/sa03done.png" />
+                    <p>安裝後若未來釋出新版本，毋需至本站下載新版本替換，目前已經支援自動更新。</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <img class="img-circle" width="140" src="./img/browser-icon-opera.png" />
+            <h3>Operai Add-on</h3>
+            <p class="muted">0.1</p>
+            <p>
+                <a href="https://addons.opera.com/zh-tw/extensions/details/remove-facebook-suggested-pages-and-posts/" class="btn btn-success" ><i class="icon-download icon-white"></i> Download</a>
+            </p>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <h1 id="features">Features</h1>
+    
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-right" src="./img/suggestedPage.png">
+        <h2>Remove Suggested Pages<br/><span class="muted">移除「推薦粉絲專頁」</span></h2>
+        <p>
+        Chrome/Firefox/Safari/Opera
+        </p>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-left" src="./img/suggestedPost.png">
+        <h2>Remove Suggested Posts<br/><span class="muted">移除「建議貼文」</span></h2>
+        <p>
+        Chrome/Firefox/Safari/Opera
+        </p>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-right" src="./img/newsfeedAds.png">
+        <h2>Remove Ads on News Feed Page<br/><span class="muted">移除動態旁的廣告</span><code>New!</code></h2>
+        <p>
+        Chrome
+        </p>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-left" src="./img/personalPageAds.png">
+        <h2>Remove Ads on Your Personal Page<br/><span class="muted">移除個人頁面旁的廣告</span><code>New!</code></h2>
+        <p>
+        Chrome
+        </p>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-right" src="./img/photoAds.png">
+        <h2>Remove Ads on Photo View<br/><span class="muted">移除相片旁的廣告</span><code>New!</code></h2>
+        <p>
+        Chrome
+        </p>
+    </div>
     <hr class="featurette-divider">
     
-    <div class="featurette" id="opera">
-        <img class="featurette-image pull-left" src="./browser-icon-opera.png">
-            <h2 class="featurette-heading">Opera<br/><span class="muted">0.1</span></h2>
-            <p class="lead">
-            <a href="https://addons.opera.com/zh-tw/extensions/details/remove-facebook-suggested-pages-and-posts/" class="btn btn-success">Download</a> from Opera Add-ons.<br />
-            Or directly <a href="./NoFBPageRecommend.oex" class="btn btn-danger">download the .oex file</a>.
-        </p>            </div>
-    
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-left" src="./img/github-logo.png">
+        <h2>Open Source<br/><span class="muted">開放原始碼</span></h2>
+        <p>
+            <a href="" class="btn btn-info btn-large">View Source Code on Github &raquo;</a> 
+        </p>
+    </div>
     <hr class="featurette-divider">
+
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-right" src="./img/vim.png">
+        <h2>Handmade Code<br/><span class="muted">男子漢Programmer</span></h2>
+        <p>
+            純手工，使用男子漢編輯器精工打造程式碼。
+        </p>
+        <blockquote>
+            <p>真正的男子漢programmer是不會用那些亂七八糟，花枝招展的所謂整合開發環境。真正的男子漢programmer就是直接用emacs,或是vi這些男子漢編輯器直接寫程式。如果你不知道這是甚麼東東，簡單來說，就是男子漢用的”記事本”。當然在花枝招展，看來很娘的Wxxxxws下要找到這些男子漢編輯器有一定難度，但這絕對難不倒一個真正的男子漢programmer。</p>
+            <br/>
+            <p>另外真正的男子漢也不會用那些亂七八糟，花枝招展的所謂應用程式寫網頁。真正的男子漢就是直接用 emacs, 或是 vi 這些男子漢編輯器直接寫 HTML，因為那些亂七八糟，花枝招展的所謂應用程式寫出來的網頁加了一大堆亂七八糟的 tag 根本沒有人看得懂。</p>
+            <small>Re: 男子漢理論,pangfeng (P老師)@pangfeng, ptt2.cc</small>
+
+        </blockquote>
+    </div>
+    <hr class="featurette-divider">
+    
+    <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2013 qcl.tw &middot; <a href="http://blog.qcl.tw/">Blog</a></p>
+    </footer>
+
 </div>
-    <script type="text/javascript" src="./js/jquery.js"></script>
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
+<script src="./js/jquery.js" ></script>
+<script src="./js/bootstrap.min.js"></script>
+
 </body>
 </html>
