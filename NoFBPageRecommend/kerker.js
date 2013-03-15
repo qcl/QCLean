@@ -60,20 +60,44 @@ var removeLikePage = function(){
     }
 }
 
-removeLikePage();
-removeSuggestedPage();
+var removeSponsored = function(){
+
+    var sp = document.getElementsByClassName("uiStreamAdditionalLogging");    
+    for(var i = 0;i<sp.length;i++){
+        var n = sp[i];
+        while(n.parentNode.nodeName!="BODY"){
+            if(n.parentNode.nodeName=="LI"){
+                if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
+                    found = true;
+                    break;
+                }
+            }
+            n = n.parentNode;
+        }
+        if(found){
+            n = n.parentNode;
+            n.remove();
+            console.log('Remove sponsored post');
+        }
+    }
+}
+
+//removeLikePage();
+//removeSuggestedPage();
+removeSponsored();
 removeADsLink();
 
 //Override appendChild function
 var rfbspAppend = HTMLElement.prototype.appendChild;
 HTMLElement.prototype.appendChild = function(){
     rfbspAppend.apply(this,arguments);
-    removeLikePage();
-    removeSuggestedPage();
+    //removeLikePage();
+    //removeSuggestedPage();
+    removeSponsored();
     removeADsLink();
 }
 
-/*
+
 //Override xhr
 var rfbspXHR = XMLHttpRequest.prototype.open;
 XMLHttpRequest.prototype.open = function(){
@@ -81,13 +105,14 @@ XMLHttpRequest.prototype.open = function(){
         console.log('Block ads ajax request'); 
     }else{
         rfbspXHR.apply(this,arguments);
-        var xhr = this;
-        var xhrfnt = xhr.onreadystatechange;
-        xhr.onreadystatechange = function(){
-            xhrfnt.apply(this,arguments);
-            removeADsLink();
-        }
+        //var xhr = this;
+        //var xhrfnt = xhr.onreadystatechange;
+        //xhr.onreadystatechange = function(){
+        //    xhrfnt.apply(this,arguments);
+        //    removeSponsored();
+        //    removeADsLink();
+        //}
     }
 }
-*/
+
 
