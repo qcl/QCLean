@@ -9,10 +9,15 @@ function onRequest(request,sender,sendResponse){
 var regexp = new RegExp("^(http://|https://).*\.facebook\.com/");
 
 function checkForValidUrl(tabId, changeInfo, tab) {
-    console.log(regexp.test(tab.url));
     if(regexp.test(tab.url)){ 
         chrome.pageAction.show(tabId);
     }
 };
 
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
+
+//var xmlHttp = new XMLHttpRequest();
+//xmlHttp.open( "GET", 'http://qcl.github.com/NoFacebookPageRecommend/poke.html', false );
+//xmlHttp.send( null );
+
+
