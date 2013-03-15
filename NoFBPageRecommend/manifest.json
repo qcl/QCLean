@@ -25,7 +25,9 @@
         "run_at":"document_start"
     }],
 
-    "permissions":["tabs","http://qcl.github.com/*"],
+    "permissions":["tabs"],
+
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 
     "page_action":{
         "default_icon":"nofbpage38.png",

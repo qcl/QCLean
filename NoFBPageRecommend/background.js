@@ -1,11 +1,3 @@
-/*
-function onRequest(request,sender,sendResponse){
-    //chrome.pageAction.show(sender.tab.id);
-    sendResponse({});
-};
-
-//chrome.extension.onRequest.addListener(onRequest);
-*/
 var regexp = new RegExp("^(http://|https://).*\.facebook\.com/");
 
 function checkForValidUrl(tabId, changeInfo, tab) {
@@ -16,8 +8,13 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
-//var xmlHttp = new XMLHttpRequest();
-//xmlHttp.open( "GET", 'http://qcl.github.com/NoFacebookPageRecommend/poke.html', false );
-//xmlHttp.send( null );
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-3607701-4']);
+_gaq.push(['_trackPageview']);
 
+(function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://ssl.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
 
