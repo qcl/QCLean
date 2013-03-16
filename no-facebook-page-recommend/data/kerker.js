@@ -1,36 +1,27 @@
-var removeLikePage = function(){
-    
-    var k = document.getElementsByClassName('uiLikePage');
-    while(k.length>0){
-        for(var i=0;i<k.length;i++){
-            var n = k[i];
-            var found = true;
-            while(n.parentNode.nodeName!='LI'){
-                if(n.parentNode.nodeName=='BODY'){
-                    break;
-                    found = false;
-                }
-                n = n.parentNode;
-            }
-            if(found){
-                n = n.parentNode;
-                n.parentNode.removeChild(n);
-                console.log('Remove!');
-            }
-        }
-        k = document.getElementsByClassName('uiLikePage');
-    }
 
-    var fk = document.getElementsByClassName('uiLikePageButton');
-    while(fk.length>0){
-        for(var i=0;i<fk.length;i++){
-            var n = fk[i];
-            var count = 0;
-            var found = false;
-            while(n.parentNode.nodeName!='BODY'){
-                if(n.parentNode.nodeName=='LI'){
-                    count++;
-                    if(count>=2){
+var removeADsLink = function(){
+
+    var rfbspADsLink = document.getElementsByClassName("adsCategoryTitleLink");
+
+    while(rfbspADsLink.length>0){
+        for(var i=0;i<rfbspADsLink.length;i++){
+            var target = rfbspADsLink[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+            target.parentNode.removeChild(target);
+            console.log('Remove ads');
+        }
+        rfbspADsLink = document.getElementsByClassName("adsCategoryTitleLink");
+    }
+};
+
+var removeSponsored = function(){
+
+    var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
+    while(sp.length>0){
+        for(var i = 0;i<sp.length;i++){
+            var n = sp[i];
+            while(n.parentNode.nodeName!="BODY"){
+                if(n.parentNode.nodeName=="LI"){
+                    if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
                         found = true;
                         break;
                     }
@@ -40,13 +31,37 @@ var removeLikePage = function(){
             if(found){
                 n = n.parentNode;
                 n.parentNode.removeChild(n);
-                console.log('Remove!!');
+                console.log('Remove sponsored post');
             }
         }
-        fk = document.getElementsByClassName('uiLikePageButton');
+        sp = document.getElementsByClassName("uiStreamAdditionalLogging");
     }
 }
 
-removeLikePage();
-var qcla = HTMLUListElement.prototype.appendChild;
-HTMLUListElement.prototype.appendChild = function(){ qcla.apply(this,arguments); removeLikePage();}
+removeSponsored();
+removeADsLink();
+
+
+//Override xhr
+var rfbspXHR = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function(){
+    if(arguments.length>2&&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+        console.log('Block ads ajax request'); 
+    }else{
+        rfbspXHR.apply(this,arguments);
+    }
+}
+
+//Override DIV appendChild
+var rmfbspDivAppend = HTMLDivElement.prototype.appendChild;
+HTMLDivElement.prototype.appendChild = function(){ 
+    rmfbspDivAppend.apply(this,arguments); 
+    removeADsLink();
+}
+
+//Override UL appendChild
+var rmfbspUlAppend = HTMLUListElement.prototype.appendChild;
+HTMLUListElement.prototype.appendChild = function(){ 
+    rmfbspUlAppend.apply(this,arguments); 
+    removeSponsored();
+}
