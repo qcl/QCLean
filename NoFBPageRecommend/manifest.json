@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.2.5",
+    "version":"0.3",
     "manifest_version":2,
 
     "description":"__MSG_extDescription__",
@@ -15,7 +15,7 @@
     },
 
     "background":{
-        "scripts": ["background.js"]
+        "page": "background.html"
     },
 
     "content_scripts":[{
@@ -25,9 +25,8 @@
         "run_at":"document_start"
     }],
 
-    "permissions":["tabs"],
+    "permissions":["tabs","http://spamgroup.tonyq.org/groups/jsonp/*"],
 
-    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 
     "page_action":{
         "default_icon":"nofbpage38.png",
