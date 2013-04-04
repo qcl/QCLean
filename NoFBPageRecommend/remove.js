@@ -1,5 +1,6 @@
 /* 
-    Remove Facebook Suggested Pages & Posts 
+    QCLean
+    Remove Facebook Ads, Suggested Pages & Posts 
 
     Qing-Cheng Li
 
@@ -14,6 +15,7 @@ console.log('Load remove.js');
     at that time, my script will check if the <li> is a suggested post or 
     not.
 */
-var rfbspScript = document.createElement("script");
-rfbspScript.src = chrome.extension.getURL("kerker.js");
-(document.head||document.documentElement).appendChild(rfbspScript);
+var qclean_script = document.createElement("script");
+qclean_script.src = chrome.extension.getURL("qclean.js");
+(document.head||document.documentElement).appendChild(qclean_script);
+

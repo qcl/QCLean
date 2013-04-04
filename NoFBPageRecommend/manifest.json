@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.3",
+    "version":"0.2.7",
     "manifest_version":2,
 
     "description":"__MSG_extDescription__",
@@ -25,8 +25,9 @@
         "run_at":"document_start"
     }],
 
-    "permissions":["tabs","http://spamgroup.tonyq.org/groups/jsonp/*"],
+    "permissions":["tabs"],
 
+    "content_security_policy": "script-src 'self' https:// ; object-src 'self'",
 
     "page_action":{
         "default_icon":"nofbpage38.png",
@@ -34,9 +35,7 @@
         "default_popup":"popup.html"
     },
 
-    "web_accessible_resources":["kerker.js","nofbpage48.png"],
-
-    "update_url":"http://qcl.github.com/NoFacebookPageRecommend/chrome_update.xml",
+    "web_accessible_resources":["qclean.js","nofbpage48.png"],
 
     "homepage_url":"http://qcl.github.com/NoFacebookPageRecommend"
 }

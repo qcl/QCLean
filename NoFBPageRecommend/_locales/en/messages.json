@@ -1,6 +1,6 @@
 {
     "extName":{
-        "message":"Remove Facebook Ads, Suggested Pages and Posts",
+        "message":"QCLean: Remove Facebook Ads, Suggested Pages and Posts",
         "description":"Extension name"
     },
     "extDescription":{
@@ -8,7 +8,7 @@
         "description":"Extension description"
     },
     "extPageActionTitle":{
-        "message":"Remove FB Ads/Suggested Pages&Posts",
+        "message":"QCLean: Remove FB Ads/Suggested Pages&Posts",
         "description":"page action title"
     }
 }
