@@ -1,0 +1,18 @@
+{
+    "extName":{
+        "message":"QCLean: Remove Facebook Ads, Suggested Pages and Posts (Old version)",
+        "description":"Extension name"
+    },
+    "extDescription":{
+        "message":"After download the new version, please remove this.",
+        "description":"Extension description"
+    },
+    "extPageActionTitle":{
+        "message":"QCLean: Remove FB Ads/Suggested Pages&Posts",
+        "description":"page action title"
+    },
+    "extAvaiableOnStore":{
+        "message":"QCLean: Remove FB Ads/Suggested Pages&Posts is now available on Chrome Web Store. Please download new extension on Store, then remove the older extension. Thanks.",
+        "description":"new version"
+    }
+}
