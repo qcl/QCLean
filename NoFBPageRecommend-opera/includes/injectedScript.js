@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
   
 	//console.log("InjectedScript!");
 
-	var fileObj = opera.extension.getFile('/script/kerker.js');
+	var fileObj = opera.extension.getFile('/script/qclean.js');
 
 	if(fileObj){
 		var fr = new FileReader();
