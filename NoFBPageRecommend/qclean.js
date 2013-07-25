@@ -25,6 +25,12 @@ var removeSponsored = function(){
                         found = true;
                         break;
                     }
+                }else if(n.parentNode.nodeName=="DIV"){
+                    if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("_6ns _8ru _59hp")){
+                        //for new fb newsfeed
+                        found = true;
+                        break;
+                    }
                 }
                 n = n.parentNode;
             }
@@ -57,6 +63,9 @@ var rmfbspDivAppend = HTMLDivElement.prototype.appendChild;
 HTMLDivElement.prototype.appendChild = function(){ 
     rmfbspDivAppend.apply(this,arguments); 
     removeADsLink();
+    
+    //For new fb newsfeed
+    removeSponsored();
 }
 
 //Override UL appendChild

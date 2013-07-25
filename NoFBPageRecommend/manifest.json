@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.2.7",
+    "version":"0.3.0",
     "manifest_version":2,
 
     "description":"__MSG_extDescription__",
@@ -37,5 +37,5 @@
 
     "web_accessible_resources":["qclean.js","nofbpage48.png"],
 
-    "homepage_url":"http://qcl.github.com/NoFacebookPageRecommend"
+    "homepage_url":"http://qcl.github.io/NoFacebookPageRecommend"
 }
