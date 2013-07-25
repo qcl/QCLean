@@ -5,9 +5,10 @@ pageMod.PageMod({
     include: "*.facebook.com",
     contentScript:
         'var s = document.createElement("script");'+
-        's.src = "'+data.url("kerker.js")+'";'+
+        's.src = "'+data.url("qclean.js")+'";'+
         '(document.head||document.documentElement).appendChild(s);',
     contentStyleFile: data.url("remove.css"),
     contentScriptWhen: "ready"
 });
+
 
