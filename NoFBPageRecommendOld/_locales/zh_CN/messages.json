@@ -1,0 +1,18 @@
+{
+    "extName":{
+        "message":"QCLean: Facebook推薦專頁與建議貼文、廣告移除器（舊版）",
+        "description":"附加元件名稱"
+    },
+    "extDescription":{
+        "message":"請於下載新版本後將此移除。",
+        "description":"附加元件說明"
+    },
+    "extPageActionTitle":{
+        "message":"QCLean: 移除臉書廣告、建議貼文與推薦專頁",
+        "description":"PageAction標題"
+    },
+    "extAvaiableOnStore":{
+        "message":"「QCLean: 移除臉書廣告、建議貼文與推薦專頁」Chrome瀏覽器插件已經可以從Chrome Web Store中下載了，請於Store下載新版本，並移除舊版本，感謝支持。",
+        "description":"new version"
+    }
+}

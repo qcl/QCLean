@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.example.org/helloworld">
-	<name>No Facebook Page Recommend</name>
-	<description>Remove Facebook Page Recommend</description>
+<widget xmlns="http://www.w3.org/ns/widgets" id="qclean">
+	<name>QCLean: Remove Facebook Ads, Suggested Pages and Posts</name>
+	<description>Remove Ads, Suggested Pages and Posts on Facebook news feed.</description>
 	<author href="http://blog.qcl.tw/" email="qc.linux@gmail.com">qcl</author>
 	<icon src="icons/icon-64.png"/>
 </widget>
