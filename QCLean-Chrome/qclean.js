@@ -57,7 +57,9 @@ XMLHttpRequest.prototype.open = function(){
                        (facebook graph api?), so need to check this 
                        argument's type.
     */
-    if(arguments.length>2&&typeof arguments[1] == "string"&&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+    if(arguments.length>2&&typeof arguments[1] == "string"
+        &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+        
         console.log('Block ads ajax request'); 
     }else{
         rfbspXHR.apply(this,arguments);
