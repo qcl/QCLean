@@ -1,0 +1,18 @@
+.uiStreamStoryAttachmentOnly{
+    display: none;
+}
+
+/* fix the header of facebook. */
+/*
+div#blueBar.fixed_elem{
+    position: fixed !important;
+}
+*/
+
+#pagelet_ego_pane{
+    /*display: none;*/
+}
+
+#pagelet_ego_pane_w{
+    /*display: none;*/
+}

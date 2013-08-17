@@ -1,0 +1,41 @@
+{
+    
+    "default_locale":"en",
+
+    "name":"__MSG_extName__",
+    "version":"0.3.1",
+    "manifest_version":2,
+
+    "description":"__MSG_extDescription__",
+
+    "icons":{
+        "16":"nofbpage16.png",
+        "48":"nofbpage48.png",
+        "128":"nofbpage128.png"
+    },
+
+    "background":{
+        "page": "background.html"
+    },
+
+    "content_scripts":[{
+        "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
+        "css":["remove.css"],
+        "js":["remove.js"],
+        "run_at":"document_start"
+    }],
+
+    "permissions":["tabs"],
+
+    "content_security_policy": "script-src 'self' https:// ; object-src 'self'",
+
+    "page_action":{
+        "default_icon":"nofbpage38.png",
+        "default_title":"__MSG_extPageActionTitle__",
+        "default_popup":"popup.html"
+    },
+
+    "web_accessible_resources":["qclean.js","nofbpage48.png"],
+
+    "homepage_url":"http://qcl.github.io/QCLean"
+}

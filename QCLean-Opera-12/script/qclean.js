@@ -50,7 +50,7 @@ removeADsLink();
 //Override xhr
 var rfbspXHR = XMLHttpRequest.prototype.open;
 XMLHttpRequest.prototype.open = function(){
-    if(arguments.length>2&&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+    if(arguments.length>2&&typeof arguments[1]=="string"&&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
         console.log('Block ads ajax request'); 
     }else{
         rfbspXHR.apply(this,arguments);
