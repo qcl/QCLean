@@ -1,4 +1,4 @@
-var qclean_version = "0.3.0";
+var qclean_version = "0.3.1.1";
 
 var qclean_fb_url_regexp = new RegExp("^(http://|https://).*\.facebook\.com/");
 
@@ -15,7 +15,7 @@ var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-3607701-4']);
 _gaq.push(['_trackPageview']);
 
-_gaq.push(['_trackEvent','ChromeExtVersion',qclean_version]);
+_gaq.push(['_trackEvent','OperaExtVersion',qclean_version]);
 
 (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

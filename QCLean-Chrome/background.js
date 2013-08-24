@@ -1,4 +1,4 @@
-var qclean_version = "0.3.0";
+var qclean_version = "0.3.1";
 
 var qclean_fb_url_regexp = new RegExp("^(http://|https://).*\.facebook\.com/");
 
