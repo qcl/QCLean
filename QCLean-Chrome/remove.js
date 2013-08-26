@@ -7,6 +7,8 @@
 */
 console.log('Load remove.js');
 
+var qclean = qclean || {};
+
 /* 
     In order to override the HTMLUlistElement.appendChild function for 
     removing <li> of suggested pages/posts, so inject the script kerker.js
@@ -15,7 +17,8 @@ console.log('Load remove.js');
     at that time, my script will check if the <li> is a suggested post or 
     not.
 */
-var qclean_script = document.createElement("script");
-qclean_script.src = chrome.extension.getURL("qclean.js");
-(document.head||document.documentElement).appendChild(qclean_script);
+
+qclean.script = document.createElement("script");
+qclean.script.src = chrome.extension.getURL("qclean.js");
+(document.head||document.documentElement).appendChild(qclean.script);
 
