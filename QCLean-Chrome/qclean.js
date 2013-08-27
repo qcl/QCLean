@@ -49,36 +49,51 @@ removeADsLink();
 
 
 //Override xhr
-var rfbspXHR = XMLHttpRequest.prototype.open;
-XMLHttpRequest.prototype.open = function(){
-    /*
-        arguments[0] - method
-        arguments[1] - url, but some ajax request is not a string 
-                       (facebook graph api?), so need to check this 
-                       argument's type.
-    */
-    if(arguments.length>2&&typeof arguments[1] == "string"
-        &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
+
+    var rfbspXHR = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(){
+        /*
+            arguments[0] - method
+            arguments[1] - url, but some ajax request is not a string 
+                           (facebook graph api?), so need to check this 
+                           argument's type.
+        */
+        if(arguments.length>2&&typeof arguments[1] == "string"
+            &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
         
-        console.log('Block ads ajax request'); 
-    }else{
-        rfbspXHR.apply(this,arguments);
+            console.log('Block ads ajax request'); 
+        }else{
+            rfbspXHR.apply(this,arguments);
+        }
     }
+    XMLHttpRequest.prototype.overrideByQCLean = true;
 }
 
 //Override DIV appendChild
-var rmfbspDivAppend = HTMLDivElement.prototype.appendChild;
-HTMLDivElement.prototype.appendChild = function(){ 
-    rmfbspDivAppend.apply(this,arguments); 
-    removeADsLink();
+if(HTMLDivElement.prototype.overrideByQCLean===undefined){
+
+    var rmfbspDivAppend = HTMLDivElement.prototype.appendChild;
+    HTMLDivElement.prototype.appendChild = function(){ 
+        rmfbspDivAppend.apply(this,arguments); 
+        removeADsLink();
     
-    //For new fb newsfeed
-    removeSponsored();
+        //For new fb newsfeed
+        removeSponsored();
+    }
+    HTMLDivElement.prototype.overrideByQCLean = true;
+
 }
 
 //Override UL appendChild
-var rmfbspUlAppend = HTMLUListElement.prototype.appendChild;
-HTMLUListElement.prototype.appendChild = function(){ 
-    rmfbspUlAppend.apply(this,arguments); 
-    removeSponsored();
+if(HTMLUListElement.prototype.overrideByQCLean===undefined){
+
+    var rmfbspUlAppend = HTMLUListElement.prototype.appendChild;
+    HTMLUListElement.prototype.appendChild = function(){ 
+        rmfbspUlAppend.apply(this,arguments); 
+        removeSponsored();
+    }
+    HTMLUListElement.prototype.overrideByQCLean = true;
+
 }
+
