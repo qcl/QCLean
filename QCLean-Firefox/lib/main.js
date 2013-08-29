@@ -3,10 +3,7 @@ var data = require("sdk/self").data;
 
 pageMod.PageMod({
     include: "*.facebook.com",
-    contentScript:
-        'var s = document.createElement("script");'+
-        's.src = "'+data.url("qclean.js")+'";'+
-        '(document.head||document.documentElement).appendChild(s);',
+    contentScriptFile: [data.url("qclean.js")],
     contentStyleFile: data.url("remove.css"),
     contentScriptWhen: "ready"
 });
