@@ -10,5 +10,9 @@
     "extPageActionTitle":{
         "message":"QCLean: 移除臉書廣告、建議貼文與推薦專頁",
         "description":"PageAction標題"
+    },
+    "extSettings":{
+        "message":"設定QCLean",
+        "description":"設定"
     }
 }

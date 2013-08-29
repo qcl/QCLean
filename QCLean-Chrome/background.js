@@ -1,21 +1,20 @@
-var qclean_version = "0.3.1";
+var qclean = qclean || {};
 
-var qclean_fb_url_regexp = new RegExp("^(http://|https://).*\.facebook\.com/");
-
-function qclean_check_fb_url(tabId, changeInfo, tab) {
-    if(qclean_fb_url_regexp.test(tab.url)){ 
+qclean.version = "0.3.1";
+qclean.fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
+qclean.checkFbUrl = function(tabId, changeInfo, tab){
+    if(qclean.fbUrlRegExp.test(tab.url)){ 
         chrome.pageAction.show(tabId);
     }
 };
-
-chrome.tabs.onUpdated.addListener(qclean_check_fb_url);
+chrome.tabs.onUpdated.addListener(qclean.checkFbUrl);
 
 /* GA */
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-3607701-4']);
 _gaq.push(['_trackPageview']);
 
-_gaq.push(['_trackEvent','ChromeExtVersion',qclean_version]);
+_gaq.push(['_trackEvent','ChromeExtVersion',qclean.version]);
 
 (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

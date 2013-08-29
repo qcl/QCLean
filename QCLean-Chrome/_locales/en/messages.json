@@ -10,5 +10,9 @@
     "extPageActionTitle":{
         "message":"QCLean: Remove FB Ads/Suggested Pages&Posts",
         "description":"page action title"
+    },
+    "extSettings":{
+        "message":"Settings",
+        "description":"settings"
     }
 }
