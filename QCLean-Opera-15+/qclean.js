@@ -1,19 +1,20 @@
+var qclean = qclean || {};
 
-var removeADsLink = function(){
+qclean.removeADsLink = function(){
 
-    var rfbspADsLink = document.getElementsByClassName("adsCategoryTitleLink");
+    var adsLink = document.getElementsByClassName("adsCategoryTitleLink");
 
-    while(rfbspADsLink.length>0){
-        for(var i=0;i<rfbspADsLink.length;i++){
-            var target = rfbspADsLink[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    while(adsLink.length>0){
+        for(var i=0;i<adsLink.length;i++){
+            var target = adsLink[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
             target.parentNode.removeChild(target);
             console.log('Remove ads');
         }
-        rfbspADsLink = document.getElementsByClassName("adsCategoryTitleLink");
+        adsLinkk = document.getElementsByClassName("adsCategoryTitleLink");
     }
 };
 
-var removeSponsored = function(){
+qclean.removeSponsored = function(){
 
     var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
     while(sp.length>0){
@@ -44,41 +45,55 @@ var removeSponsored = function(){
     }
 }
 
-removeSponsored();
-removeADsLink();
-
+qclean.removeSponsored();
+qclean.removeADsLink();
 
 //Override xhr
-var rfbspXHR = XMLHttpRequest.prototype.open;
-XMLHttpRequest.prototype.open = function(){
-    /*
-        arguments[0] - method
-        arguments[1] - url, but some ajax request is not a string 
-                       (facebook graph api?), so need to check this 
-                       argument's type.
-    */
-    if(arguments.length>2&&typeof arguments[1] == "string"
-        &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
+if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
+
+    var originXHRopen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(){
+        /*
+            arguments[0] - method
+            arguments[1] - url, but some ajax request is not a string 
+                           (facebook graph api?), so need to check this 
+                           argument's type.
+        */
+        if(arguments.length>2&&typeof arguments[1] == "string"
+            &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
         
-        console.log('Block ads ajax request'); 
-    }else{
-        rfbspXHR.apply(this,arguments);
+            console.log('Block ads ajax request'); 
+        }else{
+            originXHRopen.apply(this,arguments);
+        }
     }
+    XMLHttpRequest.prototype.overrideByQCLean = true;
 }
 
 //Override DIV appendChild
-var rmfbspDivAppend = HTMLDivElement.prototype.appendChild;
-HTMLDivElement.prototype.appendChild = function(){ 
-    rmfbspDivAppend.apply(this,arguments); 
-    removeADsLink();
+if(HTMLDivElement.prototype.overrideByQCLean===undefined){
+
+    var originDivAppend = HTMLDivElement.prototype.appendChild;
+    HTMLDivElement.prototype.appendChild = function(){ 
+        originDivAppend.apply(this,arguments); 
+        qclean.removeADsLink();
     
-    //For new fb newsfeed
-    removeSponsored();
+        //For new fb newsfeed
+        qclean.removeSponsored();
+    }
+    HTMLDivElement.prototype.overrideByQCLean = true;
+
 }
 
 //Override UL appendChild
-var rmfbspUlAppend = HTMLUListElement.prototype.appendChild;
-HTMLUListElement.prototype.appendChild = function(){ 
-    rmfbspUlAppend.apply(this,arguments); 
-    removeSponsored();
+if(HTMLUListElement.prototype.overrideByQCLean===undefined){
+
+    var originUlAppend = HTMLUListElement.prototype.appendChild;
+    HTMLUListElement.prototype.appendChild = function(){ 
+        originUlAppend.apply(this,arguments); 
+        qclean.removeSponsored();
+    }
+    HTMLUListElement.prototype.overrideByQCLean = true;
+
 }
+
