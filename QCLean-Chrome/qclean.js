@@ -20,23 +20,32 @@ qclean.removeSponsored = function(){
     while(sp.length>0){
         for(var i = 0;i<sp.length;i++){
             var n = sp[i];
+            var found = false;
             while(n.parentNode.nodeName!="BODY"){
                 if(n.parentNode.nodeName=="LI"){
                     if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
+                        //for fb old ui user
                         found = true;
                         break;
                     }
                 }else if(n.parentNode.nodeName=="DIV"){
-                    if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("_6ns _8ru _59hp")){
-                        //for new fb newsfeed
-                        found = true;
-                        break;
+                    if(n.parentNode.hasAttribute("class")){
+                        if(n.parentNode.getAttribute("class").match("_6ns _8ru _59hp")){
+                            //for new fb newsfeed
+                            found = true;
+                            break;
+                        }else if(n.parentNode.getAttribute("class").match("_5jmm _5pat _5srp")){                    
+                            //fb change its class name, jizz
+                            found = true;
+                            break;
+                        }
                     }
                 }
                 n = n.parentNode;
             }
             if(found){
                 n = n.parentNode;
+                console.log(n);
                 n.parentNode.removeChild(n);
                 console.log('Remove sponsored post');
             }
@@ -62,12 +71,13 @@ if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
         if(arguments.length>2&&typeof arguments[1] == "string"
             &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
         
-            console.log('Block ads ajax request'); 
+            console.log('Block ads ajax request, '+arguments[1]); 
         }else{
             originXHRopen.apply(this,arguments);
         }
     }
     XMLHttpRequest.prototype.overrideByQCLean = true;
+
 }
 
 //Override DIV appendChild
