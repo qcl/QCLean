@@ -29,6 +29,7 @@ var removeSponsored = function(){
     while(sp.length>0){
         for(var i = 0;i<sp.length;i++){
             var n = sp[i];
+            var found = false;
             while(n.parentNode.nodeName!="BODY"){
                 if(n.parentNode.nodeName=="LI"){
                     if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
