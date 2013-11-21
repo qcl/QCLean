@@ -17,6 +17,7 @@ qclean.removeADsLink = function(){
 qclean.removeSponsored = function(){
 
     var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
+    var combo = 0;
     while(sp.length>0){
         for(var i = 0;i<sp.length;i++){
             var n = sp[i];
@@ -51,6 +52,11 @@ qclean.removeSponsored = function(){
             }
         }
         sp = document.getElementsByClassName("uiStreamAdditionalLogging");
+        combo++;
+        if(combo>3){
+            //TODO - notify there is some thing new/unknow
+            break;
+        }
     }
 }
 
@@ -71,7 +77,7 @@ if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
         if(arguments.length>2&&typeof arguments[1] == "string"
             &&arguments[1].match("/ajax/pagelet/generic.php/WebEgoPane")){
         
-            console.log('Block ads ajax request, '+arguments[1]); 
+            console.log('Block ads ajax request'); 
         }else{
             originXHRopen.apply(this,arguments);
         }

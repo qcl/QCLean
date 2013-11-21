@@ -1,0 +1,6 @@
+*.swp
+*~
+*.zip
+*.xpi
+
+firefox-sdk

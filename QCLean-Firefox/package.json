@@ -5,7 +5,7 @@
     "author": "qcl", 
     "url": "", 
     "dependencies": ["api-utils", "addon-kit"], 
-    "version": "0.3.1", 
+    "version": "0.3.1.2", 
     "lib": "lib", 
     "fullName": "QCLean - Remove Facebook Ads Suggested Pages and Posts", 
     "main": "main", 
