@@ -46,7 +46,6 @@ qclean.removeSponsored = function(){
             }
             if(found){
                 n = n.parentNode;
-                console.log(n);
                 n.parentNode.removeChild(n);
                 console.log('Remove sponsored post');
             }
