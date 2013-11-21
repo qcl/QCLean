@@ -25,6 +25,7 @@ var removeADsLink = function(){
 var removeSponsored = function(){
 
     var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
+    var combo = 0;
     while(sp.length>0){
         for(var i = 0;i<sp.length;i++){
             var n = sp[i];
@@ -35,12 +36,18 @@ var removeSponsored = function(){
                         break;
                     }
                 }else if(n.parentNode.nodeName=="DIV"){
-                    if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("_6ns _8ru _59hp")){
-                        found = true;
-                        break;
+                    if(n.parentNode.hasAttribute("class")){
+                        if(n.parentNode.getAttribute("class").match("_6ns _8ru _59hp")){
+                            //for new fb newsfeed
+                            found = true;
+                            break;
+                        }else if(n.parentNode.getAttribute("class").match("_5jmm _5pat _5srp")){                    
+                            //fb change its class name, jizz
+                            found = true;
+                            break;
+                        }
                     }
                 }
-                n = n.parentNode;
             }
             if(found){
                 n = n.parentNode;
@@ -49,6 +56,11 @@ var removeSponsored = function(){
             }
         }
         sp = document.getElementsByClassName("uiStreamAdditionalLogging");
+        combo++;
+        if(combo>3){
+            //TODO - notify there is some thing new/unknow
+            break;
+        }
     }
 }
 
