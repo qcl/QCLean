@@ -49,6 +49,7 @@ var removeSponsored = function(){
                         }
                     }
                 }
+                n = n.parentNode;
             }
             if(found){
                 n = n.parentNode;
@@ -56,6 +57,7 @@ var removeSponsored = function(){
                 console.log('Remove sponsored post');
             }
         }
+        break;
         sp = document.getElementsByClassName("uiStreamAdditionalLogging");
         combo++;
         if(combo>3){
@@ -63,6 +65,7 @@ var removeSponsored = function(){
             break;
         }
     }
+    
 }
 
 removeSponsored();
