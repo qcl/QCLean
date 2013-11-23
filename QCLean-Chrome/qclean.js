@@ -3,6 +3,7 @@ var qclean = qclean || {};
 qclean.removeADsLink = function(){
 
     var adsLink = document.getElementsByClassName("adsCategoryTitleLink");
+    var combo = 0;
 
     while(adsLink.length>0){
         for(var i=0;i<adsLink.length;i++){
@@ -11,6 +12,10 @@ qclean.removeADsLink = function(){
             console.log('Remove ads');
         }
         adsLinkk = document.getElementsByClassName("adsCategoryTitleLink");
+        combo++;
+        if(combo>3){
+            break;
+        }
     }
 };
 
