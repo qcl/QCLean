@@ -10,7 +10,7 @@ qclean.removeADsLink = function(){
             target.parentNode.removeChild(target);
             console.log('Remove ads');
         }
-        adsLinkk = document.getElementsByClassName("adsCategoryTitleLink");
+        adsLink = document.getElementsByClassName("adsCategoryTitleLink");
     }
 };
 
