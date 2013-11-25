@@ -19,6 +19,12 @@ qclean.removeADsLink = function(){
     }
 };
 
+qclean.storyClassNames = [
+    "_6ns _8ru _59hp",
+    "_5jmm _5pat _5srp",
+    "_5jmm _5pat _5uch"
+    ];
+
 qclean.removeSponsored = function(){
 
     var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
@@ -36,13 +42,14 @@ qclean.removeSponsored = function(){
                     }
                 }else if(n.parentNode.nodeName=="DIV"){
                     if(n.parentNode.hasAttribute("class")){
-                        if(n.parentNode.getAttribute("class").match("_6ns _8ru _59hp")){
-                            //for new fb newsfeed
-                            found = true;
-                            break;
-                        }else if(n.parentNode.getAttribute("class").match("_5jmm _5pat _5srp")){                    
-                            //fb change its class name, jizz
-                            found = true;
+                        var className = n.parentNode.getAttribute("class");
+                        for(var i = 0; i<qclean.storyClassNames.length; i++){
+                            if(className.match(qclean.storyClassNames[i])){
+                                found = true;
+                                break;
+                            }
+                        }
+                        if(found){
                             break;
                         }
                     }
@@ -59,6 +66,7 @@ qclean.removeSponsored = function(){
         combo++;
         if(combo>3){
             //TODO - notify there is some thing new/unknow
+            console.log("Found but can not remove Q____Q");
             break;
         }
     }
