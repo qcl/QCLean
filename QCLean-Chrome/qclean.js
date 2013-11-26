@@ -88,7 +88,6 @@ qclean.hideSection = function(){
                 container.classList.add("qcleanHide");
                 header.qcleanContainer = container;
                 header.onclick = function(){
-                    console.log(this);
                     if(this.getAttribute("qclean-hide")=="true"){
                         this.qcleanContainer.classList.remove("qcleanHide");
                         this.setAttribute("qclean-hide","false");
