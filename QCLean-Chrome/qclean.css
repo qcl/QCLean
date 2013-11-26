@@ -2,6 +2,14 @@
     display: none;
 }
 
+.qcleanHide{
+    display: none;
+}
+
+.qcleanClickable{
+    cursor: pointer;
+}
+
 /* fix the header of facebook. */
 /*
 div#blueBar.fixed_elem{

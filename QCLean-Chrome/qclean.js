@@ -4,14 +4,13 @@ qclean.removeADsLink = function(){
 
     var adsLink = document.getElementsByClassName("adsCategoryTitleLink");
     var combo = 0;
-
     while(adsLink.length>0){
         for(var i=0;i<adsLink.length;i++){
             var target = adsLink[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
             target.parentNode.removeChild(target);
             console.log('Remove ads');
         }
-        adsLinkk = document.getElementsByClassName("adsCategoryTitleLink");
+        adsLink = document.getElementsByClassName("adsCategoryTitleLink");
         combo++;
         if(combo>3){
             break;
@@ -70,10 +69,42 @@ qclean.removeSponsored = function(){
             break;
         }
     }
-}
+};
+
+qclean.hideSection = function(){
+    
+    var sections = document.getElementsByClassName("ego_section");
+    for(var i=0;i<sections.length;i++){
+        var section = sections[i];
+        var header  = section.getElementsByClassName("uiHeaderTitle");
+        var container = section.getElementsByClassName("ego_unit_container");
+        if(header.length*container.length>0){
+            header = header[0];
+            container = container[0];
+            if(!header.hasAttribute("qclean-hide")){
+                header.setAttribute("qclean-hide","true");
+                header.classList.add("qcleanClickable");
+                header.innerHTML = header.innerHTML + " ("+container.childNodes.length+")";
+                container.classList.add("qcleanHide");
+                header.qcleanContainer = container;
+                header.onclick = function(){
+                    console.log(this);
+                    if(this.getAttribute("qclean-hide")=="true"){
+                        this.qcleanContainer.classList.remove("qcleanHide");
+                        this.setAttribute("qclean-hide","false");
+                    }else{
+                        this.qcleanContainer.classList.add("qcleanHide");
+                        this.setAttribute("qclean-hide","true");
+                    }
+                };
+            }
+        }
+    }
+};
 
 qclean.removeSponsored();
 qclean.removeADsLink();
+qclean.hideSection();
 
 //Override xhr
 if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
@@ -105,6 +136,7 @@ if(HTMLDivElement.prototype.overrideByQCLean===undefined){
     HTMLDivElement.prototype.appendChild = function(){ 
         originDivAppend.apply(this,arguments); 
         qclean.removeADsLink();
+        qclean.hideSection();
     
         //For new fb newsfeed
         qclean.removeSponsored();
