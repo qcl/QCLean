@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.3.3",
+    "version":"0.3.3.1",
 
     "manifest_version":2,
 
@@ -22,7 +22,7 @@
     "content_scripts":[{
         "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
         "css":["qclean.css"],
-        "js":["qclean.js"],
+        "js":["remove.js"],
         "run_at":"document_start"
     }],
 

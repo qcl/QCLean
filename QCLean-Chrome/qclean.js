@@ -13,6 +13,7 @@ qclean.removeADsLink = function(){
         adsLink = document.getElementsByClassName("adsCategoryTitleLink");
         combo++;
         if(combo>3){
+            console.log("Found but can not remove Q____Q");
             break;
         }
     }
@@ -21,7 +22,8 @@ qclean.removeADsLink = function(){
 qclean.storyClassNames = [
     "_6ns _8ru _59hp",
     "_5jmm _5pat _5srp",
-    "_5jmm _5pat _5uch"
+    "_5jmm _5pat _5uch",
+    "_5uch _5jmm _5pat"
     ];
 
 qclean.removeSponsored = function(){
