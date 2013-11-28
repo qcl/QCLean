@@ -36,8 +36,6 @@
         "default_popup":"popup.html"
     },
 
-    "options_page":"options.html",
-
     "web_accessible_resources":["qclean.js","qclean48.png"],
 
     "homepage_url":"http://qcl.github.io/QCLean"
