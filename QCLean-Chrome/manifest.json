@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.3.4",
+    "version":"0.4",
 
     "manifest_version":2,
 
@@ -35,6 +35,8 @@
         "default_title":"__MSG_extPageActionTitle__",
         "default_popup":"popup.html"
     },
+
+    "options_page": "options.html",
 
     "web_accessible_resources":["qclean.js","qclean48.png"],
 
