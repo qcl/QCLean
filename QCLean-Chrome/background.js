@@ -1,6 +1,6 @@
 var qclean = qclean || {};
 
-qclean.version = "0.3.2";
+qclean.version = "0.3.4";
 qclean.fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
 qclean.checkFbUrl = function(tabId, changeInfo, tab){
     if(qclean.fbUrlRegExp.test(tab.url)){ 

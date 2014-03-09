@@ -22,3 +22,4 @@ qclean.script = document.createElement("script");
 qclean.script.src = chrome.extension.getURL("qclean.js");
 (document.head||document.documentElement).appendChild(qclean.script);
 
+console.log(localStorage["qclean-version"]);
