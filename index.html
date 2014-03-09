@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Remove FB Ads/Suggested Post&Page</title>
+    <title>QCLean</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Remove ads and suggested post, page on facebook." />
+    <meta name="description" content="QCLean Remove ads and suggested post, page on facebook." />
     <meta name="author" content="qcl" />
 
-    <link rel="shortcut icon" href="./icons/nofbpage16.png" />
+    <link rel="shortcut icon" href="./icons/qclean16.png" />
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <style>
         body{
@@ -17,11 +17,8 @@
             /* Featurettes
              ------------------------- */
             
-            .featurette-divider {
-                margin: 80px 0; /* Space out the Bootstrap <hr> more */
-            }
             .featurette {
-                padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+                padding-top: 60px; /* Vertically center images part 1: add padding above and below text. */
                 overflow: hidden; /* Vertically center images part 2: clear their floats. */
             }
             .featurette-image {
@@ -45,6 +42,10 @@
             }
     
         #downloadlist .span3{
+            text-align: center;
+        }
+
+        .span2{
             text-align: center;
         }
 
@@ -87,10 +88,12 @@
                     <li>
                         <a href="https://github.com/qcl/QCLean">Source Code</a>
                     </li>
+                    <li>
+                        <a href="https://chrome.google.com/webstore/support/fdhhejjkjfjkchkimomgfegnpapndjne#bug">Report Bug</a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Download<b class="caret"></b></a>
                         <ul class="dropdown-menu" >
-                            <!--<li><a href="#chrome_install_guide" data-toggle="modal" >Chrome</a></li>-->
                             <li><a href="https://chrome.google.com/webstore/detail/qclean-remove-facebook-ad/fdhhejjkjfjkchkimomgfegnpapndjne">Chrome</a></li>
                             <li><a href="https://addons.mozilla.org/firefox/addon/qclean/" >Firefox</a></li>
                             <li><a href="#safari_install_guide" data-toggle="modal" >Safari</a></li>
@@ -98,6 +101,8 @@
                             <li><a href="./QCLeanInstaller.msi" >IE (Alpha)</a></li>
                         </ul>
                     </li>
+                </ul>
+                <ul class="nav pull-right">
                 </ul>
             </div>
         </div>
@@ -107,59 +112,50 @@
 <div class="container">
 
     <div class="hero-unit">
-        <!--<img src="./icons/nofbpage156.png" />-->
-        <img src="./img/qclean_03.png" />
-        <h2>QCLean: Remove Facebook Ads, Suggested Pages & Posts</h2>
-        <p>A extension/add-on that removing ads, suggested pages and posts on facebook news feed for Chrome/Firefox/Safari/Opera/IE users.</p>
-        <p>移除Facebook廣告、建議貼文與推薦粉絲專頁的瀏覽器附加元件</p>
-        <p><a href="#features" class="btn btn-primary btn-large">Learn more features</a> <a href="#download" class="btn btn-success btn-large">Download &raquo;</a></p>
+        <center>
+            <img src="./icons/qclean.png" width="200"/>
+            <h2>QCLean<br/>Remove Facebook Ads, Suggested Pages & Posts</h2>
+        <p>A browser extension/add-on that removing ads, suggested pages and posts on facebook news feed for Chrome/Firefox/Safari/Opera/IE users.</p>
+        <p>一款爲 Chrome/Firefox/Safari/Opera/IE 使用者精工打造的移除 Facebook 廣告、建議貼文與推薦粉絲專頁的瀏覽器附加元件</p>
+        <hr />
+        <p>
+            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <table>
+                    <tr><td><input type="hidden" name="on0" value="Donation for QCLean">Donation 贊助</td></tr><tr><td><select name="os0">
+                        <option value="Donate">Donate $3.00 USD</option>
+                        <option value="Donate">Donate $5.00 USD</option>
+                        <option value="Donate">Donate $10.00 USD</option>
+                     </select> </td></tr>
+                </table>
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                            ">
+                <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/zh_TW/i/scr/pixel.gif" width="1" height="1">
+            </form>
 
+            <a href="#features" class="btn btn-primary btn-large">Learn more features</a> 
+
+            <a href="#download" class="btn btn-success btn-large">Download &raquo;</a>
+        </p>
+
+        </center>
     </div>
     
     <h1 id="download">Download</h1>
 
     <div class="row" id="downloadlist">
         <div class="span2">
-            <img class="img-circle" width="140" src="./img/browser-icon-chrome.png" />
+            <img class="img-circle" width="140" src="./img/browser/browser-icon-chrome-256.png" />
             <h3>Chrome</h3>
-            <p class="muted">0.3.1.2</p>
+            <p class="muted">0.3.4</p>
             <p>
                 <a href="https://chrome.google.com/webstore/detail/qclean-remove-facebook-ad/fdhhejjkjfjkchkimomgfegnpapndjne" class="btn btn-success" ><i class="icon-download icon-white"></i> Download</a>
-                <!--<a href="#chrome_install_guide" data-toggle="modal" class="btn btn-success" ><i class="icon-download icon-white"></i> Download</a>-->
             </p>
-
-            <div id="chrome_install_guide" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="cig" aria-idden="true" style="text-align:left;">
-                <div class="modal-header">
-                    <h3 id="cig">Chrome Installation Guide</h3>
-                </div>
-                <div class="modal-body">
-                    <h4>1. Download <i>NoFBRecommend.crx</i></h4>
-                    <a href="./NoFBPageRecommend.crx" class="btn btn-warning"><i class="icon-download icon-white"></i> Download</a>
-                    <p>下載 <i>NoFBRecommend.crx</i> 檔案，由於並非由Chrome Web Store下載，因此會出現提示訊息，無法直接新增至瀏覽器內。</p>
-                    <img src="./img/01warningmsg.png" />
-                    <h4>2. Goto <i>chrome://extensions</i></h4>
-                    <p>於瀏覽器網址列輸入 <i>chrome://extensions/</i> 進入瀏覽器擴充功能管理界面。</p>
-                    <img src="./img/02type.png" />
-                    <h4>3. Drag <i>NoFBRecommend.crx</i> into Chrome</h4>
-                    <p>將 <i>NoFBRecommend.crx</i> 拖動進入瀏覽器即可開始安裝。</p>
-                    <img src="./img/03dragintochrome.png" />
-                    <h4>4. Add into Chrome</h4>
-                    <p>按下「新增」完成安裝。</p>
-                    <img src="./img/04add.png" />
-                    <h4>5. Finish</h4>
-                    <p>完成安裝。</p>
-                    <img src="./img/05done.png" />
-                    <p>安裝後若未來釋出新版本，毋需至本站下載新版本替換，目前已經支援自動更新。</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                </div>
-            </div>
-
-
         </div>
         <div class="span2">
-            <img class="img-circle" width="140" src="./img/browser-icon-firefox.png" />
+            <img class="img-circle" width="140" src="./img/browser/browser-icon-firefox-256.png" />
             <h3>Firefox</h3>
             <p class="muted">0.3.1.2</p>
             <p>
@@ -167,7 +163,7 @@
             </p>
         </div>
         <div class="span2">
-            <img class="img-circle" width="140" src="./img/browser-icon-safari.png" />
+            <img class="img-circle" width="140" src="./img/browser/browser-icon-safari-256.png" />
             <h3>Safari</h3>
             <p class="muted">0.3.1.+</p>
             <p>
@@ -181,13 +177,13 @@
                     <h4>1. Download <i>QCLean.safariextz</i> ,then double click it.</h4>
                     <a href="./QCLean.safariextz" class="btn btn-warning"><i class="icon-download icon-white"></i> Download</a>
                     <p>下載 <i>QCLean.safariextz</i> 檔案，並點擊開啓之。</p>
-                    <img src="./img/sa01download.png" />
+                    <img src="./img/safari_setup/sa01download.png" />
                     <h4>2. Click <i>Install</i></h4>
                     <p>按下「安裝」完成安裝。</p>
-                    <img src="./img/sa02add.png" />
+                    <img src="./img/safari_setup/sa02add.png" />
                     <h4>3. Finish</h4>
                     <p>完成安裝。您可以在偏好設定中的延伸功能中找到它。</p>
-                    <img src="./img/sa03done.png" />
+                    <img src="./img/safari_setup/sa03done.png" />
                     <p>安裝後若未來釋出新版本，毋需至本站下載新版本替換，目前已經支援自動更新。</p>
                 </div>
                 <div class="modal-footer">
@@ -196,7 +192,7 @@
             </div>
         </div>
         <div class="span2">
-            <img class="img-circle" width="140" src="./img/browser-icon-opera.png" />
+            <img class="img-circle" width="140" src="./img/browser/browser-icon-opera-256.png" />
             <h3>Opera</h3>
             <p class="muted">0.3.1.+</p>
             <p>
@@ -204,11 +200,19 @@
             </p>
         </div>
         <div class="span2">
-            <img width="140" src="./img/browser-icon-ie.png" />
+            <img width="140" src="./img/browser/browser-icon-ie-256.png" />
             <h3>IE</h3>
             <p class="muted">0.3.1.2 (Alpha)</p>
             <p>
                 <a href="./QCLeanInstaller.msi" class="btn btn-danger" ><i class="icon-download icon-white"></i> Download</a>
+            </p>
+        </div>
+        <div class="span2">
+            <img width="140" src="./img/github-icon-256.png" />
+            <h3>Source Code</h3>
+            <p class="muted">Source code on Github</p>
+            <p>
+                <a href="https://github.com/qcl/QCLean" class="btn btn-info" ><i class="icon-download icon-white"></i> View Source</a>
             </p>
         </div>
     </div>
@@ -217,48 +221,57 @@
     <h1 id="features">Features</h1>
     
     <div class="featurette">
-        <img width="512" class="featurette-image pull-right" src="./img/suggestedPage.png">
-        <h2>Remove Suggested Pages<br/><span class="muted">移除「推薦粉絲專頁」</span></h2>
+        <img width="512" class="featurette-image pull-left" src="./img/features/suggested_post_page_remove.png">
+        <h3>Remove Suggested Pages & Posts<br/><span class="muted">移除「推薦粉絲專頁」以及「建議貼文」。</span></h3>
         <p>
         </p>
     </div>
     <hr class="featurette-divider">
 
     <div class="featurette">
-        <img width="512" class="featurette-image pull-left" src="./img/suggestedPost.png">
-        <h2>Remove Suggested Posts<br/><span class="muted">移除「建議貼文」</span></h2>
+        <img width="512" class="featurette-image pull-left" src="./img/features/ads_on_newsfeed_remove.png">
+        <h3>Remove Ads on Newsfeed Page<br/><span class="muted">移除動態旁的廣告。</span></h3>
         <p>
         </p>
     </div>
     <hr class="featurette-divider">
 
     <div class="featurette">
-        <img width="512" class="featurette-image pull-right" src="./img/newsfeedAds.png">
-        <h2>Remove Ads on News Feed Page<br/><span class="muted">移除動態旁的廣告</span><code>New!</code></h2>
+        <img width="512" class="featurette-image pull-left" src="./img/features/personal_page_ads_remove.png">
+        <h3>Remove Ads on Your Personal Page<br/><span class="muted">移除個人頁面旁的廣告。</span></h3>
         <p>
         </p>
     </div>
     <hr class="featurette-divider">
 
     <div class="featurette">
-        <img width="512" class="featurette-image pull-left" src="./img/personalPageAds.png">
-        <h2>Remove Ads on Your Personal Page<br/><span class="muted">移除個人頁面旁的廣告</span><code>New!</code></h2>
-        <p>
-        </p>
-    </div>
-    <hr class="featurette-divider">
-
-    <div class="featurette">
-        <img width="512" class="featurette-image pull-right" src="./img/photoAds.png">
-        <h2>Remove Ads on Photo View<br/><span class="muted">移除相片旁的廣告</span><code>New!</code></h2>
+        <img width="512" class="featurette-image pull-left" src="./img/features/photo_ads_remove.png">
+        <h3>Remove Ads on Photo View<br/><span class="muted">移除相片旁的廣告。</span></h3>
         <p>
         </p>
     </div>
     <hr class="featurette-divider">
     
     <div class="featurette">
-        <img width="512" class="featurette-image pull-left" src="./img/github-logo.png">
-        <h2>Open Source<br/><span class="muted">開放原始碼</span></h2>
+        <img width="512" class="featurette-image pull-left" src="./img/features/hide_info.gif">
+        <h3>Folding Recommendations<br/><span class="muted">收納各種推薦，可點擊展開或隱藏。</span><code>New!</code></h3>
+        <p>
+        </p>
+    </div>
+    <hr class="featurette-divider">
+    
+    <div class="featurette">
+        <img width="512" class="featurette-image pull-left" src="./img/features/line_tagged_remove.png">
+        <h3>Hide Spam Information<br/><span class="muted">隱藏垃圾購物訊息。</span><code>Experimental!</code><code>For Taiwan users</code><code>0.4+</code></h3>
+        <p>
+            近來購物社團相當猖獗，利用粉絲專頁、虛擬帳號或盜取帳號等方式將使用者以及使用者的朋友標記於圖片之上，大量散播令人生厭的購物訊息，QCLean目前正在試驗此一實驗中之功能，將其隱藏。
+        </p>
+    </div>
+    <hr class="featurette-divider">
+    
+    <div class="featurette">
+        <img width="256" class="featurette-image pull-right" src="./img/github-logo-256.png">
+        <h3>Open Source<br/><span class="muted">開放原始碼</span></h3>
         <p>
             <a href="https://github.com/qcl/QCLean" class="btn btn-info btn-large">View Source Code on Github &raquo;</a> 
         </p>
@@ -266,8 +279,8 @@
     <hr class="featurette-divider">
 
     <div class="featurette">
-        <img width="512" class="featurette-image pull-right" src="./img/vim.png">
-        <h2>Handmade Code<br/><span class="muted">男子漢Programmer</span></h2>
+        <img width="256" class="featurette-image pull-right" src="./img/vim-256.png">
+        <h3>Handmade Code<br/><span class="muted">男子漢Programmer</span></h3>
         <p>
             純手工，使用男子漢編輯器精工打造程式碼。
         </p>
@@ -283,7 +296,7 @@
     
     <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 qcl.tw &middot; <a href="http://blog.qcl.tw/">Blog</a></p>
+        <p>&copy; 2014 qcl.tw &middot; <a href="http://blog.qcl.tw/">Blog</a></p>
     </footer>
 
 </div>
