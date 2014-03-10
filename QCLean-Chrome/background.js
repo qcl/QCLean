@@ -1,5 +1,5 @@
 var qclean = qclean || {};
-qclean.version = "0.4";
+qclean.version = "0.4.1";
 
 /* Default Settings */
 //version information
@@ -49,10 +49,10 @@ _gaq.push(['_trackEvent','ChromeExtVersion',qclean.version]);
 /* chrome messages */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
-    console.log("getMessage.");
-    console.log(request);
-    console.log(sender);
-    console.log(sendResponse);
+    //console.log("getMessage.");
+    //console.log(request);
+    //console.log(sender);
+    //console.log(sendResponse);
 
     if(request.request == "getSettings"){
     
