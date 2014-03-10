@@ -38,7 +38,7 @@
 
     "options_page": "options.html",
 
-    "web_accessible_resources":["qclean.js","qclean48.png"],
+    "web_accessible_resources":["qclean.js","qclean48.png","qclean38.png"],
 
     "homepage_url":"http://qcl.github.io/QCLean"
 }

@@ -1,6 +1,11 @@
+console.log("Load qclean.js");
 var qclean = qclean || {};
 
 qclean.removeADsLink = function(){
+
+    if(!qclean.settingRmad){
+        return;
+    }
 
     var adsLink = document.getElementsByClassName("adsCategoryTitleLink");
     var combo = 0;
@@ -27,6 +32,10 @@ qclean.storyClassNames = [
     ];
 
 qclean.removeSponsored = function(){
+
+    if(!qclean.settingRmrp){
+        return;
+    }
 
     var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
     var combo = 0;
@@ -75,6 +84,10 @@ qclean.removeSponsored = function(){
 
 qclean.hideSection = function(){
     
+    if(!qclean.settingHr){
+        return;
+    }
+
     var sections = document.getElementsByClassName("ego_section");
     for(var i=0;i<sections.length;i++){
         var section = sections[i];
@@ -103,9 +116,54 @@ qclean.hideSection = function(){
     }
 };
 
+qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE)+","i");
+qclean.hideInfo = "<div style='cursor:pointer;'><img src='"+qclean.logoSrc+"'/><p>QCLean：疑似購物貼文，點擊觀看或隱藏原文。（或至QCLean Settings關閉此功能）</p></div>";
+qclean.hideLineTagging = function(){
+    
+    if(!qclean.settingHs){
+        return;
+    }else{
+        console.log("QCLean-Testing");
+    }
+
+    var targets = document.getElementsByClassName("mvm");
+    //console.log("QCLean-Testing, #of targets: "+targets.length);
+    
+    for(var i=0;i<targets.length;i++){
+        if(!targets[i].hasAttribute("qclean-looked")){
+            targets[i].setAttribute("qclean-looked","true");
+            if(targets[i].hasAttribute("data-ft")){
+                var string = targets[i].innerHTML;
+                if(qclean.lineRegExp.test(string)){
+                    //console.log(targets[i]);
+                    var node = targets[i].parentNode.parentNode.parentNode;
+                    node.setAttribute("qclean-innerHTML",node.innerHTML);
+                    node.setAttribute("qclean-hide","true");
+                    node.innerHTML = qclean.hideInfo;
+                    node.onclick = function(){
+                        if(this.getAttribute("qclean-hide")=="true"){
+                            this.setAttribute("qclean-hide","false");
+                            this.innerHTML = qclean.hideInfo + this.getAttribute("qclean-innerHTML");
+                        }else{
+                            this.setAttribute("qclean-hide","true");
+                            this.innerHTML = qclean.hideInfo;
+                        }
+                    };
+                    console.log("Hide Spam Information");
+                    //console.log(targets[i].parentNode.parentNode.parentNode);
+                }
+            }
+        }else{
+            //targets[i].setAttribute("qclean-looked","true");
+        }
+    }
+     
+};
+
 qclean.removeSponsored();
 qclean.removeADsLink();
 qclean.hideSection();
+qclean.hideLineTagging();
 
 //Override xhr
 if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
@@ -138,6 +196,7 @@ if(HTMLDivElement.prototype.overrideByQCLean===undefined){
         originDivAppend.apply(this,arguments); 
         qclean.removeADsLink();
         qclean.hideSection();
+        qclean.hideLineTagging();
     
         //For new fb newsfeed
         qclean.removeSponsored();
