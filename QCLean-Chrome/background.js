@@ -22,6 +22,10 @@ if(localStorage["qclean-hr"]==undefined){
 if(localStorage["qclean-hs"]==undefined){
     localStorage["qclean-hs"] = "false";
 }
+//report data to qclean
+if(localStorage["qclean-report"]==undefined){
+    localStorage["qclean-report"] = "true";
+}
 
 //show popup
 qclean.fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
@@ -60,7 +64,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             "rmad":localStorage["qclean-rmad"],
             "rmrp":localStorage["qclean-rmrp"],
             "hr"  :localStorage["qclean-hr"],
-            "hs"  :localStorage["qclean-hs"]
+            "hs"  :localStorage["qclean-hs"],
+            "report":localStorage["qclean-report"]
         });
     }
 

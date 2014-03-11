@@ -14,11 +14,13 @@ var rmadBtn = document.getElementById("rmad");
 var rmrpBtn = document.getElementById("rmrp");
 var hrBtn   = document.getElementById("hr");
 var hsBtn   = document.getElementById("hs");
+var reportBtn = document.getElementById("report");
 
 console.log(localStorage["qclean-rmad"]);
 console.log(localStorage["qclean-rmrp"]);
 console.log(localStorage["qclean-hr"]);
 console.log(localStorage["qclean-hs"]);
+console.log(localStorage["qclean-report"]);
 if(localStorage["qclean-rmad"]=="true"){
     rmadBtn.innerHTML = "on";
 }else{
@@ -38,6 +40,11 @@ if(localStorage["qclean-hs"]=="true"){
     hsBtn.innerHTML = "on";
 }else{
     hsBtn.innerHTML = "off";
+}
+if(localStorage["qclean-report"]=="true"){
+    reportBtn.innerHTML = "on";
+}else{
+    reportBtn.innerHTML = "off";
 }
 
 rmadBtn.onclick = function(){
@@ -75,6 +82,15 @@ hsBtn.onclick = function(){
         this.innerHTML = "off";
     }else{
         localStorage["qclean-hs"] = "true";
+        this.innerHTML = "on";
+    }
+};
+reportBtn.onclick = function(){
+    if(localStorage["qclean-report"]=="true"){
+        localStorage["qclean-report"] = "false";
+        this.innerHTML = "off";
+    }else{
+        localStorage["qclean-report"] = "true";
         this.innerHTML = "on";
     }
 };

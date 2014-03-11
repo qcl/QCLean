@@ -51,6 +51,11 @@ chrome.runtime.sendMessage({request:"getSettings"},function(response){
     }else{
         qclean.settings.innerHTML += "qclean.settingHs = false;\n";
     }
+    if(response.report=="true"){
+        qclean.settings.innerHTML += "qclean.settingReport = true;\n";
+    }else{
+        qclean.settings.innerHTML += "qclean.settingReport = false;\n";
+    }
 
     (document.head||document.documentElement).appendChild(qclean.settings);
     (document.head||document.documentElement).appendChild(qclean.script);

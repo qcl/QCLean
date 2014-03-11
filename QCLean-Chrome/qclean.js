@@ -1,6 +1,18 @@
 console.log("Load qclean.js");
 var qclean = qclean || {};
 
+if(qclean.settingReport){
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-3607701-4']);
+_gaq.push(['_trackEvent','ReportCrash','on']);
+(function(){
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+}
+
+
 qclean.removeADsLink = function(){
 
     if(!qclean.settingRmad){
@@ -18,7 +30,11 @@ qclean.removeADsLink = function(){
         adsLink = document.getElementsByClassName("adsCategoryTitleLink");
         combo++;
         if(combo>3){
+            //TODO - report more useful information for fix bugs.
             console.log("Found but can not remove Q____Q");
+            if(qclean.settingReport){
+                _gaq.push(['_trackEvent','CrashReport','RemoveAD']);
+            }
             break;
         }
     }
@@ -77,6 +93,9 @@ qclean.removeSponsored = function(){
         if(combo>3){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
+            if(qclean.settingReport){
+                _gaq.push(['_trackEvent','CrashReport','RemoveSponsored']);
+            }
             break;
         }
     }
@@ -133,6 +152,9 @@ qclean.hideLineTagging = function(){
             if(targets[i].hasAttribute("data-ft")){
                 var string = targets[i].innerHTML;
                 if(qclean.lineRegExp.test(string)){
+                    if(qclean.settingReport){
+                        _gaq.push(['_trackEvent','LineTagging','originString',string]);
+                    }
                     //console.log(targets[i]);
                     var node = targets[i].parentNode.parentNode.parentNode;
                     node.setAttribute("qclean-innerHTML",node.innerHTML);
@@ -147,8 +169,48 @@ qclean.hideLineTagging = function(){
                             this.innerHTML = qclean.hideInfo;
                         }
                     };
-                    console.log("Hide Spam Information");
+                    console.log("Hide Spam Information+");
                     //console.log(targets[i].parentNode.parentNode.parentNode);
+                    var n = node;
+                    var found = false;
+                    while(n.parentNode.nodeName!="BODY"){
+                        if(n.parentNode.nodeName=="LI"){
+                            if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
+                                //for fb old ui user
+                                found = true;
+                                break;
+                            }
+                        }else if(n.parentNode.nodeName=="DIV"){
+                            if(n.parentNode.hasAttribute("class")){
+                                var className = n.parentNode.getAttribute("class");
+                                for(var i = 0; i<qclean.storyClassNames.length; i++){
+                                    if(className.match(qclean.storyClassNames[i])){
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if(found){
+                                    break;
+                                }
+                            }
+                        }
+                        n = n.parentNode;
+                    }
+                    if(found){
+                        n = n.parentNode;
+                        if(n.querySelectorAll){
+                            var badmen = n.querySelectorAll("a.profileLink");
+                            if(badmen.length>=3){
+                                var bad = badmen[badmen.length-2];
+                                console.log(bad.innerHTML);
+                                console.log(bad.href);
+                                if(qclean.settingReport){
+                                    _gaq.push(['_trackEvent','LineTagging','TaggerName',bad.innerHTML]);
+                                    _gaq.push(['_trackEvent','LineTagging','TaggerURL',bad.href]);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }else{
