@@ -135,7 +135,7 @@ qclean.hideSection = function(){
     }
 };
 
-qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE)+","i");
+qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE|請加我LINE)+","i");
 qclean.hideInfo = "<div style='cursor:pointer;'><img src='"+qclean.logoSrc+"'/><p>QCLean：疑似購物貼文，點擊觀看或隱藏原文。（或至QCLean Settings關閉此功能）</p></div>";
 qclean.hideLineTagging = function(){
     
