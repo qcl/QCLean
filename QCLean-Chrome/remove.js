@@ -21,6 +21,11 @@ var qclean = qclean || {};
 qclean.script = document.createElement("script");
 qclean.script.src = chrome.extension.getURL("qclean.js");
 
+qclean.apiStory = document.createElement("script");
+qclean.apiStory.src = "https://qcl.github.io/QCLean/api/story.js";
+qclean.apiLineTagging = document.createElement("script");
+qclean.apiLineTagging.src = "https://qcl.github.io/QCLean/api/lineTagging.js";
+
 qclean.settings = document.createElement("script");
 //image for hide information used.
 qclean.logoSrc = chrome.extension.getURL("qclean38.png");
@@ -57,6 +62,8 @@ chrome.runtime.sendMessage({request:"getSettings"},function(response){
         qclean.settings.innerHTML += "qclean.settingReport = false;\n";
     }
 
+    (document.head||document.documentElement).appendChild(qclean.apiLineTagging);
+    (document.head||document.documentElement).appendChild(qclean.apiStory);
     (document.head||document.documentElement).appendChild(qclean.settings);
     (document.head||document.documentElement).appendChild(qclean.script);
 });

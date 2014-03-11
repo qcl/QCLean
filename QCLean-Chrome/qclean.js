@@ -40,12 +40,15 @@ qclean.removeADsLink = function(){
     }
 };
 
-qclean.storyClassNames = [
-    "_6ns _8ru _59hp",
-    "_5jmm _5pat _5srp",
-    "_5jmm _5pat _5uch",
-    "_5uch _5jmm _5pat"
-    ];
+if(qclean.storyClassNames==undefined){
+    qclean.storyClassNames = [
+        "_6ns _8ru _59hp",
+        "_6ns _5jmm _5jmm",
+        "_5jmm _5pat _5srp",
+        "_5jmm _5pat _5uch",
+        "_5uch _5jmm _5pat"
+        ];
+}
 
 qclean.removeSponsored = function(){
 
@@ -56,9 +59,11 @@ qclean.removeSponsored = function(){
     var sp = document.getElementsByClassName("uiStreamAdditionalLogging");
     var combo = 0;
     while(sp.length>0){
+        var classNameCollections = [];
         for(var i = 0;i<sp.length;i++){
             var n = sp[i];
             var found = false;
+            var classNameCollection = [];
             while(n.parentNode.nodeName!="BODY"){
                 if(n.parentNode.nodeName=="LI"){
                     if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
@@ -69,6 +74,7 @@ qclean.removeSponsored = function(){
                 }else if(n.parentNode.nodeName=="DIV"){
                     if(n.parentNode.hasAttribute("class")){
                         var className = n.parentNode.getAttribute("class");
+                        classNameCollection.push(className);
                         for(var i = 0; i<qclean.storyClassNames.length; i++){
                             if(className.match(qclean.storyClassNames[i])){
                                 found = true;
@@ -86,6 +92,8 @@ qclean.removeSponsored = function(){
                 n = n.parentNode;
                 n.parentNode.removeChild(n);
                 console.log('Remove sponsored post');
+            }else{
+                classNameCollections.push(classNameCollection);
             }
         }
         sp = document.getElementsByClassName("uiStreamAdditionalLogging");
@@ -94,7 +102,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                _gaq.push(['_trackEvent','CrashReport','RemoveSponsored']);
+                _gaq.push(['_trackEvent','CrashReport','RemoveSponsored',JSON.stringify(classNameCollections)]);
             }
             break;
         }
@@ -135,7 +143,9 @@ qclean.hideSection = function(){
     }
 };
 
-qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE|請加我LINE)+","i");
+if(qclean.lineRegExp==undefined){
+    qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE|請加我LINE)+","i");
+}
 qclean.hideInfo = "<div style='cursor:pointer;'><img src='"+qclean.logoSrc+"'/><p>QCLean：疑似購物貼文，點擊觀看或隱藏原文。（或至QCLean Settings關閉此功能）</p></div>";
 qclean.hideLineTagging = function(){
     
@@ -144,6 +154,9 @@ qclean.hideLineTagging = function(){
     }
 
     var targets = document.getElementsByClassName("mvm");
+    if(targets.length==0){
+        var targets = document.getElementsByClassName("userContentWrapper");
+    }
     //console.log("QCLean-Testing, #of targets: "+targets.length);
     
     for(var i=0;i<targets.length;i++){
