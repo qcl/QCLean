@@ -46,7 +46,8 @@ if(qclean.storyClassNames==undefined){
         "_6ns _5jmm _5jmm",
         "_5jmm _5pat _5srp",
         "_5jmm _5pat _5uch",
-        "_5uch _5jmm _5pat"
+        "_5uch _5jmm _5pat",
+        "_4-u2 mbm _5jmm _5pat _5v3q _5sq8 _5x16"
         ];
 }
 
@@ -83,6 +84,19 @@ qclean.removeSponsored = function(){
                         }
                         if(found){
                             break;
+                        }else{
+                            if(n.parentNode.hasAttribute("data-ft")){
+                                var dataFt = JSON.parse(n.parentNode.getAttribute("data-ft"));
+                                if(dataFt["mf_story_key"]!=undefined){
+                                    found = true;
+                                    console.log("class "+className+" may be story class name.");
+                                    if(qclean.settingReport){
+                                        _gaq.push(['_trackEvent','CrashReport','ClassNameFound',JSON.stringify(className)]);
+                                    }
+                                    break;
+                                }
+
+                            }
                         }
                     }
                 }
@@ -144,7 +158,7 @@ qclean.hideSection = function(){
 };
 
 if(qclean.lineRegExp==undefined){
-    qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE|請加我LINE)+","i");
+    qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE|請加我LINE|訂購要加LINE|加賴LINE ID|請加我賴LINE|加私信賴|加奈)+","i");
 }
 qclean.hideInfo = "<div style='cursor:pointer;'><img src='"+qclean.logoSrc+"'/><p>QCLean：疑似購物貼文，點擊觀看或隱藏原文。（或至QCLean Settings關閉此功能）</p></div>";
 qclean.hideLineTagging = function(){
@@ -204,6 +218,19 @@ qclean.hideLineTagging = function(){
                                 }
                                 if(found){
                                     break;
+                                }else{
+                                    if(n.parentNode.hasAttribute("data-ft")){
+                                        var dataFt = JSON.parse(n.parentNode.getAttribute("data-ft"));
+                                        if(dataFt["mf_story_key"]!=undefined){
+                                            found = true;
+                                            console.log("class "+className+" may be story class name.");
+                                            if(qclean.settingReport){
+                                                _gaq.push(['_trackEvent','CrashReport','ClassNameFound',JSON.stringify(className)]);
+                                            }
+                                            break;
+                                        }
+
+                                    }
                                 }
                             }
                         }
