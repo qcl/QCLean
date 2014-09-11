@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>QCLean Settings</title>
+<style>
+.settingSection{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.options{
+    width: 100%;
+    height: 100px;
+}
+button{
+    height:40px;
+    margin-top:20px;
+    width:50px;
+}
+</style>
+</head>
+<body>
+<div class="settingSection">
+    <center>
+        <div style="height:60px;width:70%;">
+<img src="qclean64.png" style="float:left;"/>
+<h1 style="float:left;">QCLean Settings</h1>
+    </div>
+    <div style="clear:both;"></div>
+</center>
+<center>
+    <p><b>After setting, please refresh your Facebook page.</b></p>
+    <p><b>設定後請重新整理您的 Facebook 界面使設定生效。</b></p>
+</center>
+<div class="options">
+    <div style="float:left;">
+        <p>Remove Ads</p>
+        <p>移除廣告。</p>
+    </div>
+    <div style="float:right;">
+        <button id="rmad"></button>
+    </div>
+</div>
+<div class="options">
+    <div style="float:left;">
+        <p>Remove Suggested Posts and Pages</p>
+        <p>移除建議貼文與專頁推薦。</p>
+    </div>
+    <div style="float:right;">
+        <button id="rmrp"></button>
+    </div>
+</div>
+<div class="options">
+    <div style="float:left;">
+        <p>Hide Recommendations</p>
+        <p>隱藏推薦，可點擊展開。</p>
+    </div>
+    <div style="float:right;">
+        <button id="hr"></button>
+    </div>
+</div>
+<div class="options">
+    <div style="float:left;">
+        <p>Hide Spam Information <i style="color:red;">Experimental!</i></p>
+        <p>隱藏購物貼文，可點擊展開。<i style="color:red;">實驗中</i></p>
+    </div>
+    <div style="float:right;">
+        <button id="hs"></button>
+    </div>
+</div>
+<div class="options">
+    <div style="float:left;">
+        <p>Automatically send crash reports to QCLean <i style="color:red;">Experimental!</i></p>
+        <p>自動回報錯誤狀況。<i style="color:red;">實驗中</i></p>
+    </div>
+    <div style="float:right;">
+        <button id="report"></button>
+    </div>
+</div>
+<hr/>
+<center>
+    <p><a href="http://qcl.github.io/QCLean/" target="_blank" >QCLean</a> for Chrome<br/>0.4.4</p>
+</center>
+<script src="options.js"></script>
+</div>
+</body>
+</html>
