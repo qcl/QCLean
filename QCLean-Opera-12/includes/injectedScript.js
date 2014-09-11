@@ -12,9 +12,9 @@ window.addEventListener('DOMContentLoaded', function() {
 	if(fileObj){
 		var fr = new FileReader();
 		fr.onload = function(){
-			var kerkerScript = document.createElement("script");
-			kerkerScript.textContent = fr.result;
-			(document.head||document.documentElement).appendChild(kerkerScript);
+			var qcleanScript = document.createElement("script");
+			qcleanScript.textContent = fr.result;
+			(document.head||document.documentElement).appendChild(qcleanScript);
 		}
 		fr.readAsText(fileObj);
 	}

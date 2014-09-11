@@ -1,6 +1,9 @@
 chrome: QCLean-Chrome
 	zip -r qclean-chrome.zip QCLean-Chrome
 
+chrome-crx: QCLean-Chrome
+	google-chrome --pack-extension=QCLean-Chrome
+
 firefox: firefox-l10n-patch
 
 firefox-l10n-patch: firefox-xpi
@@ -19,7 +22,7 @@ firefox-sdk:
 	mv addon-sdk-* firefox-sdk
 
 opera-linux: QCLean-Opera-12
-	cd QCLean-Opera-12; zip qclean-opera-linux.oex *; mv qclean-opera-linux.oex ../
+	cd QCLean-Opera-12; zip -r qclean-opera-linux.oex *; mv qclean-opera-linux.oex ../
 
 opera: QCLean-Opera-15+
 	cd QCLean-Opera-15+; zip -r qclean-opera.crx *; mv qclean-opera.crx ../
