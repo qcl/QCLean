@@ -3,7 +3,7 @@
     "default_locale":"en",
 
     "name":"__MSG_extName__",
-    "version":"0.4.5",
+    "version":"0.4.5.1",
 
     "manifest_version":2,
 
@@ -28,7 +28,7 @@
 
     "permissions":["tabs"],
 
-    "content_security_policy": "script-src 'self' https:// ; object-src 'self'",
+    "content_security_policy": "script-src 'self' https://*.google-analytics.com ; object-src 'self'",
 
     "page_action":{
         "default_icon":"qclean38.png",

@@ -2,16 +2,14 @@ console.log("Load qclean.js");
 var qclean = qclean || {};
 
 if(qclean.settingReport){
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount','UA-3607701-4']);
-_gaq.push(['_trackEvent','ReportCrash','on']);
-(function(){
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = 'https://stats.g.doubleclick.net/dc.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-}
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+    ga('create','UA-3607701-10','auto');
+    ga('send','event','SettingReportCrash','on');
+}
 
 qclean.removeADsLink = function(){
 
@@ -33,7 +31,7 @@ qclean.removeADsLink = function(){
             //TODO - report more useful information for fix bugs.
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                _gaq.push(['_trackEvent','CrashReport','RemoveAD']);
+                ga('send','event','CrashReport','RemoveAD');
             }
             break;
         }
@@ -91,7 +89,7 @@ qclean.removeSponsored = function(){
                                     found = true;
                                     console.log("class "+className+" may be story class name.");
                                     if(qclean.settingReport){
-                                        _gaq.push(['_trackEvent','CrashReport','ClassNameFound',JSON.stringify(className)]);
+                                        ga('send','event','CrashReport','ClassNameFound',JSON.stringify(className));
                                     }
                                     break;
                                 }
@@ -116,7 +114,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                _gaq.push(['_trackEvent','CrashReport','RemoveSponsored',JSON.stringify(classNameCollections)]);
+                ga('send','event','CrashReport','RemoveSponsored',JSON.stringify(classNameCollections));
             }
             break;
         }
@@ -180,7 +178,7 @@ qclean.hideLineTagging = function(){
                 var string = targets[i].innerHTML;
                 if(qclean.lineRegExp.test(string)){
                     if(qclean.settingReport){
-                        _gaq.push(['_trackEvent','LineTagging','originString',string]);
+                        ga('send','event','LineTagging','originString',string);
                     }
                     //console.log(targets[i]);
                     var node = targets[i].parentNode.parentNode.parentNode;
@@ -225,7 +223,7 @@ qclean.hideLineTagging = function(){
                                             found = true;
                                             console.log("class "+className+" may be story class name.");
                                             if(qclean.settingReport){
-                                                _gaq.push(['_trackEvent','CrashReport','ClassNameFound',JSON.stringify(className)]);
+                                                ga('send','event','CrashReport','ClassNameFound',JSON.stringify(className));
                                             }
                                             break;
                                         }
@@ -245,8 +243,8 @@ qclean.hideLineTagging = function(){
                                 console.log(bad.innerHTML);
                                 console.log(bad.href);
                                 if(qclean.settingReport){
-                                    _gaq.push(['_trackEvent','LineTagging','TaggerName',bad.innerHTML]);
-                                    _gaq.push(['_trackEvent','LineTagging','TaggerURL',bad.href]);
+                                    ga('send','event','LineTagging','TaggerName',bad.innerHTML);
+                                    ga('send','event','LineTagging','TaggerURL',bad.href);
                                 }
                             }
                         }

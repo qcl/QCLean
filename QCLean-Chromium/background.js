@@ -36,19 +36,17 @@ qclean.checkFbUrl = function(tabId, changeInfo, tab){
 };
 chrome.tabs.onUpdated.addListener(qclean.checkFbUrl);
 
-/* GA */
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-3607701-4']);
-_gaq.push(['_trackPageview']);
+/* Google Analytics */
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-_gaq.push(['_trackEvent','ChromeExtVersion',qclean.version]);
-
-(function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = 'https://stats.g.doubleclick.net/dc.js';
-    //ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
+ga('create', 'UA-3607701-10', 'auto');
+//read https://code.google.com/p/analytics-issues/issues/detail?id=312 for more information.
+ga('set','checkProtocolTask', null);
+ga('send', 'pageview');
+ga('send', 'event', 'ChromeExtVersion',qclean.version);
 
 /* chrome messages */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
