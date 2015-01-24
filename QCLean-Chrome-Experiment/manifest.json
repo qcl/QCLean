@@ -1,0 +1,12 @@
+{
+    "name":"qclean-experiment",
+    "version":"0.5",
+    "manifest_version":2,
+    "content_scripts":[{
+        "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
+        "js":["qclean.js"],
+        "run_at":"document_end"
+    }],
+    "permissions":["tabs"],
+    "content_security_policy": "script-src 'self' https://*.google-analytics.com ; object-src 'self'"
+}
