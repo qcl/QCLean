@@ -1,5 +1,5 @@
 var qclean = qclean || {};
-qclean.version = "0.4.5";
+qclean.version = "0.4.5.2";
 
 /* Default Settings */
 //version information

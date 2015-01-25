@@ -63,46 +63,27 @@ qclean.removeSponsored = function(){
             var n = sp[i];
             var found = false;
             var classNameCollection = [];
-            while(n.parentNode.nodeName!="BODY"){
-                if(n.parentNode.nodeName=="LI"){
-                    if(n.parentNode.hasAttribute("class")&&n.parentNode.getAttribute("class").match("uiStreamStory")){
-                        //for fb old ui user
+            
+            while(n != null && n != undefined){
+                if(n.nodeName == "LI"){
+                    if(n.classList.contains("uiStreamStory")){
                         found = true;
                         break;
                     }
-                }else if(n.parentNode.nodeName=="DIV"){
-                    if(n.parentNode.hasAttribute("class")){
-                        var className = n.parentNode.getAttribute("class");
-                        classNameCollection.push(className);
-                        for(var i = 0; i<qclean.storyClassNames.length; i++){
-                            if(className.match(qclean.storyClassNames[i])){
-                                found = true;
-                                break;
-                            }
+                }else if(n.nodeName == "DIV"){
+                    if(n.dataset.ft && JSON.parse(n.dataset.ft).mf_story_key){
+                        found = true;
+                        if(qclean.settingReport){
+                            ga('send','event','CrashReport','ClassNameFound-0.4.5.1',JSON.stringify(n.className));
                         }
-                        if(found){
-                            break;
-                        }else{
-                            if(n.parentNode.hasAttribute("data-ft")){
-                                var dataFt = JSON.parse(n.parentNode.getAttribute("data-ft"));
-                                if(dataFt["mf_story_key"]!=undefined){
-                                    found = true;
-                                    console.log("class "+className+" may be story class name.");
-                                    if(qclean.settingReport){
-                                        ga('send','event','CrashReport','ClassNameFound',JSON.stringify(className));
-                                    }
-                                    break;
-                                }
-
-                            }
-                        }
+                        break;
                     }
-                }
-                n = n.parentNode;
+                } 
+                classNameCollection.push(n.className);
+                n = n.parentElement;
             }
             if(found){
-                n = n.parentNode;
-                n.parentNode.removeChild(n);
+                n.parentElement.removeChild(n);
                 console.log('Remove sponsored post');
             }else{
                 classNameCollections.push(classNameCollection);
@@ -114,7 +95,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                ga('send','event','CrashReport','RemoveSponsored',JSON.stringify(classNameCollections));
+                ga('send','event','CrashReport','RemoveSponsored-0.4.5.1',JSON.stringify(classNameCollections));
             }
             break;
         }
@@ -223,7 +204,7 @@ qclean.hideLineTagging = function(){
                                             found = true;
                                             console.log("class "+className+" may be story class name.");
                                             if(qclean.settingReport){
-                                                ga('send','event','CrashReport','ClassNameFound',JSON.stringify(className));
+                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.1',JSON.stringify(className));
                                             }
                                             break;
                                         }
