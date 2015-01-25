@@ -7,7 +7,7 @@
     "icon64": "data/qclean64.png",
     "url": "http://qcl.github.io/QCLean", 
     "dependencies": ["api-utils", "addon-kit"], 
-    "version": "0.4", 
+    "version": "0.4.1", 
     "lib": "lib", 
     "fullName": "QCLean - Remove Facebook Ads Suggested Pages and Posts", 
     "main": "main", 
