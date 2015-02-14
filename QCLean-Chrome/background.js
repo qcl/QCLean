@@ -1,10 +1,14 @@
 var qclean = qclean || {};
-qclean.version = "0.4.5.2";
+qclean.version = "0.4.5.3";
 
 /* Default Settings */
 //version information
 if(localStorage["qclean-version"] == undefined||localStorage["qclean-version"]!=qclean.version){
     localStorage["qclean-version"] = qclean.version;
+}
+//remove games you may like
+if(localStorage["qclean-rmg"]==undefined){
+    localStorage["qclean-rmg"] = "true";
 }
 //remove ads
 if(localStorage["qclean-rmad"]==undefined){
@@ -59,6 +63,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.request == "getSettings"){
     
         sendResponse({
+            "rmg" :localStorage["qclean-rmg"],
             "rmad":localStorage["qclean-rmad"],
             "rmrp":localStorage["qclean-rmrp"],
             "hr"  :localStorage["qclean-hr"],

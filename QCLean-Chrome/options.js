@@ -9,17 +9,24 @@ ga('create', 'UA-3607701-10', 'auto');
 ga('set','checkProtocolTask', null);
 ga('send', 'pageview');
 
+var rmgBtn  = document.getElementById("rmg");
 var rmadBtn = document.getElementById("rmad");
 var rmrpBtn = document.getElementById("rmrp");
 var hrBtn   = document.getElementById("hr");
 var hsBtn   = document.getElementById("hs");
 var reportBtn = document.getElementById("report");
 
+console.log(localStorage["qclean-rmg"]);
 console.log(localStorage["qclean-rmad"]);
 console.log(localStorage["qclean-rmrp"]);
 console.log(localStorage["qclean-hr"]);
 console.log(localStorage["qclean-hs"]);
 console.log(localStorage["qclean-report"]);
+if(localStorage["qclean-rmg"]=="true"){
+    rmgBtn.innerHTML = "on";
+}else{
+    rmgBtn.innerHTML = "off";
+}
 if(localStorage["qclean-rmad"]=="true"){
     rmadBtn.innerHTML = "on";
 }else{
@@ -46,6 +53,17 @@ if(localStorage["qclean-report"]=="true"){
     reportBtn.innerHTML = "off";
 }
 
+rmgBtn.onclick = function(){
+    console.log(localStorage["qclean-rmg"]);
+    if(localStorage["qclean-rmg"]=="true"){
+        localStorage["qclean-rmg"] = "false";
+        this.innerHTML = "off";
+    }else{
+        console.log("change to on");
+        localStorage["qclean-rmg"] = "true";
+        this.innerHTML = "on";
+    }
+};
 rmadBtn.onclick = function(){
     console.log(localStorage["qclean-rmad"]);
     if(localStorage["qclean-rmad"]=="true"){

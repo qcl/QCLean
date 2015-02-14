@@ -36,6 +36,11 @@ chrome.runtime.sendMessage({request:"getSettings"},function(response){
     console.log("get QCLean settings");
     //console.log(response);
 
+    if(response.rmg=="true"){
+        qclean.settings.innerHTML += "qclean.settingRmg = true;\n";
+    }else{
+        qclean.settings.innerHTML += "qclean.settingRmg = false;\n";
+    }
     if(response.rmad=="true"){
         qclean.settings.innerHTML += "qclean.settingRmad = true;\n";
     }else{

@@ -11,6 +11,57 @@ if(qclean.settingReport){
     ga('send','event','SettingReportCrash','on');
 }
 
+//Try to remove game you may like
+qclean.removeGameYouMayLike = function(){
+    
+    if(!qclean.settingRmg){
+        return;
+    }
+
+    var gameLinks = document.querySelectorAll("a[href='https://www.facebook.com/games/']");
+    var combo = 0;
+    while(gameLinks.length>0){
+        //try to remove it
+        for(var i = 0; i < gameLinks.length; i++){
+            var n = gameLinks[i];
+            var found = false;
+
+            while(n != null && n != undefined){
+                if(n.nodeName == "LI"){
+                    if(n.classList.contains("uiStreamStory")){
+                        found = true;
+                        break;
+                    }
+                }else if(n.nodeName == "DIV"){
+                    if(n.dataset.ft && JSON.parse(n.dataset.ft).mf_story_key){
+                        found = true;
+                        break;
+                    } 
+                }
+                n = n.parentElement;
+            }
+            if(found){
+                n.parentElement.removeChild(n);
+                console.log("Remove game you may like");
+                if(qclean.settingReport){
+                    //TODO - track game name
+                    ga('send','event','RemoveReport','RemoveGameSuccess-0.4.5.3');
+                }
+            }
+        }
+        gameLinks = document.querySelectorAll("a[href='https://www.facebook.com/games/']");
+        combo++;
+        if(combo>3){
+            console.log("Found game recommendation but cannot remove it");
+            if(qclean.settingReport){
+                ga.send('send', 'event', 'CrashReport', 'RemoveGame-0.4.5.3');
+            }
+            break;
+        }
+    }
+
+}
+
 qclean.removeADsLink = function(){
 
     if(!qclean.settingRmad){
@@ -74,7 +125,7 @@ qclean.removeSponsored = function(){
                     if(n.dataset.ft && JSON.parse(n.dataset.ft).mf_story_key){
                         found = true;
                         if(qclean.settingReport){
-                            ga('send','event','CrashReport','ClassNameFound-0.4.5.1',JSON.stringify(n.className));
+                            ga('send','event','CrashReport','ClassNameFound-0.4.5.3',JSON.stringify(n.className));
                         }
                         break;
                     }
@@ -95,7 +146,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                ga('send','event','CrashReport','RemoveSponsored-0.4.5.1',JSON.stringify(classNameCollections));
+                ga('send','event','CrashReport','RemoveSponsored-0.4.5.3',JSON.stringify(classNameCollections));
             }
             break;
         }
@@ -204,7 +255,7 @@ qclean.hideLineTagging = function(){
                                             found = true;
                                             console.log("class "+className+" may be story class name.");
                                             if(qclean.settingReport){
-                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.1',JSON.stringify(className));
+                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.3',JSON.stringify(className));
                                             }
                                             break;
                                         }
@@ -243,6 +294,7 @@ qclean.removeSponsored();
 qclean.removeADsLink();
 qclean.hideSection();
 qclean.hideLineTagging();
+qclean.removeGameYouMayLike();
 
 //Override xhr
 if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
@@ -279,6 +331,8 @@ if(HTMLDivElement.prototype.overrideByQCLean===undefined){
     
         //For new fb newsfeed
         qclean.removeSponsored();
+
+        qclean.removeGameYouMayLike();
     }
     HTMLDivElement.prototype.overrideByQCLean = true;
 
