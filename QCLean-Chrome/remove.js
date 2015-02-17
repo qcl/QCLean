@@ -37,7 +37,7 @@ chrome.runtime.sendMessage({request:"getSettings"},function(response){
     //console.log(response);
 
     if(response.rmg=="true"){
-        qclean.settings.innerHTML += "qclean.settingRmg = true;\n";
+        qclean.settings.innerHTML += "qclean.settingRmg = false;\n";
     }else{
         qclean.settings.innerHTML += "qclean.settingRmg = false;\n";
     }

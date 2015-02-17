@@ -13,7 +13,10 @@ if(qclean.settingReport){
 
 //Try to remove game you may like
 qclean.removeGameYouMayLike = function(){
-    
+   
+    //FIXME
+    return;
+
     if(!qclean.settingRmg){
         return;
     }
@@ -45,7 +48,7 @@ qclean.removeGameYouMayLike = function(){
                 console.log("Remove game you may like");
                 if(qclean.settingReport){
                     //TODO - track game name
-                    ga('send','event','RemoveReport','RemoveGameSuccess-0.4.5.3');
+                    ga('send','event','RemoveReport','RemoveGameSuccess-0.4.5.4');
                 }
             }
         }
@@ -54,13 +57,13 @@ qclean.removeGameYouMayLike = function(){
         if(combo>3){
             console.log("Found game recommendation but cannot remove it");
             if(qclean.settingReport){
-                ga.send('send', 'event', 'CrashReport', 'RemoveGame-0.4.5.3');
+                ga('send', 'event', 'CrashReport', 'RemoveGame-0.4.5.4');
             }
             break;
         }
     }
 
-}
+};
 
 qclean.removeADsLink = function(){
 
@@ -125,7 +128,7 @@ qclean.removeSponsored = function(){
                     if(n.dataset.ft && JSON.parse(n.dataset.ft).mf_story_key){
                         found = true;
                         if(qclean.settingReport){
-                            ga('send','event','CrashReport','ClassNameFound-0.4.5.3',JSON.stringify(n.className));
+                            ga('send','event','CrashReport','ClassNameFound-0.4.5.4',JSON.stringify(n.className));
                         }
                         break;
                     }
@@ -146,7 +149,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                ga('send','event','CrashReport','RemoveSponsored-0.4.5.3',JSON.stringify(classNameCollections));
+                ga('send','event','CrashReport','RemoveSponsored-0.4.5.4',JSON.stringify(classNameCollections));
             }
             break;
         }
@@ -255,7 +258,7 @@ qclean.hideLineTagging = function(){
                                             found = true;
                                             console.log("class "+className+" may be story class name.");
                                             if(qclean.settingReport){
-                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.3',JSON.stringify(className));
+                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.4',JSON.stringify(className));
                                             }
                                             break;
                                         }
