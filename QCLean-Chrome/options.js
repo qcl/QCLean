@@ -54,7 +54,7 @@ if(localStorage["qclean-report"]=="true"){
 }else{
     reportBtn.innerHTML = "off";
 }
-
+/*
 rmgBtn.onclick = function(){
     console.log(localStorage["qclean-rmg"]);
     if(localStorage["qclean-rmg"]=="true"){
@@ -66,6 +66,7 @@ rmgBtn.onclick = function(){
         this.innerHTML = "on";
     }
 };
+*/
 rmadBtn.onclick = function(){
     console.log(localStorage["qclean-rmad"]);
     if(localStorage["qclean-rmad"]=="true"){
