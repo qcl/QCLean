@@ -48,7 +48,7 @@ qclean.removeGameYouMayLike = function(){
                 console.log("Remove game you may like");
                 if(qclean.settingReport){
                     //TODO - track game name
-                    ga('send','event','RemoveReport','RemoveGameSuccess-0.4.5.5');
+                    ga('send','event','RemoveReport','RemoveGameSuccess-0.4.5.6');
                 }
             }
         }
@@ -57,7 +57,7 @@ qclean.removeGameYouMayLike = function(){
         if(combo>3){
             console.log("Found game recommendation but cannot remove it");
             if(qclean.settingReport){
-                ga('send', 'event', 'CrashReport', 'RemoveGame-0.4.5.5');
+                ga('send', 'event', 'CrashReport', 'RemoveGame-0.4.5.6');
             }
             break;
         }
@@ -128,7 +128,7 @@ qclean.removeSponsored = function(){
                     if(n.dataset.ft && JSON.parse(n.dataset.ft).mf_story_key){
                         found = true;
                         if(qclean.settingReport){
-                            ga('send','event','CrashReport','ClassNameFound-0.4.5.5',JSON.stringify(n.className));
+                            ga('send','event','CrashReport','ClassNameFound-0.4.5.6',JSON.stringify(n.className));
                         }
                         break;
                     }
@@ -149,7 +149,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                ga('send','event','CrashReport','RemoveSponsored-0.4.5.5',JSON.stringify(classNameCollections));
+                ga('send','event','CrashReport','RemoveSponsored-0.4.5.6',JSON.stringify(classNameCollections));
             }
             break;
         }
@@ -187,6 +187,53 @@ qclean.hideSection = function(){
                 };
             }
         }
+    }
+};
+
+//NOTE: experimental function
+qclean.hideGameSection = function(){
+    
+    if(!qclean.settingHr){
+        return;
+    }
+
+    var gameSection = document.getElementById("pagelet_games_rhc");
+    if(gameSection && document.querySelectorAll) {
+        var header = gameSection.getElementsByClassName("uiHeader");
+        var container = gameSection.querySelectorAll("div[data-games-xout-container]");
+        if(header.length*container.length>0){
+            header = header[0];
+            container = container[0];
+            if(!header.hasAttribute("qclean-hide")){
+                header.setAttribute("qclean-hide","true");
+                header.classList.add("qcleanClickable");
+                header.innerHTML = header.innerHTML + " ("+container.childNodes.length+")";
+                container.classList.add("qcleanHide");
+                header.qcleanContainer = container;
+                header.onclick = function(event){
+                    event.preventDefault();
+                    if(this.getAttribute("qclean-hide")=="true"){
+                        this.qcleanContainer.classList.remove("qcleanHide");
+                        this.setAttribute("qclean-hide","false");
+                    }else{
+                        this.qcleanContainer.classList.add("qcleanHide");
+                        this.setAttribute("qclean-hide","true");
+                    }
+                };
+            }
+        }
+    }
+};
+
+//NOTE; experimental function
+qclean.hideGameInSidebar = function(){
+    if(!qclean.settingRmad){
+        return;
+    }
+   
+    // TODO
+    if(document.querySelectorAll){
+        //var sidebar = document.querySelectorAll("")
     }
 };
 
@@ -258,7 +305,7 @@ qclean.hideLineTagging = function(){
                                             found = true;
                                             console.log("class "+className+" may be story class name.");
                                             if(qclean.settingReport){
-                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.5',JSON.stringify(className));
+                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.6',JSON.stringify(className));
                                             }
                                             break;
                                         }
@@ -298,6 +345,7 @@ qclean.removeADsLink();
 qclean.hideSection();
 qclean.hideLineTagging();
 qclean.removeGameYouMayLike();
+qclean.hideGameSection();
 
 //Override xhr
 if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
@@ -330,6 +378,7 @@ if(HTMLDivElement.prototype.overrideByQCLean===undefined){
         originDivAppend.apply(this,arguments); 
         qclean.removeADsLink();
         qclean.hideSection();
+        qclean.hideGameSection();
         qclean.hideLineTagging();
     
         //For new fb newsfeed
