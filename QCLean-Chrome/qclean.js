@@ -231,9 +231,28 @@ qclean.hideGameInSidebar = function(){
         return;
     }
    
-    // TODO
     if(document.querySelectorAll){
-        //var sidebar = document.querySelectorAll("")
+        var pageletCanvasNavContent = document.querySelectorAll("#pagelet_canvas_nav_content");
+        var fbChatSidebarBody = document.querySelectorAll(".fbChatSidebarBody");
+        if (pageletCanvasNavContent.length * fbChatSidebarBody.length > 0) {
+            pageletCanvasNavContent = pageletCanvasNavContent[0];
+            fbChatSidebarBody = fbChatSidebarBody[0];
+
+            var canvH = pageletCanvasNavContent.style.height;
+            var chatH = fbChatSidebarBody.style.height;
+
+            if (canvH.indexOf("px") > 0 && chatH.indexOf("px") > 0) {
+                var canvHeight = canvH.slice(0,canvH.indexOf("px"));
+                var chatHeight = chatH.slice(0,chatH.indexOf("px"));
+                
+                if (canvHeight != 0) {
+                    fbChatSidebarBody.style.height = canvHeight + chatHeight + "px";
+                    pageletCanvasNavContent.style.height = "0px";
+                }
+            } else if (!canvH) {
+                pageletCanvasNavContent.style.height = "0px";
+            } 
+        }
     }
 };
 
@@ -346,6 +365,7 @@ qclean.hideSection();
 qclean.hideLineTagging();
 qclean.removeGameYouMayLike();
 qclean.hideGameSection();
+qclean.hideGameInSidebar();
 
 //Override xhr
 if(XMLHttpRequest.prototype.overrideByQCLean===undefined){
@@ -379,6 +399,7 @@ if(HTMLDivElement.prototype.overrideByQCLean===undefined){
         qclean.removeADsLink();
         qclean.hideSection();
         qclean.hideGameSection();
+        qclean.hideGameInSidebar();
         qclean.hideLineTagging();
     
         //For new fb newsfeed
