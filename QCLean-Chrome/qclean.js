@@ -1,5 +1,6 @@
-console.log("Load qclean.js");
 var qclean = qclean || {};
+qclean.version = "0.4.5.7";
+console.log("Load qclean.js" + " version:"+qclean.version);
 
 if(qclean.settingReport){
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -48,7 +49,7 @@ qclean.removeGameYouMayLike = function(){
                 console.log("Remove game you may like");
                 if(qclean.settingReport){
                     //TODO - track game name
-                    ga('send','event','RemoveReport','RemoveGameSuccess-0.4.5.6');
+                    ga('send','event','RemoveReport','RemoveGameSuccess-'+qclean.version);
                 }
             }
         }
@@ -57,7 +58,7 @@ qclean.removeGameYouMayLike = function(){
         if(combo>3){
             console.log("Found game recommendation but cannot remove it");
             if(qclean.settingReport){
-                ga('send', 'event', 'CrashReport', 'RemoveGame-0.4.5.6');
+                ga('send', 'event', 'CrashReport', 'RemoveGame-'+qclean.version);
             }
             break;
         }
@@ -128,7 +129,7 @@ qclean.removeSponsored = function(){
                     if(n.dataset.ft && JSON.parse(n.dataset.ft).mf_story_key){
                         found = true;
                         if(qclean.settingReport){
-                            ga('send','event','CrashReport','ClassNameFound-0.4.5.6',JSON.stringify(n.className));
+                            ga('send','event','CrashReport','ClassNameFound-'+qclean.version,JSON.stringify(n.className));
                         }
                         break;
                     }
@@ -149,7 +150,7 @@ qclean.removeSponsored = function(){
             //TODO - notify there is some thing new/unknow
             console.log("Found but can not remove Q____Q");
             if(qclean.settingReport){
-                ga('send','event','CrashReport','RemoveSponsored-0.4.5.6',JSON.stringify(classNameCollections));
+                ga('send','event','CrashReport','RemoveSponsored-'+qclean.version,JSON.stringify(classNameCollections));
             }
             break;
         }
@@ -198,28 +199,58 @@ qclean.hideGameSection = function(){
     }
 
     var gameSection = document.getElementById("pagelet_games_rhc");
-    if(gameSection && document.querySelectorAll) {
-        var header = gameSection.getElementsByClassName("uiHeader");
-        var container = gameSection.querySelectorAll("div[data-games-xout-container]");
-        if(header.length*container.length>0){
-            header = header[0];
-            container = container[0];
-            if(!header.hasAttribute("qclean-hide")){
-                header.setAttribute("qclean-hide","true");
-                header.classList.add("qcleanClickable");
-                header.innerHTML = header.innerHTML + " ("+container.childNodes.length+")";
-                container.classList.add("qcleanHide");
-                header.qcleanContainer = container;
-                header.onclick = function(event){
-                    event.preventDefault();
-                    if(this.getAttribute("qclean-hide")=="true"){
-                        this.qcleanContainer.classList.remove("qcleanHide");
-                        this.setAttribute("qclean-hide","false");
-                    }else{
-                        this.qcleanContainer.classList.add("qcleanHide");
-                        this.setAttribute("qclean-hide","true");
+    if(gameSection) {
+        var headers = gameSection.getElementsByClassName("uiHeader");
+        for (var i = 0; i < headers.length; i++ ) {
+            var header = headers[i];
+            
+            // NOTE: there are 2 types game recommendation sections
+            // Type #1: TOP Picks for you
+            //      <div header>
+            //      <div container>
+            //
+            // Type #2: Recommended game 
+            //      <a>
+            //          <div header>
+            //      <div container>
+            //
+            // Here only try to deal with those types.
+
+            var container = undefined;
+            if (header.nextSibling) {
+                // Type 1
+                container = header.nextSibling;
+                //console.log("Found type 1 game recommendation");
+                //console.log(container);
+            } else if (header.parentNode && header.parentNode.nodeName == "A" && header.parentNode.nextSibling) {
+                // Type 2
+                container = header.parentNode.nextSibling;
+                //console.log("Found type 2 game recommendation");
+                //console.log(container);
+            } 
+
+            if (container && container.nodeName == "DIV") {
+                if(!header.hasAttribute("qclean-hide")){
+                    console.log("Hide game recommendation section");
+                    header.setAttribute("qclean-hide","true");
+                    header.classList.add("qcleanClickable");
+                    var realHeader = header.getElementsByClassName("uiHeaderTitle");
+                    if (realHeader && realHeader.length > 0) {
+                        realHeader[0].innerHTML = realHeader[0].innerHTML + "...";
                     }
-                };
+                    container.classList.add("qcleanHide");
+                    header.qcleanContainer = container;
+                    header.onclick = function(event){
+                        event.preventDefault();
+                        if(this.getAttribute("qclean-hide")=="true"){
+                            this.qcleanContainer.classList.remove("qcleanHide");
+                            this.setAttribute("qclean-hide","false");
+                        }else{
+                            this.qcleanContainer.classList.add("qcleanHide");
+                            this.setAttribute("qclean-hide","true");
+                        }
+                    };
+                }
             }
         }
     }
@@ -324,7 +355,7 @@ qclean.hideLineTagging = function(){
                                             found = true;
                                             console.log("class "+className+" may be story class name.");
                                             if(qclean.settingReport){
-                                                ga('send','event','CrashReport','ClassNameFound-0.4.5.6',JSON.stringify(className));
+                                                ga('send','event','CrashReport','ClassNameFound-'+qclean.version,JSON.stringify(className));
                                             }
                                             break;
                                         }
