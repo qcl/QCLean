@@ -1,13 +1,15 @@
 {
-    "name":"qclean-experiment",
-    "version":"0.5.2",
-    "manifest_version":2,
-    "content_scripts":[{
-        "matches":["https://*.facebook.com/*","http://*.facebook.com/*"],
-        "js":["qclean.js"],
-        "css":["qclean.css"],
-        "run_at":"document_end"
+    "name"              : "qclean-experiment",
+    "version"           : "0.5.3",
+    "manifest_version"  : 2,
+    "content_scripts"   : [{
+        "matches"   : [ "https://*.facebook.com/*",
+                        "http://*.facebook.com/*"],
+        "js"        : ["qclean.js"],
+        "css"       : ["qclean.css"],
+        "run_at"    : "document_end"
     }],
-    "permissions":["tabs"],
+    "permissions"       : ["tabs"],
+    "options_page"      : "options.html",
     "content_security_policy": "script-src 'self' https://*.google-analytics.com ; object-src 'self'"
 }
