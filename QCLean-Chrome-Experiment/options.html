@@ -10,10 +10,12 @@
     width: 100%;
     height: 40vh;
     background-color: #7094FF;
+    flex-shrink: 0;
 }
 
 .main {
     margin-top: -35vh;
+    flex-shrink: 0;
 }
 
 .main-content {
@@ -28,6 +30,9 @@
     margin: 0 auto;
 }
 
+.option-desc {
+    padding-left: 52px;
+}
     </style>
 </head>
 <body>
@@ -42,30 +47,69 @@
     </div>
 
     <main class="main mdl-layout__content">
-        <div class="mdl-grid main-container">
+        <div class="main-container mdl-grid">
             <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
             <div class="main-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
                 <h3>QCLean Setting</h3>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
-                <p>This is a test page</p>
+                <p>You can change the setting of QCLean. To apply those settings, please reload your Facebook page.</p>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                        <input type="checkbox" id="switch-1" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Hide sponsored posts</span>
+                    </label>
+                    <p class="option-desc">Hide sponsored posts on Facebook news feed.</p>
+                </div>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                        <input type="checkbox" id="switch-2" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Hide advertisments</span>
+                    </label>
+                    <p class="option-desc">Hide advertisments on the right panel</p>
+                </div>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-3">
+                        <input type="checkbox" id="switch-3" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Hide recommended games on chat bar</span>
+                    </label>
+                    <p class="option-desc">Hide recommended games on the top of chat bar.</p>
+                </div>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                        <input type="checkbox" id="switch-4" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Collaspe right panel content</span>
+                    </label>
+                    <p class="option-desc">Collaspe content like `People you may konw', `Friend Request', `Games you may like', you can click title to see the content.</p>
+                </div>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-5">
+                        <input type="checkbox" id="switch-5" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Collaspe recommended games</span>
+                    </label>
+                    <p class="option-desc">Collaspe recommended games on the right panel.</p>
+                </div>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-6">
+                        <input type="checkbox" id="switch-6" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Automatically report error</span>
+                    </label>
+                    <p class="option-desc">Automatically report error of this extension to developer, so developer can fix it as soon as possible.</p>
+                </div>
+                <div>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-7">
+                        <input type="checkbox" id="switch-7" class="mdl-switch__input" checked />
+                        <span class="mdl-switch__label">Show `what's new'</span>
+                    </label>
+                    <p class="option-desc">Show `what's new' page after this extension upgrade successfully.</p>
+                </div>
             </div>
         </div>
         <footer class="mdl-mini-footer">
             <div class="mdl-mini-footer--left-section">
                 <ul class="mdl-mini-footer--link-list">
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Privacy and Terms</a></li>
-                    <li><a href="#">User Agreement</a></li>
+                    <li><a href="https://qcl.github.io/QCLean">QCLean</a></li>
+                    <li><a href="#">0.5.3</a></li>
+                    <li><a href="#">Report issue</a></li>
+                    <li><a href="#">Donate</a></li>
                 </ul>
             </div>
         </footer>
