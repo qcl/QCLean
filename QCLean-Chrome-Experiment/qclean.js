@@ -188,10 +188,10 @@ qclean.framework.collaspeElementsBySelector = function(selector, featureDesc) {
 var qcleanObserver = new window.MutationObserver(function(mutation, observer){
     //console.log("Observer triggered");
 
-    // hide sponsered story on newsfeed
+    // hide sponsored story on newsfeed
     qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
-    // hide sponsered ADs
+    // hide sponsored ADs
     qclean.framework.hideElementsByTargetChildSelector(".adsCategoryTitleLink:not([data-qclean])", qclean.feature.hideSponsoredADs);
 
     // collaspe sidebar content
