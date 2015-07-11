@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Qing-Cheng Li</string>
 	<key>Builder Version</key>
-	<string>9537.78.2</string>
+	<string>10600.7.12</string>
 	<key>CFBundleDisplayName</key>
 	<string>QCLean</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4.0.0</string>
+	<string>0.4.0.1</string>
 	<key>CFBundleVersion</key>
 	<string>9</string>
 	<key>Chrome</key>
@@ -29,7 +29,9 @@
 		</dict>
 	</dict>
 	<key>Description</key>
-	<string>QCLean: Remove Facebook Ads, Suggested Pages and Posts</string>
+	<string>QCLean: Remove Facebook Sponsored Ads and Posts</string>
+	<key>DeveloperIdentifier</key>
+	<string>98LJ4EHL57</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
