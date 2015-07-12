@@ -2,6 +2,11 @@
     "name"              : "qclean-experiment",
     "version"           : "0.5.3",
     "manifest_version"  : 2,
+    "icons"             : {
+        "16"        : "icons/qclean-16.png",
+        "48"        : "icons/qclean-48.png",
+        "128"       : "icons/qclean-128.png"
+    },
     "content_scripts"   : [{
         "matches"   : [ "https://*.facebook.com/*",
                         "http://*.facebook.com/*"],
