@@ -6,3 +6,4 @@
 *.crx
 
 firefox-sdk
+.module-cache
