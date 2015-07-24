@@ -7,7 +7,7 @@ var Option = React.createClass({
         return (
             <div>
                 <label className="mdl-switch mdl-js-switch mdl-js-ripple-effect" htmlFor="switch-id" >
-                    <input type="checkbox" id="switch-id" className="mdl-switch__input" onChange={this.switchDidChanged} />
+                    <input type="checkbox" id="switch-id" className="mdl-switch__input" onChange={this.switchDidChanged} checked={false} />
                     <span className="mdl-switch__label">OptionName</span>
                 </label>
                 <p className="option-desc">Description</p>
