@@ -1,0 +1,16 @@
+{
+    "name"      : "QCLean",
+    "version"   : "0.5.3",
+    "icons"     : {
+        "16"    : "",
+        "48"    : "",
+        "64"    : "",
+        "128"   : ""
+    },
+    "chrome"    : {
+        "manifest_version"  : 2
+    },
+    "firefox"   : {
+        "dependencies"  : ["api-utils", "addon-kit"] 
+    }
+}
