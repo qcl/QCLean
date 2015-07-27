@@ -1,5 +1,8 @@
 {
     "name"      : "QCLean",
+    "description":"description",
+    "auther"    : "qcl",
+    "email"     : "qc.linux@gmail.com",
     "version"   : "0.5.3",
     "icons"     : {
         "16"    : "",
