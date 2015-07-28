@@ -3,10 +3,23 @@
  */
 
 var qclean = qclean || {};
-// TODO: support mutiple brwoser.
-var manifest = chrome.runtime.getManifest();
+// TODO: support safari/opera
+var extensionInfo = undefined;
+if (self.options) {
+    //console.log("Firefox");
+    //console.log(self.options);
+    extensionInfo = {
+        "version": self.options.version
+    };
+} else if (chrome) {
+    //console.log("Chrome");
+    var manifest = chrome.runtime.getManifest();
+    extensionInfo = {
+        "version": manifest.version
+    };
+}
 
-qclean.version = manifest.version;
+qclean.version = extensionInfo.version;
 
 console.log("Load qclean.js ("+qclean.version+")");
 
