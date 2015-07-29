@@ -12,5 +12,14 @@
     "fullName": "QCLean - Remove Facebook Ads Suggested Pages and Posts", 
     "main": "main", 
     "id": "jid0-wpCH2liWmuMjc8AV1VWejWvGjBI", 
-    "name": "qclean-remove-facebook-ads-suggested-pages-and-posts"
+    "name": "qclean-remove-facebook-ads-suggested-pages-and-posts",
+    "preferences": [
+        {
+            "name": "hideSomething",
+            "title": "hide something",
+            "description": "yo",
+            "type": "bool",
+            "value": false
+        }
+    ]
 }
