@@ -10,9 +10,8 @@
     "version": "0.5.3", 
     "lib": "lib", 
     "fullName": "QCLean - Remove Facebook Ads Suggested Pages and Posts", 
-    "main": "main", 
-    "id": "jid0-wpCH2liWmuMjc8AV1VWejWvGjBI", 
-    "name": "qclean-remove-facebook-ads-suggested-pages-and-posts",
+    "main": "lib/main.js", 
+    "name": "qclean",
     "preferences": [
         {
             "name": "hideSomething",
