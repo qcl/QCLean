@@ -12,6 +12,9 @@ firefox-l10n-patch: firefox-xpi
 	zip qclean-firefox.xpi install.rdf
 	rm install.rdf
 
+firefox-xpi-jpm: QCLean-Firefox-Experiment
+	cd ./QCLean-Firefox-Experiment; jpm xpi; mv *.xpi ../qclean-firefox.xpi
+
 firefox-xpi: QCLean-Firefox firefox-sdk
 	cd firefox-sdk; . bin/activate; cd ../QCLean-Firefox/; cfx xpi; mv qclean-remove-facebook-ads-suggested-pages-and-posts.xpi ../qclean-firefox.xpi
 
