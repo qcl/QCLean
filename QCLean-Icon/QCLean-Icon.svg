@@ -5,9 +5,9 @@
 <g>
 <title>QCLean Icon</title>
 <g id="ads" transform="rotate(-15 185.025 216.063)">
-<path fill="#cccccc" stroke-width="0" d="m148.706055,159.060806l0,86.860153c55.875061,10.857513 111.750122,0 156.450165,65.145111l16.762512,0l0,-217.150368l-16.762512,0c-44.700043,65.145103 -100.575104,54.28759 -156.450165,65.145103z" id="svg_3" stroke="#000000"/>
+<path fill="#858585" stroke-width="0" d="m148.706055,159.060806l0,86.860153c55.875061,10.857513 111.750122,0 156.450165,65.145111l16.762512,0l0,-217.150368l-16.762512,0c-44.700043,65.145103 -100.575104,54.28759 -156.450165,65.145103z" id="svg_3" stroke="#000000"/>
 <path fill="#005fbf" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m137.531052,159.060806l0,86.860153l-67.050079,0l-22.350021,-21.715042l0,-43.430069l22.350021,-21.715042l67.050079,0z" id="svg_4" stroke="#000000"/>
-<path fill="#cccccc" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m87.243492,256.778473l50.28756,0l16.762512,65.145111c-11.175003,10.857513 -16.762512,16.286285 -39.112541,5.428772l-27.937531,-65.145142l0,-5.428741z" id="svg_5" stroke="#000000"/>
+<path fill="#858585" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m87.243492,256.778473l50.28756,0l16.762512,65.145111c-11.175003,10.857513 -16.762512,16.286285 -39.112541,5.428772l-27.937531,-65.145142l0,-5.428741z" id="svg_5" stroke="#000000"/>
 </g>
 <g id="stop">
 <circle fill="#000000" stroke-width="25" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="200" cy="200" r="180" id="svg_7" fill-opacity="0" stroke="#ff5656"/>
