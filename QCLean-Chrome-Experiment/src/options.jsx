@@ -15,6 +15,7 @@ var Option = React.createClass({
         //console.log(event.target);
         // UI changed but the state of input not change, need to set state.
         // UI may change by other js ?
+        // TODO set setting back
         this.setState({"isSeetingApplied": !this.state.isSeetingApplied});
     },
     render: function () {
