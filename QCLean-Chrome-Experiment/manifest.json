@@ -23,6 +23,9 @@
         "default_popup" : "popup.html"
     },
     "permissions"       : ["tabs"],
-    "options_page"      : "options.html",
+    "options_ui"      : {
+        "page"          : "options.html",
+        "chrome_style"  : true
+    },
     "content_security_policy": "script-src 'self' https://*.google-analytics.com ; object-src 'self'"
 }
