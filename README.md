@@ -5,6 +5,8 @@ QCLean - Remove Facebook Ads, Suggested Pages &amp; Posts
 
 [http://qcl.github.io/QCLean](http://qcl.github.io/QCLean)
 
+[![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg)](https://github.com/auchenberg/volkswagen)
+
 ## Google Chrome
 
 [Google Chrome Web Store](https://chrome.google.com/webstore/detail/qclean-remove-facebook-ad/fdhhejjkjfjkchkimomgfegnpapndjne?utm_source=chrome-ntp-icon)
