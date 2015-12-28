@@ -19,6 +19,7 @@ var Option = React.createClass({
         this.setState({"isSeetingApplied": !this.state.isSeetingApplied});
     },
     render: function () {
+        console.log("render called");
         return (
             <div>
                 <label className="mdl-switch mdl-js-switch mdl-js-ripple-effect" htmlFor={this.props.id} >
