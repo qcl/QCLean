@@ -70,6 +70,14 @@ qclean.collaspe.contentHandler = function (event) {
 
 qclean.feature = qclean.feature || {};
 
+// Feature: learning ad links on news feed
+qclean.feature.machineLearningLinksOnNewsFeed = {
+    "type"          : "learn",
+    "judgeFunction" : qclean.hiding.isSponsoredStoryOnNewsFeed,
+    "name"          : "machineLearningLinksOnNewsFeed",
+    "description"   : "Learning from links"
+};
+
 // Feature: hide sponsored story on news feed
 qclean.feature.hideSponsoredStoryOnNewsFeed = {
     "type"          : "hide",
@@ -123,12 +131,42 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             if(featureDesc.judgeFunction(element)){
-                element.style.display = "none";
-                target.dataset.qclean = "done";
-                console.log("Hide something ("+featureDesc.name+")");
-                //if (featureDesc.afterHidingHandler) {
-                //    featureDesc.afterHidingHandler();
-                //}
+                if(featureDesc.type == "hide") {
+                    element.style.display = "none";
+                    target.dataset.qclean = "done";
+                    console.log("Hide something ("+featureDesc.name+")");
+                    //if (featureDesc.afterHidingHandler) {
+                    //    featureDesc.afterHidingHandler();
+                    //}
+                } else if (featureDesc.type == "learn") {
+                    // TODO - extract content
+                    var links = element.querySelectorAll("a");
+                    if (links.length == 0) {
+                        console.log(element.innerHTML); 
+                    } else {
+                        var linkModule;
+                        target.dataset.qclean = "done";
+                        // FIXME
+                        links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
+                        console.log("Fetch links");
+                        console.log(links);
+                        for (var i=0; i < links.length; i++) {
+                            var link = links[i];
+                            // FIXME
+                            var img = link.querySelectorAll("img");
+                            if (img.length > 0) {
+                                console.log(img);
+                                linkModule = link;
+                                console.log(link);
+                                break;
+                            }
+                        }
+                        if (linkModule!=undefined) {
+                            console.log("Try to learn from element:");
+                            console.log(linkModule.href);
+                        }
+                    }
+                }
                 break;
             }
             element = element.parentElement;
@@ -206,6 +244,9 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
     // hide sponsored ADs
     qclean.framework.hideElementsByTargetChildSelector(".adsCategoryTitleLink:not([data-qclean])", qclean.feature.hideSponsoredADs);
+
+    // try to learn
+    qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
 
     // collaspe sidebar content
     qclean.framework.collaspeElementsBySelector(".ego_section:not([data-qclean]):not([style])", qclean.feature.collaspeSidebarContent); 
