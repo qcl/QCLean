@@ -142,28 +142,24 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     // TODO - extract content
                     var links = element.querySelectorAll("a");
                     if (links.length == 0) {
-                        console.log(element.innerHTML); 
+                        // facebook not load info yet.
+                        //console.log(element.innerHTML); 
                     } else {
-                        var linkModule;
+                        var fetchedLinks = [];
                         target.dataset.qclean = "done";
                         // FIXME
                         links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
                         console.log("Fetch links");
-                        console.log(links);
+                        //console.log(links);
                         for (var i=0; i < links.length; i++) {
                             var link = links[i];
-                            // FIXME
-                            var img = link.querySelectorAll("img");
-                            if (img.length > 0) {
-                                console.log(img);
-                                linkModule = link;
-                                console.log(link);
-                                break;
+                            var href = link.attributes["onclick"].value;
+                            var hrefComponents = href.split("referrer_log(this, \"");
+                            if (hrefComponents.length > 1) {
+                                href = hrefComponents[1];
+                                hrefComponents = href.split("\", \"\\/si\\/ajax\\");
+                                href = hrefComponents[0].replace("\\\\","\\").replace("\\","");
                             }
-                        }
-                        if (linkModule!=undefined) {
-                            console.log("Try to learn from element:");
-                            console.log(linkModule.href);
                         }
                     }
                 }
