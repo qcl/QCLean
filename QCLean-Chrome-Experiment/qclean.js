@@ -149,6 +149,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         target.dataset.qclean = "done";
                         // FIXME
                         links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
+                        var gg = element.querySelectorAll(".uiStreamAdditionalLogging");
                         console.log("Fetch links");
                         //console.log(links);
                         for (var i=0; i < links.length; i++) {
@@ -158,7 +159,12 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                             if (hrefComponents.length > 1) {
                                 href = hrefComponents[1];
                                 hrefComponents = href.split("\", \"\\/si\\/ajax\\");
-                                href = hrefComponents[0].replace("\\\\","\\").replace("\\","");
+                                href = hrefComponents[0];
+                                href = href.replace(/\\u([\d\w]{4})/gi, function(match, grp){
+                                    return String.fromCharCode(parseInt(grp, 16));
+                                });
+                                href = href.replace(/\\\//gi, "/");
+                                console.log(href);
                             }
                         }
                     }
