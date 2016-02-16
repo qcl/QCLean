@@ -1,0 +1,26 @@
+{
+    "extName":{
+        "message":"QCLean: Facebook推薦專頁與建議貼文、廣告移除器",
+        "description":"附加元件名稱"
+    },
+    "extShortName":{
+        "message":"QCLean",
+        "description":"附加元件簡稱"
+    },
+    "extDescription":{
+        "message":"移除Facebook動態上的「推薦粉絲專頁」與「建議貼文」。除此之外也一併移除廣告。",
+        "description":"附加元件說明"
+    },
+    "extPageActionTitle":{
+        "message":"QCLean: 移除臉書廣告、建議貼文與推薦專頁",
+        "description":"PageAction標題"
+    },
+    "extSettings":{
+        "message":"設定QCLean",
+        "description":"設定"
+    },
+    "extReportBug":{
+        "message":"問題回報",
+        "description":"問題回報"
+    }
+}
