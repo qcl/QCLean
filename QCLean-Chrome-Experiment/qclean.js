@@ -143,15 +143,10 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     var links = element.querySelectorAll("a");
                     if (links.length == 0) {
                         // facebook not load info yet.
-                        //console.log(element.innerHTML); 
                     } else {
-                        var fetchedLinks = [];
+                        var fetchedLink = undefined;
                         target.dataset.qclean = "done";
-                        // FIXME
                         links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
-                        var gg = element.querySelectorAll(".uiStreamAdditionalLogging");
-                        console.log("Fetch links");
-                        //console.log(links);
                         for (var i=0; i < links.length; i++) {
                             var link = links[i];
                             var href = link.attributes["onclick"].value;
@@ -164,7 +159,13 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                     return String.fromCharCode(parseInt(grp, 16));
                                 });
                                 href = href.replace(/\\\//gi, "/");
-                                console.log(href);
+                                if (href != undefined && href.length > 0) {
+                                    fetchedLink = href;
+                                }
+                            }
+                            if (fetchedLink != undefined) {
+                                console.log(fetchedLink);
+                                break;
                             }
                         }
                     }
