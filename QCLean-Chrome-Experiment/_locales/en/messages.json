@@ -16,11 +16,19 @@
         "description":"page action title"
     },
     "extSettings":{
-        "message":"Settings",
+        "message":"QCLean Settings",
         "description":"settings"
     },
+    "extSettingsDesc":{
+        "message":"You can change the setting of QCLean. To apply those settings, please reload your Facebook page.",
+        "description":"settings desc"
+    },
     "extReportBug":{
-        "message":"Report Bug",
+        "message":"Report Issues",
         "description":"report bug"
+    },
+    "extDonate":{
+        "message":"Donate",
+        "description":"donate"
     }
 }

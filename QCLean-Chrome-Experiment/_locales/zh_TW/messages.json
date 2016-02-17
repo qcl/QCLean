@@ -19,6 +19,10 @@
         "message":"設定QCLean",
         "description":"設定"
     },
+    "extSettingsDesc":{
+        "message":"您可以在這裡改變 QCLean 的設定。欲使設定生效，請重新載入您的 Facebook 分頁。",
+        "description":"settings desc"
+    },
     "extReportBug":{
         "message":"問題回報",
         "description":"問題回報"
