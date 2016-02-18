@@ -9,11 +9,12 @@ var Option = React.createClass({displayName: "Option",
         var applied = localStorage[settingKey];
         if (applied == undefined) {
             //applied = this.props.default;
-            applied = true;
+            applied = this.props.defaultValue;
         }
 
-        // TODO get setting title and description
-        this.title = "OptionName";
+        // get setting title and description
+        this.title = chrome.i18n.getMessage(this.props.titleText);
+        this.desc = chrome.i18n.getMessage(this.props.desc);
 
         // return state
         return {
@@ -40,19 +41,32 @@ var Option = React.createClass({displayName: "Option",
                             checked: this.state.isSeetingApplied}), 
                     React.createElement("span", {className: "mdl-switch__label"}, this.title)
                 ), 
-                React.createElement("p", {className: "option-desc"}, "Description")
+                React.createElement("p", {className: "option-desc"}, this.desc)
             )
         );
     }
 });
 
 // TODO add default setting
-var qcleanSettings = ["qclean-remove-ads", "qclean-remove-recommended-posts"];
+var qcleanSettings = [{
+    key: "qclean-remove-ads",
+    default: true,
+    title: "optRemoveAds",
+    desc: "optRemoveAdsDesc"
+},{
+    key: "qclean-remove-recommended-posts",
+    default: false,
+    title: "optRemoveRecommendedPosts",
+    desc: "optRemoveRecommendedPostsDesc" 
+}];
 
 React.render(
     React.createElement("div", null, 
-        qcleanSettings.map(function(settingKey){
-            return React.createElement(Option, {id: settingKey});                                        
+        qcleanSettings.map(function(setting){
+            return React.createElement(Option, {id: setting.key, 
+                            defaultValue: setting.default, 
+                            titleText: setting.title, 
+                            desc: setting.desc}); 
         })
     ),
     document.getElementById('setting')
