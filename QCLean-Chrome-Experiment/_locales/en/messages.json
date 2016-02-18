@@ -30,5 +30,21 @@
     "extDonate":{
         "message":"Donate",
         "description":"donate"
+    },
+    "optRemoveAds":{
+        "message":"Hide advertisments",
+        "description":""
+    },
+    "optRemoveAdsDesc":{
+        "message":"Hide advertisments on the right panel.",
+        "description":""
+    },
+    "optRemoveRecommendedPosts":{
+        "message":"Hide sponsored posts",
+        "description":""
+    },
+    "optRemoveRecommendedPostsDesc":{
+        "message":"Hide sponsored posts on Facebook news feed.",
+        "description":""
     }
 }
