@@ -26,5 +26,25 @@
     "extReportBug":{
         "message":"問題回報",
         "description":"問題回報"
+    },
+    "extDonate":{
+        "message":"贊助",
+        "description":"donate"
+    },
+    "optRemoveAds":{
+        "message":"隱藏廣告",
+        "description":""
+    },
+    "optRemoveAdsDesc":{
+        "message":"將 Facebook 界面右側的廣告隱藏起來。",
+        "description":""
+    },
+    "optRemoveRecommendedPosts":{
+        "message":"隱藏建議貼文",
+        "description":""
+    },
+    "optRemoveRecommendedPostsDesc":{
+        "message":"將 Facebook 動態塗鴉牆上的建議貼文隱藏起來。",
+        "description":""
     }
 }
