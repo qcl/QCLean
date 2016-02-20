@@ -1,39 +1,59 @@
 var Option = React.createClass({displayName: "Option",
-    getInitialState: function() {
-        console.log("getInitialState");
-
-        // get applied state
-        var settingKey = this.props.id;
-        // TODO use chrome.storage.sync.get to get setting 
-        // but it need `storage` permission, so here still use old solution.
-        var applied = localStorage[settingKey];
-        if (applied == undefined) {
-            //applied = this.props.default;
-            applied = this.props.defaultValue;
-        }
-
+    componentWillMount: function() {
+        console.log("componentWillMount");
         // get setting title and description
         this.title = chrome.i18n.getMessage(this.props.titleText);
         this.desc = chrome.i18n.getMessage(this.props.desc);
+    },
+    componentDidMount: function() {
+        console.log("componentDidMount");
+        
+        // get applied state
+        var settingKey = this.props.id;
+        var defaultValue = this.props.defaultValue;
 
-        // return state
+        var settingQuery = {};
+        settingQuery[settingKey] = defaultValue;
+        chrome.storage.sync.get(settingQuery, this.handleSetting);
+    },
+    getInitialState: function() {
+        console.log("getInitialState");
+        
+        var defaultValue = this.props.defaultValue;
+        
+        // return init state
         return {
-            'isSeetingApplied': applied
+            'isSeetingApplied': defaultValue
         };
+    },
+    handleSetting: function(items) {
+        var settingKey = this.props.id;
+        var defaultValue = this.props.defaultValue;
+        var isSeetingApplied = items[settingKey];
+        if (isSeetingApplied == undefined) {
+            isSeetingApplied = defaultValue;
+        }
+        this.setState({"isSeetingApplied": isSeetingApplied});
     },
     switchDidChanged: function(event) {
         console.log("switchDidChanged");
-        //console.log(event.target);
-        // UI changed but the state of input not change, need to set state.
-        // UI may change by other js ?
-        // TODO set setting back
+        var settingKey = this.props.id;
+        var items = {};
+        items[settingKey] = !this.state.isSeetingApplied;
+        chrome.storage.sync.set(items,function(){
+            // no-op for now.
+        });
         this.setState({"isSeetingApplied": !this.state.isSeetingApplied});
     },
     render: function () {
         console.log("render called");
+        var labelClasses = "mdl-switch mdl-js-switch mdl-js-ripple-effect is-upgraded";
+        if (this.state.isSeetingApplied) {
+            labelClasses += " is-checked";
+        }
         return (
             React.createElement("div", null, 
-                React.createElement("label", {className: "mdl-switch mdl-js-switch mdl-js-ripple-effect", htmlFor: this.props.id}, 
+                React.createElement("label", {className: labelClasses, htmlFor: this.props.id}, 
                     React.createElement("input", {type: "checkbox", 
                             id: this.props.id, 
                             className: "mdl-switch__input", 
@@ -59,6 +79,13 @@ var qcleanSettings = [{
     title: "optRemoveRecommendedPosts",
     desc: "optRemoveRecommendedPostsDesc" 
 }];
+
+chrome.storage.sync.get({
+    "qclean-remove-ads": true,
+    "qclean-remove-recommended-posts": false
+}, function(items) {
+    
+});
 
 React.render(
     React.createElement("div", null, 
