@@ -5,7 +5,7 @@
     "short_name"        : "__MSG_extShortName__",
     "description"       : "__MSG_extDescription__",
 
-    "version"           : "0.5.6",
+    "version"           : "0.5.6.1",
     "minimum_chrome_version": "40",
 
     "manifest_version"  : 2,
@@ -29,7 +29,8 @@
         "default_title" : "QCLean",
         "default_popup" : "popup.html"
     },
-    "permissions"       : ["tabs"],
+    "permissions"       : ["tabs",
+                           "storage"],
     "options_ui"      : {
         "page"          : "options.html",
         "chrome_style"  : true
