@@ -79,10 +79,20 @@ var qcleanSettings = [{
     title: "optRemoveRecommendedPosts",
     desc: "optRemoveRecommendedPostsDesc" 
 },{
-    key: "qclean-remove-recommended-posts",
+    key: "qclean-collaspe-right-panel",
     default: true,
-    title: "optRemoveRecommendedPosts",
-    desc: "optRemoveRecommendedPostsDesc" 
+    title: "optCollaspeRightPanel",
+    desc: "optCollaspeRightPanelDesc" 
+},{
+    key: "qclean-remove-games",
+    default: true,
+    title: "optRemoveGameRecommend",
+    desc: "optRemoveGameRecommendDesc" 
+},{
+    key: "qclean-auto-report",
+    default: true,
+    title: "optAutoReport",
+    desc: "optAutoReportDesc" 
 }];
 
 chrome.storage.sync.get({
