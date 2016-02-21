@@ -46,5 +46,29 @@
     "optRemoveRecommendedPostsDesc":{
         "message":"將 Facebook 動態塗鴉牆上的建議貼文隱藏起來。",
         "description":""
+    },
+    "optCollaspeRightPanel":{
+        "message":"折疊收合右側內容",
+        "description":""
+    },
+    "optCollaspeRightPanelDesc":{
+        "message":"將 Facebook 界面右側的內容折疊收合，例如「你可能認識的朋友」、「朋友邀請」、「你可能喜歡的遊戲」等等，您可以點擊標題將內容展開。",
+        "description":""
+    },
+    "optRemoveGameRecommend":{
+        "message":"隱藏遊戲推薦",
+        "description":""
+    },
+    "optRemoveGameRecommendDesc":{
+        "message":"將聊天室上方的遊戲推薦隱藏。",
+        "description":""
+    },
+    "optAutoReport":{
+        "message":"自動回報錯誤",
+        "description":""
+    },
+    "optAutoReportDesc":{
+        "message":"自動將 QCLean 的錯誤回報給開發者，開發者將會火速修正之。",
+        "description":""
     }
 }

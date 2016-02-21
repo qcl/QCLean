@@ -46,5 +46,29 @@
     "optRemoveRecommendedPostsDesc":{
         "message":"Hide sponsored posts on Facebook news feed.",
         "description":""
+    },
+    "optCollaspeRightPanel":{
+        "message":"Collaspe right panel content",
+        "description":""
+    },
+    "optCollaspeRightPanelDesc":{
+        "message":"Collaspe content like `People you may know`, `Friend request`, `Games you may like`, `Events in your network`, `Recent friends`..., you can click title to see the content.",
+        "description":""
+    },
+    "optRemoveGameRecommend":{
+        "message":"Hide recommended games",
+        "description":""
+    },
+    "optRemoveGameRecommendDesc":{
+        "message":"Hide recommended games on the top of chat bar.",
+        "description":""
+    },
+    "optAutoReport":{
+        "message":"Automatically report error",
+        "description":""
+    },
+    "optAutoReportDesc":{
+        "message":"Automatically report error of this extension to developer, so developer can fix it as soon as possible.",
+        "description":""
     }
 }
