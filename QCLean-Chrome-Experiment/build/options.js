@@ -67,7 +67,7 @@ var Option = React.createClass({displayName: "Option",
     }
 });
 
-// TODO add default setting
+// TODO mv setting to another file, let it can be shared
 var qcleanSettings = [{
     key: "qclean-remove-ads",
     default: true,

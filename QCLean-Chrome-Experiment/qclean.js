@@ -23,6 +23,31 @@ qclean.version = extensionInfo.version;
 
 console.log("Load qclean.js ("+qclean.version+")");
 
+/* QCLean settings */
+qclean.setting = qclean.setting || {};
+qclean.setting.isInit = false;
+
+// init setting
+// TODO integrage it with setting in option
+// FIXME chrome only
+chrome.storage.sync.get({
+    "qclean-remove-ads": true,
+    "qclean-remove-recommended-posts": true,
+    "qclean-collaspe-right-panel": true,
+    "qclean-remove-games": true,
+    "qclean-auto-report": true,
+}, function(items){
+    qclean.setting.isRemoveAds = items["qclean-remove-ads"];
+    qclean.setting.isRemoveSponsoredPosts = items["qclean-remove-recommended-posts"];
+    qclean.setting.isCollaspeRightPanelContent = items["qclean-collaspe-right-panel"];
+    qclean.setting.isRemoveGames = items["qclean-remove-games"];
+    qclean.setting.isAutoReport = items["qclean-auto-report"];
+    qclean.setting.isInit = true;
+    console.log("Load qclean settings");
+    console.log(qclean.setting);
+});
+
+
 /* QCLean judge functions */
 qclean.hiding = qclean.hiding || {};
 
@@ -241,21 +266,32 @@ qclean.framework.collaspeElementsBySelector = function(selector, featureDesc) {
 
 var qcleanObserver = new window.MutationObserver(function(mutation, observer){
     //console.log("Observer triggered");
+    if (qclean.setting.isInit) {
+        // hide sponsored story on newsfeed
+        if (qclean.setting.isRemoveSponsoredPosts) {
+            qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+        }
 
-    // hide sponsored story on newsfeed
-    qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+        // hide sponsored ADs
+        if (qclean.setting.isRemoveAds) {
+            qclean.framework.hideElementsByTargetChildSelector(".adsCategoryTitleLink:not([data-qclean])", qclean.feature.hideSponsoredADs);
+        }
 
-    // hide sponsored ADs
-    qclean.framework.hideElementsByTargetChildSelector(".adsCategoryTitleLink:not([data-qclean])", qclean.feature.hideSponsoredADs);
+        // try to learn
+        if (qclean.setting.isAutoReport) {
+            qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
+        }
 
-    // try to learn
-    qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
+        // collaspe sidebar content
+        if (qclean.setting.isCollaspeRightPanelContent) {
+            qclean.framework.collaspeElementsBySelector(".ego_section:not([data-qclean]):not([style])", qclean.feature.collaspeSidebarContent); 
+        }
 
-    // collaspe sidebar content
-    qclean.framework.collaspeElementsBySelector(".ego_section:not([data-qclean]):not([style])", qclean.feature.collaspeSidebarContent); 
-
-    // hide recommended game in chat bar
-    qclean.framework.hideElementsByTargetChildSelector("#pagelet_canvas_nav_content:not([data-qclean])", qclean.feature.hideRecommendedGameInChatBar);
+        // hide recommended game in chat bar
+        if (qclean.setting.isRemoveGames) {
+            qclean.framework.hideElementsByTargetChildSelector("#pagelet_canvas_nav_content:not([data-qclean])", qclean.feature.hideRecommendedGameInChatBar);
+        }
+    }
 });
 
 qcleanObserver.observe(document, {
