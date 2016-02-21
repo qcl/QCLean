@@ -95,13 +95,6 @@ var qcleanSettings = [{
     desc: "optAutoReportDesc" 
 }];
 
-chrome.storage.sync.get({
-    "qclean-remove-ads": true,
-    "qclean-remove-recommended-posts": false
-}, function(items) {
-    
-});
-
 React.render(
     <div>
         {qcleanSettings.map(function(setting){
