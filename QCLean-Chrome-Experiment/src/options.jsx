@@ -120,6 +120,8 @@ var changeContentWithI18Message = function(cssQueryString, message){
 var initOptionsPage = function() {
     var settingTitle = chrome.i18n.getMessage("extSettings");
     document.title = settingTitle;
+    var manifest = chrome.runtime.getManifest();
+    document.querySelector("a#version").innerHTML = manifest.version;
 
     var messages = [{
         message: "extSettings",
