@@ -27,6 +27,17 @@ console.log("Load qclean.js ("+qclean.version+")");
 qclean.setting = qclean.setting || {};
 qclean.setting.isInit = false;
 
+/* QCLean i13n */
+qclean.i13n = qclean.i13n || {};
+qclean.i13n.logEvent = function(eventObj) {
+    if (qclean.setting.isAutoReport) {
+        eventObj["request"] = "i13n";
+        chrome.runtime.sendMessage(eventObj, function(response){
+            // no-op for now.
+        });
+    }
+};
+
 // init setting
 // TODO integrage it with setting in option
 // FIXME chrome only
@@ -44,9 +55,9 @@ chrome.storage.sync.get({
     qclean.setting.isAutoReport = items["qclean-auto-report"];
     qclean.setting.isInit = true;
     console.log("Load qclean settings");
-    console.log(qclean.setting);
+    //console.log(qclean.setting);
+    qclean.i13n.logEvent({event: "QCLeanDidLoad"});
 });
-
 
 /* QCLean judge functions */
 qclean.hiding = qclean.hiding || {};
@@ -171,6 +182,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     } else {
                         var fetchedLink = undefined;
                         target.dataset.qclean = "done";
+                        // skip sponsored post
+                        var sponsored = element.querySelector(".adsCategoryTitleLink");
+                        if (sponsored) {
+                            break;
+                        }
                         links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
                         for (var i=0; i < links.length; i++) {
                             var link = links[i];
@@ -189,6 +205,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                 }
                             }
                             if (fetchedLink != undefined) {
+                                qclean.i13n.logEvent({
+                                    event   :"LearningFromPost",
+                                    type    :"link",
+                                    content :fetchedLink
+                                });
                                 console.log(fetchedLink);
                                 break;
                             }
@@ -200,12 +221,13 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
             element = element.parentElement;
         }
     }
-    /*
-    if(!target.dataset.qclean){
+    if(!target.dataset.qclean && featureDesc.type == "hide"){
         //here means qclean didn't hide our target element.
-        //TODO I13N
+        qclean.i13n.logEvent({
+            event   : "CannotHideTargetElement",
+            type    : featureDesc.name
+        });
     }
-    */
 };
 
 qclean.framework.hideElementsByTargetChildSelector = function(selectors, featureDesc){
@@ -240,7 +262,9 @@ qclean.framework._setupCollaspeComponent = function(component, handler) {
                 this.qcleanCollaspeContainer.classList.add("qcleanHide");
                 this.dataset.qcleanCollaspe = "true";
             }
-            //TODO: i13n
+            qclean.i13n.logEvent({
+                event: "CollaspeDidTapped"
+            });
         }
     }
 };

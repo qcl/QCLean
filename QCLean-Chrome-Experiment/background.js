@@ -20,3 +20,22 @@ ga('set','checkProtocolTask', null);
 ga('send', 'pageview');
 var manifest = chrome.runtime.getManifest();
 ga('send', 'event', 'ChromeExtVersion',manifest.version);
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+    //console.log("get message");
+    //console.log(request);
+    //console.log(sender);
+    //console.log(sendResponse);
+    if (request.request == "i13n") {
+        var event = request.event;
+        if (event == "QCLeanDidLoad") {
+            ga('send', 'event', event, manifest.version);
+        } else if (event == "LearningFromPost") {
+            ga('send', 'event', event, request.type, request.content); 
+        } else if (event == "CannotHideTargetElement") {
+            ga('send', 'event', event, request.type, manifest.version); 
+        } else if (event == "CollaspeDidTapped") {
+            ga('send', 'event', event, manifest.version);
+        }
+    }
+});
