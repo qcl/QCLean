@@ -187,6 +187,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         if (sponsored) {
                             break;
                         }
+                        // TODO not every thing in life is likeable
+                        var like = element.querySelector("a.UFILikeLink");
+                        var share = element.querySelector("a.share_action_link");
+                        //console.log(like);
+                        //console.log(share);
                         links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
                         for (var i=0; i < links.length; i++) {
                             var link = links[i];
@@ -211,6 +216,39 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                     content :fetchedLink
                                 });
                                 console.log(fetchedLink);
+                                // TODO not every thing in life is likeable
+                                // set like event
+                                if (like && !like.dataset.qcleanOnclick) {
+                                    like.dataset.qcleanOnclick = "true";
+                                    like.dataset.qcleanLink = fetchedLink;
+                                    like.addEventListener("click", function() {
+                                        if (this.dataset.qcleanOnclick && this.dataset.qcleanLink && qclean) {
+                                            var fetchedLink = this.dataset.qcleanLink;
+                                            console.log("like " + fetchedLink + " clicked!!!");
+                                            qclean.i13n.logEvent({
+                                                event   :"LearningFromPost",
+                                                type    :"link-like",
+                                                content :fetchedLink
+                                            });
+                                        }
+                                    });
+                                }
+                                // set share event
+                                if (share && !share.dataset.qcleanOnclick) {
+                                    share.dataset.qcleanOnclick = "true";
+                                    share.dataset.qcleanLink = fetchedLink;
+                                    share.addEventListener("click", function() {
+                                        if (this.dataset.qcleanOnclick && this.dataset.qcleanLink && qclean) {
+                                            var fetchedLink = this.dataset.qcleanLink;
+                                            console.log("share " + fetchedLink + " clicked!!!");
+                                            qclean.i13n.logEvent({
+                                                event   :"LearningFromPost",
+                                                type    :"link-share",
+                                                content :fetchedLink
+                                            });
+                                        }
+                                    });
+                                }
                                 break;
                             }
                         }
