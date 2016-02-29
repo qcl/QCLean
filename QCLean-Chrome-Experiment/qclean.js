@@ -215,7 +215,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                     type    :"link",
                                     content :fetchedLink
                                 });
-                                console.log(fetchedLink);
+                                // console.log(fetchedLink);
                                 // TODO not every thing in life is likeable
                                 // set like event
                                 if (like && !like.dataset.qcleanOnclick) {
