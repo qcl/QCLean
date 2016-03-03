@@ -183,8 +183,10 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         var fetchedLink = undefined;
                         target.dataset.qclean = "done";
                         // skip sponsored post
-                        var sponsored = element.querySelector(".adsCategoryTitleLink");
+                        var sponsored = element.querySelector(".uiStreamAdditionalLogging");
                         if (sponsored) {
+                            //console.log("sponsored!");
+                            //console.log(sponsored);
                             break;
                         }
                         // TODO not every thing in life is likeable
@@ -215,7 +217,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                     type    :"link",
                                     content :fetchedLink
                                 });
-                                // console.log(fetchedLink);
+                                //console.log(fetchedLink);
                                 // TODO not every thing in life is likeable
                                 // set like event
                                 if (like && !like.dataset.qcleanOnclick) {
