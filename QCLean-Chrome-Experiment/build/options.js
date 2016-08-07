@@ -93,6 +93,11 @@ var qcleanSettings = [{
     default: true,
     title: "optAutoReport",
     desc: "optAutoReportDesc" 
+},{
+    key: "qclean-hide-pokemon-go",
+    default: false,
+    title: "optPokemon",
+    desc: "optPokemonDesc"
 }];
 
 React.render(

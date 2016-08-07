@@ -47,12 +47,14 @@ chrome.storage.sync.get({
     "qclean-collaspe-right-panel": true,
     "qclean-remove-games": true,
     "qclean-auto-report": true,
+    "qclean-hide-pokemon-go": false,
 }, function(items){
     qclean.setting.isRemoveAds = items["qclean-remove-ads"];
     qclean.setting.isRemoveSponsoredPosts = items["qclean-remove-recommended-posts"];
     qclean.setting.isCollaspeRightPanelContent = items["qclean-collaspe-right-panel"];
     qclean.setting.isRemoveGames = items["qclean-remove-games"];
     qclean.setting.isAutoReport = items["qclean-auto-report"];
+    qclean.setting.isHidePokemonGo = items["qclean-hide-pokemon-go"];
     qclean.setting.isInit = true;
     console.log("Load qclean settings");
     //console.log(qclean.setting);
@@ -62,6 +64,7 @@ chrome.storage.sync.get({
 /* QCLean judge functions */
 qclean.hiding = qclean.hiding || {};
 
+// FIXME: rename this method, it's a method that judge a element is or not a story on facebook newsfeed.
 qclean.hiding.isSponsoredStoryOnNewsFeed = function(element) {
     if(element.dataset.ft && JSON.parse(element.dataset.ft).mf_story_key){
         return true;
