@@ -70,5 +70,13 @@
     "optAutoReportDesc":{
         "message":"Automatically report error of this extension to developer, so developer can fix it as soon as possible.",
         "description":""
+    },
+    "optPokemon":{
+        "message":"Hide Pokémon Go related posts",
+        "description":""
+    },
+    "optPokemonDesc":{
+        "message":"Automatically hide Pokémon Go related posts on Facebook news feed.",
+        "description":""
     }
 }
