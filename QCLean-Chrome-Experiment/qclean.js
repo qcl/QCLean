@@ -109,6 +109,14 @@ qclean.collaspe.contentHandler = function (event) {
 
 qclean.feature = qclean.feature || {};
 
+// Feature: hide pokemon go related posts
+qclean.feature.hidePokemonGoOnNewsFeed = {
+    "type"          : "pokemon",
+    "judgeFunction" : qclean.hiding.isSponsoredStoryOnNewsFeed,
+    "name"          : "hidePokemonGoOnNewsFeed",
+    "description"   : "Hide pokemon go related posts"
+};
+
 // Feature: learning ad links on news feed
 qclean.feature.machineLearningLinksOnNewsFeed = {
     "type"          : "learn",
@@ -167,6 +175,129 @@ qclean.framework = qclean.framework || {};
 
 qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
+    if (!target.dataset.qcleanpokemon) {
+        if (featureDesc.judgeFunction(element)) {
+            if (featureDesc.type == "pokemon") {
+                var links = element.querySelectorAll("a");
+                if (links.length == 0) {
+                    // facebook not load info yet.
+                    return;
+                }
+                var sponsored = element.querySelector(".uiStreamAdditionalLogging");
+                if (sponsored) {
+                    // it's a sponsored posts
+                    return;
+                }
+                //console.log(element);
+                target.dataset.qcleanpokemon = "done";
+                var reason = "";
+                var userContents = element.querySelectorAll(".userContent");
+                var userContentWrappers = element.querySelectorAll(".userContentWrapper");
+                var mtm = element.querySelectorAll(".mtm");
+                var mayBePokemonPost = false;
+                var pokemonKeywords = ['寶可夢', '神奇寶貝', 'pokemon', 'pokémon', '可達鴨', '鯉魚王', '抓怪', 'pokego', '御三家', '寶貝球' , '補給點', '驛站', '點香', '灑花點', '灑櫻花', '伊布', '進化', '道館', '黃隊', '紅隊', '藍隊', '訓練師'];
+                var forms = element.querySelectorAll("form");
+                var searchPokemonKeywords = function(dom) {
+                    for (var j = 0; j < pokemonKeywords.length; j++) {
+                        if (dom.innerHTML.toLowerCase().indexOf(pokemonKeywords[j]) >= 0) {
+                            return true;
+                        } 
+                    }
+                    return false;
+                };
+
+                for (var i = 0; i < userContents.length; i++) {
+                    var userContent = userContents[i];
+                    mayBePokemonPost = searchPokemonKeywords(userContent);
+                    if (mayBePokemonPost) {
+                        reason = "keyword";
+                        break;
+                    }
+                }
+                if (!mayBePokemonPost) {
+                    for (var i = 0; i < mtm.length; i++) {
+                        mayBePokemonPost = searchPokemonKeywords(mtm[i]);
+                        if (mayBePokemonPost) {
+                            reason = "linkKeyword"
+                            break;
+                        }
+                    }
+                }
+                
+                if (!mayBePokemonPost) {
+                    var imgs = element.querySelectorAll(".mtm a img");
+                    var totalCount = imgs.length;
+                    var mayBeCount = 0;
+                    for (var i = 0; i < imgs.length; i++) {
+                        var img = imgs[i];
+                        //console.log(img.src);
+                        if (img.width && img.height) {
+                            if (img.width / img.height < 0.6) {
+                                // which means it may be a cell phont screen shot. :p
+                                mayBeCount++;
+                                qclean.i13n.logEvent({
+                                    event   : "PokemonPost",
+                                    type    : "screenshot",
+                                    contnet : img.src
+                                });
+                            }
+                        }
+                    }
+                    if (totalCount > 0 && mayBeCount / totalCount > 0.45) {
+                        mayBePokemonPost = true;
+                        reason = "screenshot";
+                    }
+                }
+                
+                if (mayBePokemonPost) {
+                    qclean.i13n.logEvent({
+                        event   : "PokemonPost",
+                        type    : "hide"
+                    });
+                    //for (var i = 0; i < userContentWrappers.length; i++) {
+                    //    userContentWrappers[i].style.background = "oldlace";
+                    //}
+                    for (var i = 0; i < userContents.length; i++) {
+                        userContents[i].classList.add('qcleanHide');
+                    }
+                    for (var i = 0; i < mtm.length; i++) {
+                        mtm[i].classList.add('qcleanHide');
+                    }
+                    for (var i = 0; i < forms.length; i++) {
+                        forms[i].classList.add('qcleanHide');
+                    }
+                    if (target.firstChild) {
+                        var reasonText = "關鍵字";
+                        if (reason == "linkKeyword") {
+                            reasonText = "關鍵字";
+                        } else if (reason == "screenshot") {
+                            reasonText = "螢幕截圖";
+                        }
+                        var html = "<div id='pokemonPost' class='qcleanTextCenter qcleanClickable'><p>疑似 Pokemon Go 貼文（"+reasonText+"），點我可展開貼文。</div>";
+                        target.firstChild.innerHTML = html + target.firstChild.innerHTML;
+                        var clickToOpenDiv = target.querySelector("#pokemonPost");
+                        clickToOpenDiv.onclick = function(event) {
+                            event.preventDefault();
+                            console.log("click to open!");
+                            if (this.parentElement) {
+                                var hidedDoms = this.parentElement.querySelectorAll(".qcleanHide");
+                                for (var i = 0; i < hidedDoms.length; i++) {
+                                    hidedDoms[i].classList.remove("qcleanHide");
+                                }
+                                this.parentElement.removeChild(this);
+                            } else {
+                                this.classList.add("qcleanHide");
+                            }
+                            qclean.i13n.logEvent({
+                                event   : "PokemonPost",
+                                type    : "open"
+                            });
+                        };
+                    }
+                }
+            }
+        }
+    }
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             if(featureDesc.judgeFunction(element)){
@@ -275,8 +406,14 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
 
 qclean.framework.hideElementsByTargetChildSelector = function(selectors, featureDesc){
     var targetChilds = document.querySelectorAll(selectors);
+    //if (featureDesc.type == "pokemon") {
+    //    console.log(targetChilds.length);
+    //}
     for(var i=0; i<targetChilds.length; i++){
         if(!targetChilds[i].dataset.qclean){
+            qclean.framework._hideElementByTargetChild(targetChilds[i], featureDesc);
+        } else if (!targetChilds[i].dataset.qcleanpokemon) {
+            //console.log("Poke");
             qclean.framework._hideElementByTargetChild(targetChilds[i], featureDesc);
         }
     }
@@ -347,6 +484,11 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
         // try to learn
         if (qclean.setting.isAutoReport) {
             qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
+        }
+
+        // try to hide pokemon go posts
+        if (qclean.setting.isHidePokemonGo) {
+            qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qcleanpokemon])", qclean.feature.hidePokemonGoOnNewsFeed);
         }
 
         // collaspe sidebar content

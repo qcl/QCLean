@@ -5,3 +5,7 @@
 .qcleanClickable {
     cursor: pointer;
 }
+
+.qcleanTextCenter {
+    text-align: center;
+}
