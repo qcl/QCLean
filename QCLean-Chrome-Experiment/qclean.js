@@ -234,6 +234,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         if (img.width && img.height) {
                             if (img.width / img.height < 0.6) {
                                 // which means it may be a cell phont screen shot. :p
+                                // need more img for Deep Leanring to recongize the img.
                                 mayBeCount++;
                                 qclean.i13n.logEvent({
                                     event   : "PokemonPost",
@@ -244,6 +245,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         }
                     }
                     if (totalCount > 0 && mayBeCount / totalCount > 0.45) {
+                        // just a magic number
                         mayBePokemonPost = true;
                         reason = "screenshot";
                     }
