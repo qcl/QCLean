@@ -36,6 +36,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             ga('send', 'event', event, request.type, manifest.version); 
         } else if (event == "CollaspeDidTapped") {
             ga('send', 'event', event, manifest.version);
+        } else if (event == "PokemonPost") {
+            if (request.type == "screenshot") {
+                ga('send', 'event', event, request.type, request.content);
+            } else {
+                ga('send', 'event', event, request.type);
+            }
         }
     }
 });
