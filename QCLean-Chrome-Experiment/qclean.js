@@ -32,6 +32,7 @@ qclean.i13n = qclean.i13n || {};
 qclean.i13n.logEvent = function(eventObj) {
     if (qclean.setting.isAutoReport) {
         eventObj["request"] = "i13n";
+        //console.log(eventObj);
         chrome.runtime.sendMessage(eventObj, function(response){
             // no-op for now.
         });
@@ -195,7 +196,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                 var userContentWrappers = element.querySelectorAll(".userContentWrapper");
                 var mtm = element.querySelectorAll(".mtm");
                 var mayBePokemonPost = false;
-                var pokemonKeywords = ['寶可夢', '神奇寶貝', 'pokemon', 'pokémon', '可達鴨', '鯉魚王', '抓怪', 'pokego', '御三家', '寶貝球' , '補給點', '驛站', '點香', '灑花點', '灑櫻花', '伊布', '進化', '道館', '黃隊', '紅隊', '藍隊', '訓練師', '皮卡丘', '小火龍', '妙蛙種子', '傑尼龜'];
+                var pokemonKeywords = ['寶可夢', '神奇寶貝', 'pokemon', 'pokémon', '可達鴨', '鯉魚王', '抓怪', 'pokego', '御三家', '寶貝球' , '補給點', '驛站', '點香', '灑花點', '灑櫻花', '伊布', '進化', '道館', '黃隊', '紅隊', '藍隊', '訓練師', '皮卡丘', '小火龍', '妙蛙種子', '傑尼龜', 'pokestop', '皮卡超', '抓寶', '孵蛋'];
                 var forms = element.querySelectorAll("form");
                 var searchPokemonKeywords = function(dom) {
                     for (var j = 0; j < pokemonKeywords.length; j++) {
@@ -223,21 +224,37 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         }
                     }
                 }
-                
+               
                 var imgs = element.querySelectorAll(".mtm a img");
                 var totalCount = imgs.length;
                 var mayBeCount = 0;
+                //console.log(element);
+                //console.log(imgs);
                 for (var i = 0; i < imgs.length; i++) {
                     var img = imgs[i];
-                    if (img.width && img.height) {
-                        if (img.width / img.height < 0.6) {
+                    var width = undefined;
+                    var hegith = undefined;
+                    if (img.width) {
+                        width = img.width;
+                    }
+                    if (img.height) {
+                        height = img.height;
+                    }
+                    if (!width && img.attributes.width.value) {
+                        width = parseInt(img.attributes.width.value);
+                    }
+                    if (!height && img.attributes.height) {
+                        height = parseInt(img.attributes.height.value);
+                    }
+                    if (width && height) {
+                        if (width / height < 0.6) {
                             // which means it may be a cell phont screen shot. :p
                             // need more img for Deep Leanring to recongize the img.
                             mayBeCount++;
                             qclean.i13n.logEvent({
                                 event   : "PokemonPost",
                                 type    : "screenshot",
-                                contnet : img.src
+                                content : img.src
                             });
                         }
                     }
@@ -245,7 +262,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         qclean.i13n.logEvent({
                             event   : "PokemonPost",
                             type    : "screenshot-sure",
-                            contnet : img.src
+                            content : img.src
                         });
                     }
                 }
