@@ -224,26 +224,32 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     }
                 }
                 
-                if (!mayBePokemonPost) {
-                    var imgs = element.querySelectorAll(".mtm a img");
-                    var totalCount = imgs.length;
-                    var mayBeCount = 0;
-                    for (var i = 0; i < imgs.length; i++) {
-                        var img = imgs[i];
-                        //console.log(img.src);
-                        if (img.width && img.height) {
-                            if (img.width / img.height < 0.6) {
-                                // which means it may be a cell phont screen shot. :p
-                                // need more img for Deep Leanring to recongize the img.
-                                mayBeCount++;
-                                qclean.i13n.logEvent({
-                                    event   : "PokemonPost",
-                                    type    : "screenshot",
-                                    contnet : img.src
-                                });
-                            }
+                var imgs = element.querySelectorAll(".mtm a img");
+                var totalCount = imgs.length;
+                var mayBeCount = 0;
+                for (var i = 0; i < imgs.length; i++) {
+                    var img = imgs[i];
+                    if (img.width && img.height) {
+                        if (img.width / img.height < 0.6) {
+                            // which means it may be a cell phont screen shot. :p
+                            // need more img for Deep Leanring to recongize the img.
+                            mayBeCount++;
+                            qclean.i13n.logEvent({
+                                event   : "PokemonPost",
+                                type    : "screenshot",
+                                contnet : img.src
+                            });
                         }
                     }
+                    if (mayBePokemonPost) {
+                        qclean.i13n.logEvent({
+                            event   : "PokemonPost",
+                            type    : "screenshot-sure",
+                            contnet : img.src
+                        });
+                    }
+                }
+                if (!mayBePokemonPost) {
                     if (totalCount > 0 && mayBeCount / totalCount > 0.45) {
                         // just a magic number
                         mayBePokemonPost = true;

@@ -5,7 +5,7 @@
     "short_name"        : "__MSG_extShortName__",
     "description"       : "__MSG_extDescription__",
 
-    "version"           : "0.5.7.1",
+    "version"           : "0.5.7.2",
     "minimum_chrome_version": "40",
 
     "manifest_version"  : 2,
