@@ -67,7 +67,8 @@ qclean.hiding = qclean.hiding || {};
 
 // FIXME: rename this method, it's a method that judge a element is or not a story on facebook newsfeed.
 qclean.hiding.isSponsoredStoryOnNewsFeed = function(element) {
-    if(element.dataset.ft && JSON.parse(element.dataset.ft).mf_story_key){
+    if( (element.dataset.ft && JSON.parse(element.dataset.ft).mf_story_key) || 
+        (element.dataset.testid && element.dataset.testid == "fbfeed_story") ){
         return true;
     }
     return false;
