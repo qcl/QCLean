@@ -299,9 +299,10 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         } else if (reason == "screenshot") {
                             reasonText = "螢幕截圖";
                         }
-                        var html = "<div id='pokemonPost' class='qcleanTextCenter qcleanClickable'><p>疑似 Pokemon Go 貼文（"+reasonText+"），點我可展開貼文。</div>";
-                        target.firstChild.innerHTML = html + target.firstChild.innerHTML;
-                        var clickToOpenDiv = target.querySelector("#pokemonPost");
+                        var clickToOpenDiv = document.createElement("div");
+                        clickToOpenDiv.classList.add("qcleanTextCenter", "qcleanClickable");
+                        clickToOpenDiv.innerHTML = "<p>疑似 Pokemon Go 貼文（"+reasonText+"），點我可展開貼文。</p>";
+                        target.firstChild.insertBefore(clickToOpenDiv, target.firstChild.firstChild);
                         clickToOpenDiv.onclick = function(event) {
                             event.preventDefault();
                             console.log("click to open!");
