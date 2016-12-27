@@ -36,7 +36,9 @@
         "default_popup":"popup.html"
     },
 
-    "options_page": "options.html",
+    "options_ui":{
+      "page":"options.html"
+    },
 
     "web_accessible_resources":["qclean.js","qclean48.png","qclean38.png"],
 
