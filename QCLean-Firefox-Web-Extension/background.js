@@ -35,10 +35,10 @@ if(localStorage["qclean-report"]==undefined){
 qclean.fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
 qclean.checkFbUrl = function(tabId, changeInfo, tab){
     if(qclean.fbUrlRegExp.test(tab.url)){ 
-        chrome.pageAction.show(tabId);
+        browser.pageAction.show(tabId);
     }
 };
-chrome.tabs.onUpdated.addListener(qclean.checkFbUrl);
+browser.tabs.onUpdated.addListener(qclean.checkFbUrl);
 
 /* Google Analytics */
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -50,10 +50,10 @@ ga('create', 'UA-3607701-10', 'auto');
 //read https://code.google.com/p/analytics-issues/issues/detail?id=312 for more information.
 ga('set','checkProtocolTask', null);
 ga('send', 'pageview');
-ga('send', 'event', 'ChromeExtVersion',qclean.version);
+ga('send', 'event', 'FirefoxExtVersion',qclean.version);
 
-/* chrome messages */
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+/* browser messages */
+browser.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
     //console.log("getMessage.");
     //console.log(request);
