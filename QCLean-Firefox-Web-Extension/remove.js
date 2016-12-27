@@ -19,7 +19,7 @@ var qclean = qclean || {};
     not.
 */
 qclean.script = document.createElement("script");
-qclean.script.src = chrome.extension.getURL("qclean.js");
+qclean.script.src = browser.extension.getURL("qclean.js");
 
 qclean.apiStory = document.createElement("script");
 qclean.apiStory.src = "https://qcl.github.io/QCLean/api/story.js";
@@ -28,11 +28,11 @@ qclean.apiLineTagging.src = "https://qcl.github.io/QCLean/api/lineTagging.js";
 
 qclean.settings = document.createElement("script");
 //image for hide information used.
-qclean.logoSrc = chrome.extension.getURL("qclean38.png");
+qclean.logoSrc = browser.extension.getURL("qclean38.png");
 qclean.settings.innerHTML = "var qclean = qclean || {};\nqclean.logoSrc=\""+qclean.logoSrc+"\";\n";
 
 //send message to background for getting settings
-chrome.runtime.sendMessage({request:"getSettings"},function(response){
+browser.runtime.sendMessage({request:"getSettings"},function(response){
     console.log("get QCLean settings");
     //console.log(response);
 
