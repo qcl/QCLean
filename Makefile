@@ -32,7 +32,7 @@ firefox-sdk:
 	mv addon-sdk-* firefox-sdk
 
 firefox-webext: QCLean-Firefox-Web-Extension
-	zip -r qclean-firefox.zip QClean-Firefox-Web-Extension
+	zip -r qclean-firefox.zip QCLean-Firefox-Web-Extension
 
 opera-linux: QCLean-Opera-12
 	cd QCLean-Opera-12; zip -r qclean-opera-linux.oex *; mv qclean-opera-linux.oex ../
@@ -46,7 +46,7 @@ ie: QCLean-IE.js
 clean:
 	rm -f qclean-chrome.zip
 	rm -f jetpack-sdk-latest.zip
-	rm -f qclean-fiefox.xpi
+	rm -f qclean-firefox.xpi
 	rm -f qclean-opera-linux.oex
 	rm -f qclean-opera.crx
 	rm -f qclean-firefox.zip
