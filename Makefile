@@ -49,4 +49,5 @@ clean:
 	rm -f qclean-fiefox.xpi
 	rm -f qclean-opera-linux.oex
 	rm -f qclean-opera.crx
+	rm -f qclean-firefox.zip
 
