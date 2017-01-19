@@ -501,6 +501,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
         // hide sponsored story on newsfeed
         if (qclean.setting.isRemoveSponsoredPosts) {
             qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            // TODO - there is a new type suggested post with a <a> to ad page and another <a> shows public
         }
 
         // hide sponsored ADs
