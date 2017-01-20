@@ -241,10 +241,10 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     if (img.height) {
                         height = img.height;
                     }
-                    if (!width && img.attributes.width.value) {
+                    if (!width && img.attributes && img.attributes.width && img.attributes.width.value) {
                         width = parseInt(img.attributes.width.value);
                     }
-                    if (!height && img.attributes.height) {
+                    if (!height && img.attributes && img.attributes.height && img.attributes.height.value) {
                         height = parseInt(img.attributes.height.value);
                     }
                     if (width && height) {
@@ -501,7 +501,18 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
         // hide sponsored story on newsfeed
         if (qclean.setting.isRemoveSponsoredPosts) {
             qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            // TODO - there is a new type suggested post with a <a> to ad page and another <a> shows public
+
+            // new type sponsored post's structure:
+            // <h4> or <h5>
+            // <div>
+            //     <span>
+            //         <a href="https://l.facebook.com/l.php?u="
+            //         <!-- it's a link to https://www.facebook.com/ads/about -->
+            //     </span>
+            //     <span>
+            //     <a>
+            // </div>
+            qclean.framework.hideElementsByTargetChildSelector("div>span>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
