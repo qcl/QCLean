@@ -513,6 +513,20 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //     <a>
             // </div>
             qclean.framework.hideElementsByTargetChildSelector("div>span>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // there are a newer type sponsored post structure:
+            // <h6>
+            // <div>
+            //     <span>
+            //         <div>
+            //             <a href="https://l.facebook.com/l.php?u="
+            //             <!-- it's a link to https://www.facebook.com/ads/about -->
+            //         </div>
+            //     </span>
+            //     <span>
+            //     <a>
+            // </div>
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
