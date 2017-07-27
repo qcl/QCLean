@@ -1,5 +1,4 @@
 chrome: QCLean-Chrome-Experiment
-	cd ./QCLean-Chrome-Experiment; jsx -x jsx src build --no-cache-dir
 	zip -r qclean-chrome.zip QCLean-Chrome-Experiment
 
 chrome-old: QCLean-Chrome
