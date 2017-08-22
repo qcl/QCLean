@@ -528,6 +528,20 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             // </div>
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // more newer type sponsored post sturesture:
+            // <h5> or <h6>
+            // <div>
+            //    <span>
+            //        <div>
+            //            <a href="#"
+            //        <div>
+            //    </span>
+            //    <span>
+            //    <a>
+            // </div>
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
