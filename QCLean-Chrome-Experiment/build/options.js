@@ -98,6 +98,11 @@ var qcleanSettings = [{
     default: false,
     title: "optPokemon",
     desc: "optPokemonDesc"
+},{
+    key: "qclean-debug-mode",
+    default: false,
+    title: "optDebug",
+    desc: "optDebugDesc"
 }];
 
 React.render(

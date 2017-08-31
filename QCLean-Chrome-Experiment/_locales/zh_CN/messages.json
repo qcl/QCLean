@@ -78,5 +78,13 @@
     "optPokemonDesc":{
         "message":"自動將動態塗鴉牆上的 Pokémon Go 相關貼文隱藏起來。",
         "description":""
+    },
+    "optDebug":{
+        "message": "開發人員除錯模式",
+        "description": ""
+    },
+    "optDebugDesc":{
+        "message": "於除錯模式下，貼文及廣告將不會被隱藏，但會使用紅色匡線標示之。",
+        "description": ""
     }
 }

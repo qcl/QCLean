@@ -78,5 +78,13 @@
     "optPokemonDesc":{
         "message":"Automatically hide Pokémon Go related posts on Facebook news feed.",
         "description":""
+    },
+    "optDebug":{
+        "message": "Debug mode",
+        "description": ""
+    },
+    "optDebugDesc":{
+        "message": "In debug mode, posts and advertisments will not be hid, they will be highlighted.",
+        "description": ""
     }
 }

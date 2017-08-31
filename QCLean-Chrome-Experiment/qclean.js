@@ -49,6 +49,7 @@ chrome.storage.sync.get({
     "qclean-remove-games": true,
     "qclean-auto-report": true,
     "qclean-hide-pokemon-go": false,
+    "qclean-debug-mode": false,
 }, function(items){
     qclean.setting.isRemoveAds = items["qclean-remove-ads"];
     qclean.setting.isRemoveSponsoredPosts = items["qclean-remove-recommended-posts"];
@@ -56,6 +57,7 @@ chrome.storage.sync.get({
     qclean.setting.isRemoveGames = items["qclean-remove-games"];
     qclean.setting.isAutoReport = items["qclean-auto-report"];
     qclean.setting.isHidePokemonGo = items["qclean-hide-pokemon-go"];
+    qclean.setting.isDebug = items["qclean-debug-mode"];
     qclean.setting.isInit = true;
     console.log("Load qclean settings");
     //console.log(qclean.setting);
@@ -329,7 +331,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
         while(element!=null&&element!=undefined){
             if(featureDesc.judgeFunction(element)){
                 if(featureDesc.type == "hide") {
-                    element.style.display = "none";
+                    if(qclean.setting.isDebug) {
+                        element.style.border = "2px solid red";
+                    } else {
+                        element.style.display = "none";
+                    }
                     target.dataset.qclean = "done";
                     console.log("Hide something ("+featureDesc.name+")");
                     //if (featureDesc.afterHidingHandler) {
