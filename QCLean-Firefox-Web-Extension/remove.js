@@ -66,6 +66,12 @@ browser.runtime.sendMessage({request:"getSettings"},function(response){
     }else{
         qclean.settings.innerHTML += "qclean.settingReport = false;\n";
     }
+    if(response.cr=="true"){
+        qclean.settings.innerHTML += "qclean.settingCr = true;\n";
+    }else{
+        qclean.settings.innerHTML += "qclean.settingCr = false;\n";
+    }
+
 
     (document.head||document.documentElement).appendChild(qclean.apiLineTagging);
     (document.head||document.documentElement).appendChild(qclean.apiStory);

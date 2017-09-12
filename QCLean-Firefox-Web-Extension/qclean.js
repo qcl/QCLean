@@ -11,7 +11,7 @@ if(qclean.settingReport){
     ga('create','UA-3607701-10','auto');
     ga('send','event','SettingReportCrash','on');
 }
-
+window.addEventListener("load", hideChatBoxRecommend, false);
 //Try to remove game you may like
 qclean.removeGameYouMayLike = function(){
    
@@ -286,6 +286,24 @@ qclean.hideGameInSidebar = function(){
         }
     }
 };
+
+
+//try to remove recommand on top of chat box
+function hideChatBoxRecommend(evt){
+    if(!qclean.settingCr){
+        return;
+    }
+    var crparent = document.getElementsByClassName("fbChatOrderedList clearfix")[0].firstChild;
+    for(var i = 0; i < crparent.childNodes.length; i++){
+        var cr = crparent.childNodes[i];
+        if(cr.childNodes.length === 3){
+            crparent.removeChild(cr);
+            break;
+        }
+    }
+}
+
+
 
 if(qclean.lineRegExp==undefined){
     qclean.lineRegExp = new RegExp("(加ID：|加賴|請加LINE|請加我的LINE|麻煩加我LINE|加一下LINE|訂購加LINE|請加 LINE|請加我LINE|訂購要加LINE|加賴LINE ID|請加我賴LINE|加私信賴|加奈)+","i");
