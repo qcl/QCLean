@@ -1,0 +1,11 @@
+.qcleanHide {
+    display: none;
+}
+
+.qcleanClickable {
+    cursor: pointer;
+}
+
+.qcleanTextCenter {
+    text-align: center;
+}

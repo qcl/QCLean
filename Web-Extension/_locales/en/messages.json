@@ -1,0 +1,90 @@
+{
+    "extName":{
+        "message":"QCLean:Remove Facebook Ad,Suggested Page&Post",
+        "description":"Extension name"
+    },
+    "extShortName":{
+        "message":"QCLean",
+        "description":"Extension short name"
+    },
+    "extDescription":{
+        "message":"Remove ads, suggested pages and posts on News feed of Facebook.",
+        "description":"Extension description"
+    },
+    "extPageActionTitle":{
+        "message":"QCLean: Remove FB Ads/Suggested Pages&Posts",
+        "description":"page action title"
+    },
+    "extSettings":{
+        "message":"QCLean Settings",
+        "description":"settings"
+    },
+    "extSettingsDesc":{
+        "message":"You can change the setting of QCLean. To apply those settings, please reload your Facebook page.",
+        "description":"settings desc"
+    },
+    "extReportBug":{
+        "message":"Report Issues",
+        "description":"report bug"
+    },
+    "extDonate":{
+        "message":"Donate",
+        "description":"donate"
+    },
+    "optRemoveAds":{
+        "message":"Hide advertisments",
+        "description":""
+    },
+    "optRemoveAdsDesc":{
+        "message":"Hide advertisments on the right panel.",
+        "description":""
+    },
+    "optRemoveRecommendedPosts":{
+        "message":"Hide sponsored posts",
+        "description":""
+    },
+    "optRemoveRecommendedPostsDesc":{
+        "message":"Hide sponsored posts on Facebook news feed.",
+        "description":""
+    },
+    "optCollaspeRightPanel":{
+        "message":"Collaspe right panel content",
+        "description":""
+    },
+    "optCollaspeRightPanelDesc":{
+        "message":"Collaspe content like `People you may know`, `Friend request`, `Games you may like`, `Events in your network`, `Recent friends`..., you can click title to see the content.",
+        "description":""
+    },
+    "optRemoveGameRecommend":{
+        "message":"Hide recommended games",
+        "description":""
+    },
+    "optRemoveGameRecommendDesc":{
+        "message":"Hide recommended games on the top of chat bar.",
+        "description":""
+    },
+    "optAutoReport":{
+        "message":"Automatically report error",
+        "description":""
+    },
+    "optAutoReportDesc":{
+        "message":"Automatically report error of this extension to developer, so developer can fix it as soon as possible.",
+        "description":""
+    },
+    "optPokemon":{
+        "message":"Hide Pokémon Go related posts",
+        "description":""
+    },
+    "optPokemonDesc":{
+        "message":"Automatically hide Pokémon Go related posts on Facebook news feed.",
+        "description":""
+    },
+    "optDebug":{
+        "message": "Debug mode",
+        "description": ""
+    },
+    "optDebugDesc":{
+        "message": "In debug mode, posts and advertisments will not be hid, they will be highlighted.",
+        "description": ""
+    }
+}
