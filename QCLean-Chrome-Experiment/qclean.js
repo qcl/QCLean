@@ -553,6 +553,9 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
         // hide sponsored ADs
         if (qclean.setting.isRemoveAds) {
             qclean.framework.hideElementsByTargetChildSelector(".adsCategoryTitleLink:not([data-qclean])", qclean.feature.hideSponsoredADs);
+
+            // create ad's button's link: /campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
+            qclean.framework.hideElementsByTargetChildSelector("a[href^='/campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
         }
 
         // try to learn
