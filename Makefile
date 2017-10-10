@@ -7,9 +7,9 @@ chrome-old: QCLean-Chrome
 chrome-crx: QCLean-Chrome
 	google-chrome --pack-extension=QCLean-Chrome
 
-firefox: web-extension
+firefox: web-ext
 
-web-extension: Web-Extension
+web-ext: Web-Extension
 	cd Web-Extension; zip -r web-extension.zip *; mv web-extension.zip ../
 
 opera-linux: QCLean-Opera-12

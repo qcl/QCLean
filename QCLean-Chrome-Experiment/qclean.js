@@ -518,7 +518,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //     <span>
             //     <a>
             // </div>
-            qclean.framework.hideElementsByTargetChildSelector("div>span>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            //qclean.framework.hideElementsByTargetChildSelector("div>span>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
             // there is a newer type sponsored post structure:
             // <h5> or <h6>
