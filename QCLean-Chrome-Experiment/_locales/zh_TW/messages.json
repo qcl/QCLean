@@ -71,14 +71,6 @@
         "message":"自動將 QCLean 的錯誤回報給開發者，開發者將會火速修正之。",
         "description":""
     },
-    "optPokemon":{
-        "message":"隱藏 Pokémon Go 相關貼文",
-        "description":""
-    },
-    "optPokemonDesc":{
-        "message":"自動將動態塗鴉牆上的 Pokémon Go 相關貼文隱藏起來。",
-        "description":""
-    },
     "optDebug":{
         "message": "開發人員除錯模式",
         "description": ""
