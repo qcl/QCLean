@@ -271,11 +271,13 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
         }
     }
     if(!target.dataset.qclean && featureDesc.type == "hide"){
-        //here means qclean didn't hide our target element.
+        // here means qclean didn't hide our target element.
         qclean.i13n.logEvent({
             event   : "CannotHideTargetElement",
             type    : featureDesc.name
         });
+        // here may cause too many log event, so just mark it as done.
+        target.dataset.qclean = "done";
     }
 };
 
