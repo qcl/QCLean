@@ -94,11 +94,6 @@ var qcleanSettings = [{
     title: "optAutoReport",
     desc: "optAutoReportDesc" 
 },{
-    key: "qclean-hide-pokemon-go",
-    default: false,
-    title: "optPokemon",
-    desc: "optPokemonDesc"
-},{
     key: "qclean-debug-mode",
     default: false,
     title: "optDebug",
