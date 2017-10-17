@@ -30,19 +30,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         var event = request.event;
         if (event == "QCLeanDidLoad") {
             ga('send', 'event', event, manifest.version);
-        } else if (event == "LearningFromPost") {
-            ga('send', 'event', event, request.type, request.content); 
         } else if (event == "CannotHideTargetElement") {
             ga('send', 'event', event, request.type, manifest.version); 
         } else if (event == "CollaspeDidTapped") {
             ga('send', 'event', event, manifest.version);
-        } else if (event == "PokemonPost") {
-            if (request.type.indexOf("screenshot") >= 0) {
-                //console.log(request.content);
-                ga('send', 'event', event, request.type, request.content);
-            } else {
-                ga('send', 'event', event, request.type);
-            }
         }
     }
 });
