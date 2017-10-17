@@ -5,8 +5,9 @@
     "short_name"        : "__MSG_extShortName__",
     "description"       : "__MSG_extDescription__",
 
-    "version"           : "0.5.8.0",
+    "version"           : "0.5.8.2",
     "minimum_chrome_version": "40",
+    "author"            : "Qing-Cheng Li",
 
     "applications": {
         "gecko": {
@@ -29,7 +30,8 @@
         "run_at"    : "document_end"
     }],
     "background"        : {
-        "scripts"   : ["background.js"]
+        "scripts"   : ["background.js"],
+        "persistent": true
     },
     "page_action"       : {
         "default_icon"  : "icons/qclean-38.png",
