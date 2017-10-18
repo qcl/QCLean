@@ -1,3 +1,6 @@
+var browser = browser || undefined;
+var chrome = browser || chrome;
+
 // Control page action
 var fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
 var checkFbUrl = function (tabId, changeInfo, tab) {

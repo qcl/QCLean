@@ -2,6 +2,8 @@
  *  QCLean - experiment
  */
 
+var browser = browser || undefined;
+var chrome = browser || chrome;
 var qclean = qclean || {};
 var manifest = chrome.runtime.getManifest();
 var extensionInfo = {
