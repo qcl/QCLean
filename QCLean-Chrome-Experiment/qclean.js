@@ -183,87 +183,6 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     //if (featureDesc.afterHidingHandler) {
                     //    featureDesc.afterHidingHandler();
                     //}
-                } else if (featureDesc.type == "learn") {
-                    // TODO - extract content
-                    var links = element.querySelectorAll("a");
-                    if (links.length == 0) {
-                        // facebook not load info yet.
-                    } else {
-                        var fetchedLink = undefined;
-                        target.dataset.qclean = "done";
-                        // skip sponsored post
-                        var sponsored = element.querySelector(".uiStreamAdditionalLogging");
-                        if (sponsored) {
-                            //console.log("sponsored!");
-                            //console.log(sponsored);
-                            break;
-                        }
-                        // TODO not every thing in life is likeable
-                        var like = element.querySelector("a.UFILikeLink");
-                        var share = element.querySelector("a.share_action_link");
-                        //console.log(like);
-                        //console.log(share);
-                        links = element.querySelectorAll("a[onclick][href*=http][tabindex]");
-                        for (var i=0; i < links.length; i++) {
-                            var link = links[i];
-                            var href = link.attributes["onclick"].value;
-                            var hrefComponents = href.split("referrer_log(this, \"");
-                            if (hrefComponents.length > 1) {
-                                href = hrefComponents[1];
-                                hrefComponents = href.split("\", \"\\/si\\/ajax\\");
-                                href = hrefComponents[0];
-                                href = href.replace(/\\u([\d\w]{4})/gi, function(match, grp){
-                                    return String.fromCharCode(parseInt(grp, 16));
-                                });
-                                href = href.replace(/\\\//gi, "/");
-                                if (href != undefined && href.length > 0) {
-                                    fetchedLink = href;
-                                }
-                            }
-                            if (fetchedLink != undefined) {
-                                qclean.i13n.logEvent({
-                                    event   :"LearningFromPost",
-                                    type    :"link",
-                                    content :fetchedLink
-                                });
-                                //console.log(fetchedLink);
-                                // TODO not every thing in life is likeable
-                                // set like event
-                                if (like && !like.dataset.qcleanOnclick) {
-                                    like.dataset.qcleanOnclick = "true";
-                                    like.dataset.qcleanLink = fetchedLink;
-                                    like.addEventListener("click", function() {
-                                        if (this.dataset.qcleanOnclick && this.dataset.qcleanLink && qclean) {
-                                            var fetchedLink = this.dataset.qcleanLink;
-                                            console.log("like " + fetchedLink + " clicked!!!");
-                                            qclean.i13n.logEvent({
-                                                event   :"LearningFromPost",
-                                                type    :"link-like",
-                                                content :fetchedLink
-                                            });
-                                        }
-                                    });
-                                }
-                                // set share event
-                                if (share && !share.dataset.qcleanOnclick) {
-                                    share.dataset.qcleanOnclick = "true";
-                                    share.dataset.qcleanLink = fetchedLink;
-                                    share.addEventListener("click", function() {
-                                        if (this.dataset.qcleanOnclick && this.dataset.qcleanLink && qclean) {
-                                            var fetchedLink = this.dataset.qcleanLink;
-                                            console.log("share " + fetchedLink + " clicked!!!");
-                                            qclean.i13n.logEvent({
-                                                event   :"LearningFromPost",
-                                                type    :"link-share",
-                                                content :fetchedLink
-                                            });
-                                        }
-                                    });
-                                }
-                                break;
-                            }
-                        }
-                    }
                 }
                 break;
             }
@@ -386,6 +305,21 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             // </div>
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2017.10.21 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <div>
+            //             <div>
+            //                 <a href="#"
+            //             </div>
+            //         </div>
+            //     </span>
+            // </div>
+
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
@@ -398,7 +332,8 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
         // try to learn
         if (qclean.setting.isAutoReport) {
-            qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
+            // TODO
+            //qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
         }
 
         // collaspe sidebar content
