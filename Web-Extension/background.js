@@ -17,7 +17,8 @@ chrome.tabs.onUpdated.addListener(checkFbUrl);
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-3607701-10', 'auto');
+//read https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id#disabling_cookies for more information.
+ga('create', 'UA-3607701-10', {'storage': 'none'});
 //read https://code.google.com/p/analytics-issues/issues/detail?id=312 for more information.
 ga('set','checkProtocolTask', null);
 ga('send', 'pageview');
