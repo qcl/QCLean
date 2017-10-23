@@ -5,7 +5,7 @@
     "short_name"        : "__MSG_extShortName__",
     "description"       : "__MSG_extDescription__",
 
-    "version"           : "0.5.8.3",
+    "version"           : "0.5.8.4",
     "minimum_chrome_version": "40",
     "minimum_edge_version": "40.15063",
     "author"            : "Qing-Cheng Li",
@@ -49,5 +49,6 @@
         "page"          : "options.html",
         "chrome_style"  : true
     },
+    "options_page"   : "options.html",
     "content_security_policy": "script-src 'self' https://*.google-analytics.com ; object-src 'self'"
 }

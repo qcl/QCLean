@@ -1,3 +1,6 @@
+var browser = browser || undefined;
+var chrome = browser || chrome;
+
 var Option = React.createClass({displayName: "Option",
     componentWillMount: function() {
         console.log("componentWillMount");
