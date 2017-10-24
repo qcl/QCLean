@@ -1,0 +1,10 @@
+--- QCLean-Chrome/manifest.json	2017-10-24 20:47:18.000000000 +0800
++++ Chromium/manifest.json	2017-10-24 22:22:19.000000000 +0800
+@@ -1,5 +1,7 @@
+ {
+     "default_locale"    : "en",
++    "homepage_url":"http://qcl.github.io/QCLean",
++    "update_url": "http://qcl.github.io/QCLean/chrome_update.xml",
+ 
+     "name"              : "__MSG_extName__",
+     "short_name"        : "__MSG_extShortName__",

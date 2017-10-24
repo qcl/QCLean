@@ -1,11 +1,9 @@
-chrome: QCLean-Chrome-Experiment
-	zip -r qclean-chrome.zip QCLean-Chrome-Experiment
+chrome: QCLean-Chrome
+	zip -r qclean-chrome.zip QCLean-Chrome
 
-chrome-old: QCLean-Chrome
-	zip -r qclean-chrome-old.zip QCLean-Chrome
-
-chrome-crx: QCLean-Chrome
-	google-chrome --pack-extension=QCLean-Chrome
+chromium: QCLean-Chrome chromium.patch
+	cp -r QCLean-Chrome Chromium
+	patch -p0 -i chromium.patch
 
 firefox: web-ext
 
@@ -26,4 +24,5 @@ clean:
 	rm -f qclean-opera-linux.oex
 	rm -f qclean-opera.crx
 	rm -f web-extension.zip
+	rm -rf Chromium
 

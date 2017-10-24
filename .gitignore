@@ -5,6 +5,6 @@
 *.oex
 *.crx
 
-firefox-sdk
+Chromium
 .module-cache
 .DS_Store
