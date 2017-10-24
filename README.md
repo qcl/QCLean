@@ -11,7 +11,7 @@ QCLean - Remove Facebook Ads, Suggested Pages &amp; Posts
 
 ## Google Chrome
 
-[Google Chrome Web Store](https://chrome.google.com/webstore/detail/qclean-remove-facebook-ad/fdhhejjkjfjkchkimomgfegnpapndjne?utm_source=chrome-ntp-icon)
+[Google Chrome Web Store](https://chrome.google.com/webstore/detail/qclean-remove-facebook-ad/fdhhejjkjfjkchkimomgfegnpapndjne)
 
 ## Firefox
 
@@ -25,9 +25,9 @@ QCLean - Remove Facebook Ads, Suggested Pages &amp; Posts
 
 [Download](http://qcl.github.io/QCLean/QCLean.safariextz)
 
-## Internet Explorer
+## Chromium
 
-[Download](http://qcl.github.io/QCLean/QCLeanInstaller.msi)
+[Chromium](https://qcl.github.io/QCLean/QCLean-Chromium.crx)
 
 # LICENSE
 
