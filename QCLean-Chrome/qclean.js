@@ -180,6 +180,12 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     }
                     target.dataset.qclean = "done";
                     console.log("Hide something ("+featureDesc.name+")");
+                    qclean.i13n.logEvent({
+                        event   : "AdSampleForLearning",
+                        type    : featureDesc.name,
+                        content : element.innerHTML
+                    });
+                    //console.log(element.innerHTML);
                     //if (featureDesc.afterHidingHandler) {
                     //    featureDesc.afterHidingHandler();
                     //}

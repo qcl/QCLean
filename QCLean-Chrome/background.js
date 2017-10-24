@@ -36,6 +36,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             ga('send', 'event', event, request.type, manifest.version); 
         } else if (event == "CollaspeDidTapped") {
             ga('send', 'event', event, manifest.version);
+        } else if (event == "AdSampleForLearning") {
+            ga('send', 'event', event, request.type, request.content);
         }
     }
 });
