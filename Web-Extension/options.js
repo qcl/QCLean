@@ -1,37 +1,6 @@
 var browser = browser || chrome;
 
-// TODO mv setting to another file, let it can be shared
-var qcleanSettings = [{
-    key: "qclean-remove-ads",
-    default: true,
-    title: "optRemoveAds",
-    desc: "optRemoveAdsDesc"
-},{
-    key: "qclean-remove-recommended-posts",
-    default: true,
-    title: "optRemoveRecommendedPosts",
-    desc: "optRemoveRecommendedPostsDesc" 
-},{
-    key: "qclean-collaspe-right-panel",
-    default: true,
-    title: "optCollaspeRightPanel",
-    desc: "optCollaspeRightPanelDesc" 
-},{
-    key: "qclean-remove-games",
-    default: true,
-    title: "optRemoveGameRecommend",
-    desc: "optRemoveGameRecommendDesc" 
-},{
-    key: "qclean-auto-report",
-    default: true,
-    title: "optAutoReport",
-    desc: "optAutoReportDesc" 
-},{
-    key: "qclean-debug-mode",
-    default: false,
-    title: "optDebug",
-    desc: "optDebugDesc"
-}];
+var qcleanSettings = qcleanSettings || [];
 
 let optionTemplate = document.querySelector('template#option');
 let targetElement = document.querySelector('div#qclean-settings');
