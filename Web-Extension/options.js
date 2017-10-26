@@ -57,7 +57,7 @@ renderOptions(targetElement, optionTemplate, qcleanSettings);
 let changeContentWithI18Message = (cssQueryString, message) => {
     let messageText = browser.i18n.getMessage(message);
     if (messageText != undefined && messageText.length > 0){
-        console.log(`message ${message} is ${messageText}`);
+        //console.log(`message ${message} is ${messageText}`);
         let dom = document.querySelector(cssQueryString);
         dom.textContent = messageText;
     }
