@@ -31,6 +31,10 @@
         "message":"Donate",
         "description":"donate"
     },
+    "extPrivacyPolicy":{
+        "message":"Privacy Policy",
+        "description":"privacy policy"
+    },
     "optRemoveAds":{
         "message":"Hide advertisments",
         "description":""

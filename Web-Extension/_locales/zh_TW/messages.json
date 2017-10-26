@@ -31,6 +31,10 @@
         "message":"贊助",
         "description":"donate"
     },
+    "extPrivacyPolicy":{
+        "message":"隱私權政策",
+        "description":"privacy policy"
+    },
     "optRemoveAds":{
         "message":"隱藏廣告",
         "description":""
