@@ -1,5 +1,4 @@
-var browser = browser || undefined;
-var chrome = browser || chrome;
+var browser = browser || chrome;
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -11,27 +10,30 @@ ga('create', 'UA-3607701-10', {'storage': 'none'});
 ga('set','checkProtocolTask',null);
 ga('send','pageview');
 
-var manifest = chrome.runtime.getManifest();
+let manifest = browser.runtime.getManifest();
 ga('send','event','openPopupPage',manifest.version);
 
 // QCLean popup script
-var load = function(){
+let load = () => {
     // setup links
-    var settingBtn = document.querySelector("a#settingLink");
-    settingBtn.innerHTML = chrome.i18n.getMessage("extSettings");
-    settingBtn.onclick = function(e) {
+    let settingBtn = document.querySelector("a#settingLink");
+    settingBtn.textContent = browser.i18n.getMessage("extSettings");
+    settingBtn.onclick = (e) => {
         e.preventDefault();
-        chrome.tabs.create({
-            url: chrome.runtime.getURL("options.html")
+        browser.tabs.create({
+            url: browser.runtime.getURL("options.html")
         });
         ga('send','event','openSettingFromPopup',manifest.version);
     };
 
-    var reportBtn = document.querySelector("a#bugReportLink");
-    reportBtn.innerHTML = chrome.i18n.getMessage("extReportBug");
-    reportBtn.onclick = function(e) {
+    let reportBtn = document.querySelector("a#bugReportLink");
+    reportBtn.textContent = browser.i18n.getMessage("extReportBug");
+    reportBtn.onclick = (e) => {
         ga('send','event','reportBugFromPopup',manifest.version);
     };
+
+    let ppBtn = document.querySelector("a#privacyPolicyLink");
+    ppBtn.textContent = browser.i18n.getMessage('extPrivacyPolicy');
 };
 
 window.onload = load;
