@@ -1,15 +1,28 @@
-var browser = browser || undefined;
-var chrome = browser || chrome;
+var browser = browser || chrome;
 
-// Control page action
-var fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
-var checkFbUrl = function (tabId, changeInfo, tab) {
+/* control page action */
+let fbUrlRegExp = new RegExp("^(http://|https://).*\.facebook\.com/");
+let checkFbUrl = (tabId, changeInfo, tab) => {
     if (fbUrlRegExp.test(tab.url)) {
-        chrome.pageAction.show(tabId);
+        browser.pageAction.show(tabId);
     }
 };
 
-chrome.tabs.onUpdated.addListener(checkFbUrl);
+browser.tabs.onUpdated.addListener(checkFbUrl);
+
+/* prepare tracking constant */
+let tracker = undefined;
+console.log(test);
+browser.storage.local.get({'qclean-anonymous-client-id': ''}, (items) => {
+    let anonymousClientId = items['qclean-anonymous-client-id'];
+    if (anonymousClientId.length != 16) {
+        anonymousClientId = ('0000000000000000' + Math.floor(Number.MAX_SAFE_INTEGER * Math.random()).toString(16)).substr(-16);
+        browser.storage.local.set({'qclean-anonymous-client-id': anonymousClientId}, () => {
+            console.log(`set ${anonymousClientId} as anonymous client id`);
+        });
+    }
+    console.log(`clientId = ${anonymousClientId}`);
+});
 
 // Google analytics
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
