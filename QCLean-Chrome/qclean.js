@@ -185,6 +185,24 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         type    : featureDesc.name,
                         content : element.innerHTML
                     });
+                    /*
+                    if (featureDesc.name === "hideSponsoredStoryOnNewsFeed") {
+                        var profileid = element.querySelector('[data-profileid]');
+                        if (profileid) {    // like page button
+                            console.log(profileid);
+                            console.log(profileid.dataset['profileid']);
+                            console.log('https://www.facebook.com/' + profileid.dataset['profileid']);
+                        } else {
+                            console.log('can not get profileid');
+                        }
+                        var linkTo = element.querySelector('[data-lynx-uri][tabindex]');
+                        if (linkTo) {   // main image link?
+                            console.log(linkTo.href);
+                        } else {
+                            console.log('can not find link to');
+                        }
+                    }
+                    */
                     //console.log(element.innerHTML);
                     //if (featureDesc.afterHidingHandler) {
                     //    featureDesc.afterHidingHandler();
