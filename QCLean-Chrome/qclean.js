@@ -185,24 +185,92 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         type    : featureDesc.name,
                         content : element.innerHTML
                     });
-                    /*
                     if (featureDesc.name === "hideSponsoredStoryOnNewsFeed") {
-                        var profileid = element.querySelector('[data-profileid]');
-                        if (profileid) {    // like page button
-                            console.log(profileid);
-                            console.log(profileid.dataset['profileid']);
-                            console.log('https://www.facebook.com/' + profileid.dataset['profileid']);
-                        } else {
-                            console.log('can not get profileid');
+                        //var profileid = element.querySelector('[data-profileid]');
+                        //if (profileid) {    // like page button
+                        //    console.log(profileid);
+                        //    console.log(profileid.dataset['profileid']);
+                        //    console.log('https://www.facebook.com/' + profileid.dataset['profileid']);
+                        //} else {
+                        //    console.log('can not get profileid');
+                        //}
+                        //var postTitleImgLink = element.querySelector("[href*='[page_id]=']");
+                        //if (postTitleImgLink) {
+                        //    var l = postTitleImgLink.href.split('[page_id]=');
+                        //    if (l.length > 1) {
+                        //        l = l[1].split('&');
+                        //        console.log(l[0]);
+                        //        console.log('https://www.facebook.com/' + l[0]);
+                        //    } else {
+                        //        console.log('parse error');
+                        //    }
+                        //} else {
+                        //    console.log('can not find post image link target');
+                        //    console.log(element.innerHTML);
+                        //}
+                        /*
+                        var titleLink = element.querySelector('h6 [data-hovercard]');
+                        if (!titleLink) {
+                            titleLink = element.querySelector('h5 [data-hovercard]');
+                        } 
+                        var pageId = '';
+                        if (titleLink && titleLink.dataset['hovercard']) {
+                            console.log(titleLink.dataset['hovercard']); // id=${id}&
+                            var link = titleLink.dataset['hovercard'];
+                            if (link.indexOf('id=') >= 0) {
+                                link = link.split('id=')[1];
+                                if (link.indexOf('&') >= 0) {
+                                    link = link.split('&')[0]
+                                }
+                                pageId = link;
+                            }
                         }
-                        var linkTo = element.querySelector('[data-lynx-uri][tabindex]');
-                        if (linkTo) {   // main image link?
-                            console.log(linkTo.href);
+                        if (pageId.length > 0) { 
+                            console.log(`Page: https://www.facebook.com/${pageId}`);
+                        }else {
+                            console.log('can not find title link');
+                        }
+
+                        var postId = '';
+                        var inputWithPostId = element.querySelector('input[name*=identifier]');
+                        if (inputWithPostId && inputWithPostId.value) {
+                            postId = inputWithPostId.value;
+                        }
+                        if (postId.length > 0) {
+                            console.log(`$Post: https://www.facebook.com/${postId}`);
+                        } else {
+                            console.log('can not find post id');
+                        }
+
+                        var linksTo = element.querySelectorAll('[data-lynx-mode][rel]');
+                        
+                        if (linksTo) {   // main image link?
+                            for (var linkTo of linksTo){
+                                console.log(linkTo);
+                                console.log(linkTo.href);
+                                var lto = '';
+                                if (linkTo.href.indexOf('l.php?') >= 0) {
+                                    var lt = linkTo.href.split('l.php?')[1];
+                                    //console.log(lt);
+                                    if (lt.indexOf('u=') >= 0) {
+                                        lt = lt.split('u=')[1];
+                                        lt = lt.split('&')[0];
+                                        console.log(lt);
+                                        lto = decodeURIComponent(lt);
+                                        console.log(linkTo.textContent);
+                                    }
+                                }
+                                if (lto.length > 0) {
+                                    console.log(lto);
+                                } else {
+                                    console.log('parse error');
+                                }
+                            } 
                         } else {
                             console.log('can not find link to');
-                        }
+                        } */
+                        //console.log(element.innerHTML);
                     }
-                    */
                     //console.log(element.innerHTML);
                     //if (featureDesc.afterHidingHandler) {
                     //    featureDesc.afterHidingHandler();
