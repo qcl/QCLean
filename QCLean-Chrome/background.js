@@ -15,8 +15,10 @@ chrome.tabs.onUpdated.addListener(checkFbUrl);
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-3607701-10', 'auto');
+ga('create', 'UA-108805975-2', 'auto', 'spTracker');    // sponsored post tracker
 //read https://code.google.com/p/analytics-issues/issues/detail?id=312 for more information.
 ga('set','checkProtocolTask', null);
+ga('spTracker.set','checkProtocolTask', null);
 ga('send', 'pageview');
 var manifest = chrome.runtime.getManifest();
 ga('send', 'event', 'ChromeExtVersion',manifest.version);
@@ -37,7 +39,23 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         } else if (event == "CollaspeDidTapped") {
             ga('send', 'event', event, manifest.version);
         } else if (event == "AdSampleForLearning") {
-            ga('send', 'event', event, request.type, request.content);
+            if (request.content && request.content.length > 0 && request.content.length < 8000) {
+                ga('send', 'event', event, request.type, request.content);
+            }/* else {
+                console.log('content err');
+            }*/
+        } else if (event == "SponsoredPost") {
+            var fieldsObj = {
+                'hitType': 'event',
+                'eventCategory': request.page,
+                'eventAction': request.post
+            };
+            if (request.link && request.link.length > 0) {
+                fieldsObj['eventLabel'] = request.link;
+            }
+            //console.log(request);
+            //console.log(fieldsObj);
+            ga('spTracker.send', fieldsObj);
         }
     }
 });
