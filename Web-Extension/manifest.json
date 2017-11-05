@@ -49,6 +49,5 @@
         "page"          : "options.html",
         "chrome_style"  : true
     },
-    "options_page"   : "options.html",
-    "content_security_policy": "script-src 'self' https://*.google-analytics.com ; object-src 'self'"
+    "options_page"   : "options.html"
 }
