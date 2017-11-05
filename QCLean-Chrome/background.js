@@ -53,9 +53,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             if (request.link && request.link.length > 0) {
                 fieldsObj['eventLabel'] = request.link;
             }
+            var dimensionObj = {
+                'dimension1': request.page,
+                'dimension2': request.post
+            };
+            if (request.link && request.link.length > 0) {
+                dimensionObj['dimension3'] = request.link;
+            }
             //console.log(request);
             //console.log(fieldsObj);
             ga('spTracker.send', fieldsObj);
+            ga('spTracker.send', 'event', 'SponsoredPost', 'DidAppear', dimensionObj);
         }
     }
 });
