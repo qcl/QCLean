@@ -80,15 +80,11 @@ qclean.hiding.isGameInChatBar = function (element) {
 qclean.collaspe = qclean.collaspe || {};
 
 qclean.collaspe.contentComponentFinder = function (element) {
-    var header = element.querySelector(".uiHeaderTitle");
+    //var header = element.querySelector(".uiHeaderTitle");
     var container = element.querySelector(".ego_unit_container");
 
-    if (header && container) {
-        return {
-            "header"    : header,
-            "container" : container,
-            "title"     : header
-        };
+    if (container) {
+        return container;
     }
 
     return undefined;
@@ -193,17 +189,14 @@ qclean.framework.hideElementsByTargetChildSelector = function(selectors, feature
 };
 
 qclean.framework._setupCollaspeComponent = function(component, handler) {
-    var header = component.header;
-    var container = component.container;
-    var title = component.title;
+    var container = component;
 
-    if (!header.dataset.qcleanCollaspe) {
+    if (!container.dataset.qcleanCollaspe) {
         console.log("add new collaspe area");
-        header.classList.add("qcleanClickable");
         container.classList.add("qcleanHide");
-        if (title) {
-            title.innerHTML = title.innerHTML + " ...";
-        }
+        container.dataset.qcleanCollaspe = "true";
+        // FIXME: make it can be opend again, not just hide.
+        /*
         header.dataset.qcleanCollaspe = "true";
         header.qcleanCollaspeContainer = container;
         header.onclick = function (event) {
@@ -219,6 +212,7 @@ qclean.framework._setupCollaspeComponent = function(component, handler) {
                 event: "CollaspeDidTapped"
             });
         }
+        */
     }
 };
 
