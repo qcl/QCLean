@@ -45,14 +45,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
                 console.log('content err');
             }*/
         } else if (event == "SponsoredPost") {
-            var fieldsObj = {
-                'hitType': 'event',
-                'eventCategory': request.page,
-                'eventAction': request.post
-            };
-            if (request.link && request.link.length > 0) {
-                fieldsObj['eventLabel'] = request.link;
-            }
             var dimensionObj = {
                 'dimension1': request.page,
                 'dimension2': request.post
@@ -61,8 +53,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
                 dimensionObj['dimension3'] = request.link;
             }
             //console.log(request);
-            //console.log(fieldsObj);
-            ga('spTracker.send', fieldsObj);
             ga('spTracker.send', 'event', 'SponsoredPost', 'DidAppear', dimensionObj);
         }
     }
