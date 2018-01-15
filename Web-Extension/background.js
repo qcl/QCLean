@@ -14,8 +14,27 @@ browser.tabs.onUpdated.addListener(checkFbUrl);
 let tracker = undefined;
 let clientId = undefined;
 let trackable = false;
+let optInShown = undefined;
 let requests = [];
-browser.storage.local.get({'qclean-anonymous-client-id': ''}, (items) => {
+var manifest = browser.runtime.getManifest();
+
+let showOptInIfNeeded = (isTrackable, isShown) => {
+    if (isTrackable === undefined || isShown === undefined) {
+        return;
+    }
+
+    if (!isShown) {
+        if (!isTrackable) {
+            browser.tabs.create({url: 'options.html?opt-in=1'});
+        }
+        optInShown = true;
+        browser.storage.local.set({'qclean-optin-shown': true}, () => {
+            console.log('qclean-optin-shown set to true');
+        });
+    }
+};
+
+browser.storage.local.get({'qclean-anonymous-client-id': '','qclean-optin-shown': false}, (items) => {
     let anonymousClientId = items['qclean-anonymous-client-id'];
     if (anonymousClientId.length != 16) {
         anonymousClientId = ('0000000000000000' + Math.floor(Number.MAX_SAFE_INTEGER * Math.random()).toString(16)).substr(-16);
@@ -25,12 +44,17 @@ browser.storage.local.get({'qclean-anonymous-client-id': ''}, (items) => {
     }
     //console.log(`clientId = ${anonymousClientId}`);
     clientId = anonymousClientId;
+
+    optInShown = items['qclean-optin-shown'];
+    console.log(optInShown);
+    showOptInIfNeeded(trackable, optInShown);
 });
 
-browser.storage.sync.get({'qclean-auto-report': true}, (items) => {
+browser.storage.sync.get({'qclean-auto-report': false}, (items) => {
     let autoReport = items['qclean-auto-report'];
     console.log(`trackable = ${autoReport}`);
     trackable = autoReport;
+    showOptInIfNeeded(trackable, optInShown);
 });
 
 browser.storage.onChanged.addListener((changes, area) => {
@@ -44,7 +68,6 @@ browser.storage.onChanged.addListener((changes, area) => {
     }
 });
 
-var manifest = browser.runtime.getManifest();
 let trackingId = 'UA-3607701-10';
 
 let logEvent = (tId, cId, eventCategory, eventAction, eventLabel = undefined, eventValue = undefined) => {

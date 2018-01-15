@@ -5,6 +5,9 @@ var qcleanSettings = qcleanSettings || [];
 let optionTemplate = document.querySelector('template#option');
 let targetElement = document.querySelector('div#qclean-settings');
 
+// FIXME: check opt-in=1 in search string, check its length is incorrect.
+let highlightOpt = (document.location.search.length > 0);
+
 let renderOptions = (targetElement, template, settings) => {
     for(let setting of settings) {
         // clone element from template
@@ -15,6 +18,7 @@ let renderOptions = (targetElement, template, settings) => {
         let input = dom.querySelector('input');
         let title = dom.querySelector('span');
         let desc = dom.querySelector('p');
+        let div = dom.querySelector('div');
 
         // get i18n string
         let titleText = browser.i18n.getMessage(setting.title);
@@ -46,6 +50,10 @@ let renderOptions = (targetElement, template, settings) => {
                 console.log(`${key} changed to ${query[key]}`);
             });
         };
+
+        if (highlightOpt && setting.optin) {
+            div.classList.add('opt-in-highlight');
+        }
 
         targetElement.appendChild(dom);
     }
