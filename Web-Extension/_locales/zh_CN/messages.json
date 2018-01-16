@@ -20,7 +20,7 @@
         "description":"設定"
     },
     "extSettingsDesc":{
-        "message":"您可以在這裡改變 QCLean 的設定。欲使設定生效，請重新載入您的 Facebook 分頁。",
+        "message":"感謝您使用 QCLean！您可以在這裡改變 QCLean 的設定。欲使設定生效，請重新載入您的 Facebook 分頁。",
         "description":"settings desc"
     },
     "extReportBug":{
@@ -68,11 +68,11 @@
         "description":""
     },
     "optAutoReport":{
-        "message":"自動回報錯誤",
+        "message":"自動回報統計資料",
         "description":""
     },
     "optAutoReportDesc":{
-        "message":"自動將 QCLean 的錯誤回報給開發者，開發者將會火速修正之。",
+        "message":"啟動此選項以幫助開發者，此功能將自動回傳 QCLean 的統計資料給開發者以及早判斷錯誤或異常現象，如此一來開發者將能火速修正之。您可以參閱頁面底部的隱私權政策連結以了解更多。",
         "description":""
     },
     "optDebug":{

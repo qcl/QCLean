@@ -20,7 +20,7 @@
         "description":"settings"
     },
     "extSettingsDesc":{
-        "message":"You can change the setting of QCLean. To apply those settings, please reload your Facebook page.",
+        "message":"Thanks for using QCLean! You can change the setting of QCLean. To apply those settings, please reload your Facebook page.",
         "description":"settings desc"
     },
     "extReportBug":{
@@ -68,11 +68,11 @@
         "description":""
     },
     "optAutoReport":{
-        "message":"Automatically report error",
+        "message":"Automatically report statistical data",
         "description":""
     },
     "optAutoReportDesc":{
-        "message":"Automatically report error of this extension to developer, so developer can fix it as soon as possible.",
+        "message":"Enable this option to help developer of QCLean. It will automatically report statistical data for analysing error of this extension, so developer can fix it as soon as possible. For more information, you can find Privacy Policy link below this page.",
         "description":""
     },
     "optDebug":{
