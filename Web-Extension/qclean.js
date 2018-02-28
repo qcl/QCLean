@@ -305,6 +305,9 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
             // create ad's button's link: /campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
             qclean.framework.hideElementsByTargetChildSelector("a[href^='/campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
+
+            // create ad's button's link: /ad_campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
+            qclean.framework.hideElementsByTargetChildSelector("a[href^='/ad_campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
         }
 
         // collaspe sidebar content
