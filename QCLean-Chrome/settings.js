@@ -28,4 +28,9 @@ var qcleanSettings = [{
     default: false,
     title: "optDebug",
     desc: "optDebugDesc"
+},{
+    key: "qclean-only-ads",
+    default: false,
+    title: "optOnlyAds",
+    desc: "optOnlyAdsDesc"
 }];

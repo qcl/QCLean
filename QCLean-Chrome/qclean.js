@@ -49,6 +49,7 @@ chrome.storage.sync.get({
     "qclean-remove-games": true,
     "qclean-auto-report": true,
     "qclean-debug-mode": false,
+    "qclean-only-ads": false,
 }, function(items){
     qclean.setting.isRemoveAds = items["qclean-remove-ads"];
     qclean.setting.isRemoveSponsoredPosts = items["qclean-remove-recommended-posts"];
@@ -56,6 +57,7 @@ chrome.storage.sync.get({
     qclean.setting.isRemoveGames = items["qclean-remove-games"];
     qclean.setting.isAutoReport = items["qclean-auto-report"];
     qclean.setting.isDebug = items["qclean-debug-mode"];
+    qclean.setting.isOnlyAds = items["qclean-only-ads"];
     qclean.setting.isInit = true;
     console.log("Load qclean settings");
     //console.log(qclean.setting);
@@ -127,6 +129,14 @@ qclean.feature.hideSponsoredStoryOnNewsFeed = {
     "description"   : "Hide sponsored story on news feed"
 };
 
+// Feature: hide all nornal post on news feed
+qclean.feature.hideNormalStoryOnNewsFeed = {
+    "type"          : "hide",
+    "judgeFunction" : qclean.hiding.isSponsoredStoryOnNewsFeed,
+    "name"          : "hideNormalStoryOnNewsFeed",
+    "description"   : "foo"
+}
+
 // Feature: hide sponsored ADs
 qclean.feature.hideSponsoredADs = {
     "type"          : "hide",
@@ -173,12 +183,24 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
         while(element!=null&&element!=undefined){
             if(featureDesc.judgeFunction(element)){
                 if(featureDesc.type == "hide") {
+                    target.dataset.qclean = "done";
                     if(qclean.setting.isDebug) {
                         element.style.border = "2px solid red";
                     } else {
-                        element.style.display = "none";
+                        if (featureDesc.name == 'hideSponsoredStoryOnNewsFeed' && qclean.setting.isOnlyAds) {
+                            if (element.style.display == 'none') {
+                                element.style.display = '';
+                            }
+                        } else if (featureDesc.name == 'hideNormalStoryOnNewsFeed') {
+                            element.style.display = "none";
+                        } else {
+                            element.style.display = "none";
+                        }
                     }
-                    target.dataset.qclean = "done";
+                    if(featureDesc.name == 'hideSponsoredStoryOnNewsFeed' && qclean.setting.isOnlyAds) {
+                        element.dataset.qclean = "ads";
+                        //console.log(element);
+                    } 
                     console.log("Hide something ("+featureDesc.name+")");
                     qclean.i13n.logEvent({
                         event   : "AdSampleForLearning",
@@ -416,7 +438,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
         }
 
         // hide sponsored ADs
-        if (qclean.setting.isRemoveAds) {
+        if (qclean.setting.isRemoveAds && !qclean.setting.isOnlyAds) {
             qclean.framework.hideElementsByTargetChildSelector(".adsCategoryTitleLink:not([data-qclean])", qclean.feature.hideSponsoredADs);
 
             // create ad's button's link: /campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
@@ -428,18 +450,24 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
         // try to learn
         if (qclean.setting.isAutoReport) {
-            // TODO
+            // FIXME
             //qclean.framework.hideElementsByTargetChildSelector("div[data-testid=fbfeed_story]:not([data-qclean])", qclean.feature.machineLearningLinksOnNewsFeed);
         }
 
         // collaspe sidebar content
         if (qclean.setting.isCollaspeRightPanelContent) {
+            // FIXME
             qclean.framework.collaspeElementsBySelector(".ego_section:not([data-qclean]):not([style])", qclean.feature.collaspeSidebarContent); 
         }
 
         // hide recommended game in chat bar
-        if (qclean.setting.isRemoveGames) {
+        if (qclean.setting.isRemoveGames && !qclean.setting.isOnlyAds) {
             qclean.framework.hideElementsByTargetChildSelector("#pagelet_canvas_nav_content:not([data-qclean])", qclean.feature.hideRecommendedGameInChatBar);
+        }
+
+        // only show ads 
+        if (qclean.setting.isOnlyAds) {
+            qclean.framework.hideElementsByTargetChildSelector("[data-testid=fbfeed_story]:not([data-qclean='ads'])", qclean.feature.hideNormalStoryOnNewsFeed);
         }
     }
 });

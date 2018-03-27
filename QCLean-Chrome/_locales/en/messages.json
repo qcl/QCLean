@@ -82,5 +82,13 @@
     "optDebugDesc":{
         "message": "In debug mode, posts and advertisments will not be hid, they will be highlighted.",
         "description": ""
+    },
+    "optOnlyAds":{
+        "message": "Only show ads and sponsored posts",
+        "description": ""
+    },
+    "optOnlyAdsDesc":{
+        "message": "If this option is on, then QCLean will stop hidding ads and sponsored posts, and in the meantime, hidding all normal posts.",
+        "description": ""
     }
 }

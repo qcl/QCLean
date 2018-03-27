@@ -82,5 +82,13 @@
     "optDebugDesc":{
         "message": "於除錯模式下，貼文及廣告將不會被隱藏，但會使用紅色匡線標示之。",
         "description": ""
+    },
+    "optOnlyAds":{
+        "message": "全廣告模式",
+        "description": ""
+    },
+    "optOnlyAdsDesc":{
+        "message": "開啟這個選項猶如進入新世界，這個模式將會隱藏所有正常的貼文，只顯示廣告與建議貼文。",
+        "description": ""
     }
 }
