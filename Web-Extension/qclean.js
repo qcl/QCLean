@@ -297,6 +297,22 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2018.04.27 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <a href="#"
+            //            <div>
+            //               <div>
+            //               <div>
+            //               ...
+            //            </div>
+            //     </span>
+            // </div>
+
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
