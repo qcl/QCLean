@@ -129,6 +129,14 @@ qclean.feature.hideSponsoredStoryOnNewsFeed = {
     "description"   : "Hide sponsored story on news feed"
 };
 
+// Feature: hide popular accross facebook
+qclean.feature.hidePopularAccrossFacebook = {
+    "type"          : "hide",
+    "judgeFunction" : qclean.hiding.isSponsoredStoryOnNewsFeed,
+    "name"          : "hidePopularAccrossFacebook",
+    "description"   : "Hide popular accross facebook on news feed"
+};
+
 // Feature: hide all nornal post on news feed
 qclean.feature.hideNormalStoryOnNewsFeed = {
     "type"          : "hide",
@@ -207,6 +215,8 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         type    : featureDesc.name,
                         content : element.innerHTML
                     });
+                    //if (featureDesc.name === "hidePopularAccrossFacebook") {
+                    //}
                     if (featureDesc.name === "hideSponsoredStoryOnNewsFeed") {
                         var pageId = '';
                         var titleLink = element.querySelector('h6 [data-hovercard]');
@@ -451,6 +461,21 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2018.06.18 update - Popular Accross facebook
+            // <div data-story_category=2
+            //     <div>
+            //         <div>
+            //             <div data-ft=
+            //                 <div>
+            //                     <div>
+            //                         <div></div>
+            //                         <div>Popular Accross Facebook</div>
+            //
+            // "div[data-story_category='2'] > div > div > div[data-ft] > div:first-child > div:first-child > div:empty"
+            // category 2
+            // categiry 4 may be "People You Man Know" / "Friend Request" / "Top Posts in Your Group"
+            qclean.framework.hideElementsByTargetChildSelector("div[data-story_category]>div>div>div[data-ft]>div:first-child>div:first-child>div:empty:not([data-qclean])", qclean.feature.hidePopularAccrossFacebook);
         }
 
         // hide sponsored ADs

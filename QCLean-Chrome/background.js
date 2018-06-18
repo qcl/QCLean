@@ -39,10 +39,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         } else if (event == "CollaspeDidTapped") {
             ga('send', 'event', event, manifest.version);
         } else if (event == "AdSampleForLearning") {
-            if (request.content && request.content.length > 0 && request.content.length < 8000) {
-                ga('send', 'event', event, request.type, request.content);
-            }/* else {
+            if (request.content && request.content.length > 0) {
+                var reqStr = request.content;
+                if (reqStr.length > 8000) {
+                    reqStr = reqStr.slice(0,8000);
+                }
+                ga('send', 'event', event, request.type, reqStr);
+            } /*else {
                 console.log('content err');
+                console.log(request);
             }*/
         } else if (event == "SponsoredPost") {
             var dimensionObj = {
