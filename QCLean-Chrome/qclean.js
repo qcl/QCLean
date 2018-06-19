@@ -102,6 +102,14 @@ qclean.collaspe.contentComponentFinder = function (element) {
         };
     }
 
+    // TODO
+    let seeAllLink = element.querySelector('.egoGYSJSeeAllLink');
+    if (seeAllLink && container) {
+        return {
+            'seeAllLink': seeAllLink,
+            'container' : container
+        }
+    }
     return undefined;
 };
 
@@ -339,7 +347,7 @@ qclean.framework._setupCollaspeComponent = function(component, handler) {
     var container = component.container;
     var title = component.title;
 
-    if (!header.dataset.qcleanCollaspe) {
+    if (header && !header.dataset.qcleanCollaspe) {
         console.log("add new collaspe area");
         header.classList.add("qcleanClickable");
         container.classList.add("qcleanHide");
@@ -361,6 +369,9 @@ qclean.framework._setupCollaspeComponent = function(component, handler) {
                 event: "CollaspeDidTapped"
             });
         }
+    } else if (component.seeAllLink && !container.classList.contains('qcleanHide')) {
+        console.log("hide new pannel area");
+        container.classList.add('qcleanHide');
     }
 };
 

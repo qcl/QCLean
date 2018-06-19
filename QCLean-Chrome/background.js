@@ -40,9 +40,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             ga('send', 'event', event, manifest.version);
         } else if (event == "AdSampleForLearning") {
             if (request.content && request.content.length > 0) {
+                var limit = 5000;
                 var reqStr = request.content;
-                if (reqStr.length > 8000) {
-                    reqStr = reqStr.slice(0,8000);
+                if (reqStr.length > limit) {
+                    reqStr = reqStr.slice(0,limit);
                 }
                 ga('send', 'event', event, request.type, reqStr);
             } /*else {
