@@ -103,7 +103,7 @@ qclean.collaspe.contentComponentFinder = function (element) {
     }
 
     // TODO
-    let seeAllLink = element.querySelector('.egoGYSJSeeAllLink');
+    let seeAllLink = element.querySelector('.egoGYSJSeeAllLink') || element.querySelector('div+a[href*="category=top"]');
     if (seeAllLink && container) {
         return {
             'seeAllLink': seeAllLink,
