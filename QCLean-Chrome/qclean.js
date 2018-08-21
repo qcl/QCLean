@@ -487,6 +487,24 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             // category 2
             // categiry 4 may be "People You Man Know" / "Friend Request" / "Top Posts in Your Group"
             qclean.framework.hideElementsByTargetChildSelector("div[data-story_category]>div>div>div[data-ft]>div:first-child>div:first-child>div:empty:not([data-qclean])", qclean.feature.hidePopularAccrossFacebook);
+
+            // 2018.08.20 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <div>
+            //             <div>
+            //                 <div>
+            //                     <div>
+            //                         <a href="#"
+            //                             <div>
+            //                                 <div>
+            //                                 <div>
+            //                              ...
+            //                             </div>
+
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs

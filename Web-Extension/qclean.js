@@ -313,6 +313,24 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2018.08.20 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <div>
+            //             <div>
+            //                 <div>
+            //                     <div>
+            //                         <a href="#"
+            //                             <div>
+            //                                 <div>
+            //                                 <div>
+            //                              ...
+            //                             </div>
+
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
