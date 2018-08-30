@@ -195,11 +195,20 @@ qclean.framework = qclean.framework || {};
 
 qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
+    let rule = (featureDesc.rule) ? featureDesc.rule : 'undefined';
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
+            // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
+            if (featureDesc.type == "hide" && element.nodeName === "A") {
+                let style = window.getComputedStyle(element);
+                if (style.display === 'none') {
+                    target.dataset.qclean = "done-hidden-"+rule;
+                    break;
+                }
+            }
             if(featureDesc.judgeFunction(element)){
                 if(featureDesc.type == "hide") {
-                    target.dataset.qclean = "done";
+                    target.dataset.qclean = "done-"+rule;
                     if(qclean.setting.isDebug) {
                         element.style.border = "2px solid red";
                     } else {
@@ -335,6 +344,9 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
 
 qclean.framework.hideElementsByTargetChildSelector = function(selectors, featureDesc){
     var targetChilds = document.querySelectorAll(selectors);
+    //if (featureDesc.type == 'hide' && targetChilds.length > 0) {
+    //    console.log('check '+targetChilds.length);
+    //}
     for(var i=0; i<targetChilds.length; i++){
         if(!targetChilds[i].dataset.qclean){
             qclean.framework._hideElementByTargetChild(targetChilds[i], featureDesc);
@@ -399,6 +411,8 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
     if (qclean.setting.isInit) {
         // hide sponsored story on newsfeed
         if (qclean.setting.isRemoveSponsoredPosts) {
+            let hideSponsoredStoryOnNewsFeedFeature = qclean.feature.hideSponsoredStoryOnNewsFeed;
+            hideSponsoredStoryOnNewsFeedFeature.rule = '1';
             qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
             // new type sponsored post's structure:
@@ -425,6 +439,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //     <span>
             //     <a>
             // </div>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2';
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
@@ -439,6 +454,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //    <span>
             //    <a>
             // </div>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '3';
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
@@ -453,7 +469,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //         </div>
             //     </span>
             // </div>
-
+            hideSponsoredStoryOnNewsFeedFeature.rule = '4';
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
@@ -469,7 +485,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //            </div>
             //     </span>
             // </div>
-
+            hideSponsoredStoryOnNewsFeedFeature.rule = '5';
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
@@ -502,9 +518,28 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                                 <div>
             //                              ...
             //                             </div>
-
+            hideSponsoredStoryOnNewsFeedFeature.rule = '6';
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2018.08.30 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <div>
+            //             <div>
+            //                 <div>
+            //                     <div>
+            //                         <a href="#"
+            //                             <span>
+            //                                 <span>
+            //                                 <span>
+            //                              ...
+            //                             </span>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '7';
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+            hideSponsoredStoryOnNewsFeedFeature.rule = '8';
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
         }
 
         // hide sponsored ADs

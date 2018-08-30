@@ -150,6 +150,14 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
+            // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
+            if (featureDesc.type == "hide" && element.nodeName === "A") {
+                let style = window.getComputedStyle(element);
+                if (style.display === 'none') {
+                    target.dataset.qclean = "done-hidden";
+                    break;
+                }
+            }
             if(featureDesc.judgeFunction(element)){
                 if(featureDesc.type == "hide") {
                     if(qclean.setting.isDebug) {
@@ -331,6 +339,23 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2018.08.30 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <div>
+            //             <div>
+            //                 <div>
+            //                     <div>
+            //                         <a href="#"
+            //                             <span>
+            //                                 <span>
+            //                                 <span>
+            //                              ...
+            //                             </span>
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
