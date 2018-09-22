@@ -227,6 +227,12 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         //console.log(element);
                     } 
                     console.log("Hide something ("+featureDesc.name+")");
+                    if (rule && rule != 'undefined') {
+                        qclean.i13n.logEvent({
+                            event   : "HideByRule",
+                            "rule"  : rule
+                        });
+                    }
                     qclean.i13n.logEvent({
                         event   : "AdSampleForLearning",
                         type    : featureDesc.name,
@@ -470,8 +476,8 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //     </span>
             // </div>
             hideSponsoredStoryOnNewsFeedFeature.rule = '4';
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            //qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            //qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
             // 2018.04.27 update
             // <h5> or <h6>

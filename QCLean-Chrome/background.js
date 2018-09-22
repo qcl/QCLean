@@ -60,6 +60,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             }
             //console.log(request);
             ga('spTracker.send', 'event', 'SponsoredPost', 'DidAppear', dimensionObj);
+        } else if (event == "HideByRule" && request.rule) {
+            ga('send', 'event', event, 'hide-by-rule', request.rule);
         }
     }
 });
