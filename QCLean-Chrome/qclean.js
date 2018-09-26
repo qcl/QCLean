@@ -421,64 +421,6 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             hideSponsoredStoryOnNewsFeedFeature.rule = '1';
             qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
-            // new type sponsored post's structure:
-            // <h4> or <h5>
-            // <div>
-            //     <span>
-            //         <a href="https://l.facebook.com/l.php?u="
-            //         <!-- it's a link to https://www.facebook.com/ads/about -->
-            //     </span>
-            //     <span>
-            //     <a>
-            // </div>
-            //qclean.framework.hideElementsByTargetChildSelector("div>span>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // there is a newer type sponsored post structure:
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <a href="https://l.facebook.com/l.php?u="
-            //             <!-- it's a link to https://www.facebook.com/ads/about -->
-            //         </div>
-            //     </span>
-            //     <span>
-            //     <a>
-            // </div>
-            hideSponsoredStoryOnNewsFeedFeature.rule = '2';
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // more newer type sponsored post sturesture:
-            // <h5> or <h6>
-            // <div>
-            //    <span>
-            //        <div>
-            //            <a href="#"
-            //        <div>
-            //    </span>
-            //    <span>
-            //    <a>
-            // </div>
-            hideSponsoredStoryOnNewsFeedFeature.rule = '3';
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // 2017.10.21 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <div>
-            //                 <a href="#"
-            //             </div>
-            //         </div>
-            //     </span>
-            // </div>
-            hideSponsoredStoryOnNewsFeedFeature.rule = '4';
-            //qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            //qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
             // 2018.04.27 update
             // <h5> or <h6>
             // <div>
@@ -491,7 +433,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //            </div>
             //     </span>
             // </div>
-            hideSponsoredStoryOnNewsFeedFeature.rule = '5';
+            hideSponsoredStoryOnNewsFeedFeature.rule = '5B';
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
@@ -508,25 +450,8 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             // "div[data-story_category='2'] > div > div > div[data-ft] > div:first-child > div:first-child > div:empty"
             // category 2
             // categiry 4 may be "People You Man Know" / "Friend Request" / "Top Posts in Your Group"
+            hideSponsoredStoryOnNewsFeedFeature.rule = '5A';
             qclean.framework.hideElementsByTargetChildSelector("div[data-story_category]>div>div>div[data-ft]>div:first-child>div:first-child>div:empty:not([data-qclean])", qclean.feature.hidePopularAccrossFacebook);
-
-            // 2018.08.20 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <div>
-            //                 <div>
-            //                     <div>
-            //                         <a href="#"
-            //                             <div>
-            //                                 <div>
-            //                                 <div>
-            //                              ...
-            //                             </div>
-            hideSponsoredStoryOnNewsFeedFeature.rule = '6';
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
             // 2018.08.30 update
             // <h5> or <h6>
