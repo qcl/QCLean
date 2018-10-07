@@ -366,8 +366,8 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                 <a href="#"
             //                     <span>
             //                         <span>
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>s div>a[href^='#']>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>s div>a[href^='#']>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>s div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>s div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
