@@ -66,7 +66,7 @@ qclean.hiding.isSponsoredStoryOnNewsFeed = function(element) {
 };
 
 qclean.hiding.isSponsoredADs = function(element){
-    if(element.className=="ego_section"){
+    if(element.classList.contains("ego_section")){
         return true;
     }
     return false;

@@ -77,7 +77,7 @@ qclean.hiding.isSponsoredStoryOnNewsFeed = function(element) {
 };
 
 qclean.hiding.isSponsoredADs = function(element){
-    if(element.className=="ego_section"){
+    if(element.classList.contains("ego_section")){
         return true;
     }
     return false;
@@ -496,6 +496,9 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
 
             // create ad's button's link: /ad_campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
             qclean.framework.hideElementsByTargetChildSelector("a[href^='/ad_campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
+
+            // create ad's button's link: /ad__campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
+            //qclean.framework.hideElementsByTargetChildSelector("a[href^='/ad__campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
         }
 
         // try to learn
