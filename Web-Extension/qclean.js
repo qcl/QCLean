@@ -151,11 +151,14 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
-            if (featureDesc.type == "hide" && element.nodeName === "A") {
-                let style = window.getComputedStyle(element);
-                if (style.display === 'none') {
-                    target.dataset.qclean = "done-hidden";
-                    break;
+            if (featureDesc.type == "hide") {
+                let nodeName = element.nodeName;
+                if (nodeName === "A" || nodeName === "S") {
+                    let style = window.getComputedStyle(element);
+                    if (style.display === 'none') {
+                        target.dataset.qclean = "done-hidden";
+                        break;
+                    }
                 }
             }
             if(featureDesc.judgeFunction(element)){
