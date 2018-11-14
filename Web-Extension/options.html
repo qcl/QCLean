@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8" >
     <title>QCLean Setting</title>
-    <link href="lib/material.min.css" rel="stylesheet" />
-    <script src="lib/material.min.js"></script>
     <style>
-html {
-    width: 700px;
-    height: 400px;
-}
-.ribbon {
-    width: 100%;
-    height: 40vh;
-    background-color: #7094FF;
-    flex-shrink: 0;
+#settingTitle {
+    font-size: 3em;
+    margin-bottom: 0px;
 }
 
 .main {
-    margin-top: -35vh;
-    flex-shrink: 0;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .main-content {
-    border-radius: 2px;
-    padding: 80px 56px;
-    margin-bottom: 80px;
+    padding: 10px;
+    margin-bottom: 30px;
 }
 
 .main-container {
-    max-width: 1600px;
+    max-width: 600px;
     width: calc(100% - 16px);
     margin: 0 auto;
 }
 
+#qclean-settings {
+    margin-top: 30px;
+}
+
+.qclean-option {
+    margin-bottom: 20px;
+}
+
+.option-title {
+    font-size: 1.5em;
+}
+
 .option-desc {
-    padding-left: 52px;
+    padding-left: 20px;
+    margin-top: 6px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+li {
+    float: left;
+    margin: 12px;
 }
 
 .opt-in-highlight {
@@ -53,36 +67,30 @@ html {
   100% { background-color: transparent; }
 }
     </style>
+    </style>
 </head>
 <body>
-    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-    <div class="ribbon">
-    </div>
-
-    <main class="main mdl-layout__content">
-        <div class="main-container mdl-grid">
-            <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-            <div class="main-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+    <main class="main">
+        <div class="main-container">
+            <div class="main-content">
                 <h3 id="settingTitle">QCLean Setting</h3>
                 <p id="settingDesc">You can change the setting of QCLean. To apply those settings, please reload your Facebook page.</p>
                 <div id="qclean-settings">
                 </div>
-                <div id="setting">
-                </div>
                 <template id="option">
-                    <div>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="">
-                            <input type="checkbox" id="" class="mdl-switch__input" checked />
-                            <span class="mdl-switch__label"></span>
+                    <div class="qclean-option">
+                        <label>
+                            <input type="checkbox" checked />
+                            <span class="option-title"></span>
                         </label>
                         <p class="option-desc"></p>
                     </div>
                 </template>
             </div>
         </div>
-        <footer class="mdl-mini-footer">
-            <div class="mdl-mini-footer--left-section">
-                <ul class="mdl-mini-footer--link-list">
+        <footer>
+            <div>
+                <ul>
                     <li><a href="https://qcl.github.io/QCLean" id="extName" target="_blank">QCLean</a></li>
                     <!-- <li><a href="https://qcl.github.io/QCLean/version.html" id="version" target="_blank">version</a></li> -->
                     <li><a href="https://qcl.github.io/QCLean" id="version" target="_blank">version</a></li>
