@@ -371,6 +371,18 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                         <span>
             qclean.framework.hideElementsByTargetChildSelector("h6+div>s div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>s div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+
+            // 2019.02.13 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //          <span>
+            //               <span>
+            //                    <span>
+            //                        <span>
+            //                        .........
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>span>span>span>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>span>span>span>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
         }
 
         // hide sponsored ADs
