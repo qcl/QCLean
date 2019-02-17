@@ -196,6 +196,10 @@ qclean.framework = qclean.framework || {};
 qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
     let rule = (featureDesc.rule) ? featureDesc.rule : 'undefined';
+    let multiLayerSpan = false;
+    if (['2019-02-13--h5', '2019-02-13--h6', '2019-02-17--h5', '2019-02-17--h6'].indexOf(rule) >= 0) {
+        multiLayerSpan = true;
+    }
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
@@ -211,6 +215,19 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
             }
             if(featureDesc.judgeFunction(element)){
                 if(featureDesc.type == "hide") {
+                    if (multiLayerSpan) {   // 2018.02.13 sponsored text and timestamp in same format
+                        let timeOrSponsoredText = target.innerText;
+                        let containNumber = /\d/.test(timeOrSponsoredText); // number test
+                        if (containNumber) {
+                            target.dataset.qclean = "done-ignore-"+rule;
+                            break;
+                        }
+                        if (timeOrSponsoredText.split(' ').length > 1) {
+                            target.dataset.qclean = "done-ignore-"+rule;
+                            break;
+                        }
+                        //console.log(target.innerText);
+                    }
                     target.dataset.qclean = "done-"+rule;
                     if(qclean.setting.isDebug) {
                         element.style.border = "2px solid red";
@@ -502,6 +519,20 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>span>span>span>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
             hideSponsoredStoryOnNewsFeedFeature.rule = '2019-02-13--h5';
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>span>span>span>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
+            // 2019.02.17 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <span>
+            //              <span>
+            //                   <span>
+            //                        <s>
+            //                         ....
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2019-02-17--h6';
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>s:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2019-02-17--h5';
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>s:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
         }
 
         // hide sponsored ADs

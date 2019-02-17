@@ -148,6 +148,7 @@ qclean.framework = qclean.framework || {};
 
 qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
+    let multiLayerSpan = (featureDesc.slt) ? true : false;
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
@@ -162,6 +163,19 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                 }
             }
             if(featureDesc.judgeFunction(element)){
+                if (multiLayerSpan) {   // 2018.02.13 sponsored text and timestamp in same format
+                    let timeOrSponsoredText = target.innerText;
+                    let containNumber = /\d/.test(timeOrSponsoredText); // number test
+                    if (containNumber) {
+                        target.dataset.qclean = "done-ignore";
+                        break;
+                    }
+                    if (timeOrSponsoredText.split(' ').length > 1) {
+                        target.dataset.qclean = "done-ignore";
+                        break;
+                    }
+                    //console.log(target.innerText);
+                }
                 if(featureDesc.type == "hide") {
                     if(qclean.setting.isDebug) {
                         element.style.border = "2px solid red";
@@ -381,8 +395,23 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                    <span>
             //                        <span>
             //                        .........
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>span>span>span>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>span>span>span>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
+            let featureDesc = qclean.feature.hideSponsoredStoryOnNewsFeed;
+            featureDesc.slt = true; // sponsored text like timestamp text
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>span>span>span>span:not([data-qclean])", featureDesc);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>span>span>span>span:not([data-qclean])", featureDesc);
+
+            // 2019.02.17 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <span>
+            //              <span>
+            //                   <span>
+            //                        <s>
+            //                         ....
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>s:not([data-qclean])", featureDesc);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>s:not([data-qclean])", featureDesc);
+            featureDesc.slt = undefined;
         }
 
         // hide sponsored ADs
