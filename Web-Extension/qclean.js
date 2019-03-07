@@ -399,6 +399,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>span>span>span>span:not([data-qclean])", featureDesc);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>span>span>span>span:not([data-qclean])", featureDesc);
+            featureDesc.slt = undefined;
 
             // 2019.02.17 update
             // <h5> or <h6>
@@ -409,8 +410,23 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                   <span>
             //                        <s>
             //                         ....
+            featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>s:not([data-qclean])", featureDesc);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>s:not([data-qclean])", featureDesc);
+            featureDesc.slt = undefined;
+
+            // 2019.03.07 update
+            // <h5> or <h6>
+            // <div>
+            //     <span>
+            //         <span>
+            //              <span>
+            //                   <a>
+            //                        <s>
+            //                         ....
+            featureDesc.slt = true; // sponsored text like timestamp text
+            qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>a>s:not([data-qclean])", featureDesc);
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>s:not([data-qclean])", featureDesc);
             featureDesc.slt = undefined;
         }
 
