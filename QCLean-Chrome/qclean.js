@@ -563,8 +563,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             // create ad's button's link: /ad_campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
             qclean.framework.hideElementsByTargetChildSelector("a[href^='/ad_campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
 
-            // create ad's button's link: /ad__campaign/landing.php?placement=emuca&campaign_id=282141474901&extra_1=auto
-            //qclean.framework.hideElementsByTargetChildSelector("a[href^='/ad__campaign/landing.php']:not([data-qclean])", qclean.feature.hideSponsoredADs);
+            qclean.framework.hideElementsByTargetChildSelector("a[href^='https://l.facebook.com/l.php?u=']:not([data-qclean])", qclean.feature.hideSponsoredADs);
         }
 
         // try to learn
