@@ -5,7 +5,7 @@
     "short_name"        : "__MSG_extShortName__",
     "description"       : "__MSG_extDescription__",
 
-    "version"           : "0.5.8.26",
+    "version"           : "0.5.8.27",
     "minimum_chrome_version": "40",
     "minimum_edge_version": "40.15063",
     "author"            : "Qing-Cheng Li",
