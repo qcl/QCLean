@@ -488,6 +488,17 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>a>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
             hideSponsoredStoryOnNewsFeedFeature.rule = '2019-03-08--h5';
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
+            // 2019.05.16 update // Sponsored paid for by ...
+            // <h5>
+            // <div>
+            //     <a>
+            //         <span>
+            //             <span>
+            //             Paid for by
+            //             <spa>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2019-05-16--h5--paid-for-by';
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>a>span>span+span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
         }
 
         // hide sponsored ADs
