@@ -21,7 +21,6 @@ ga('set','checkProtocolTask', null);
 ga('spTracker.set','checkProtocolTask', null);
 ga('send', 'pageview');
 var manifest = chrome.runtime.getManifest();
-ga('send', 'event', 'ChromeExtVersion',manifest.version);
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     //console.log("get message");
