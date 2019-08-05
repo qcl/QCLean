@@ -198,10 +198,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     let rule = (featureDesc.rule) ? featureDesc.rule : 'undefined';
     let multiLayerSpan = false;
     if ([
-        '2019-02-13--h5', '2019-02-13--h6', 
+        '2019-02-13--h5', '2019-02-13--h6',
         '2019-02-17--h5', '2019-02-17--h6',
         '2019-03-07--h5', '2019-03-07--h6',
         '2019-03-08--h5', '2019-03-08--h6',
+        '2019-08-05--h5',
         ].indexOf(rule) >= 0) {
         multiLayerSpan = true;
     }
@@ -499,6 +500,19 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //             <spa>
             hideSponsoredStoryOnNewsFeedFeature.rule = '2019-05-16--h5--paid-for-by';
             qclean.framework.hideElementsByTargetChildSelector("h5+div>a>span>span+span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
+            // 2019.08.05 update
+            // Found this rule with my girlfriend <3
+            // <h5>
+            // <div>
+            //    <span>
+            //      <span>
+            //          <span>
+            //              <a>
+            //                  <i>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2019-08-05--h5';
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>i:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
         }
 
         // hide sponsored ADs
