@@ -196,6 +196,7 @@ qclean.framework = qclean.framework || {};
 qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
     let rule = (featureDesc.rule) ? featureDesc.rule : 'undefined';
+    let timeOrSponsoredTextIsEmpty = false;
     let multiLayerSpan = false;
     if ([
         '2019-02-13--h5', '2019-02-13--h6',
@@ -223,6 +224,34 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                 if(featureDesc.type == "hide") {
                     if (multiLayerSpan) {   // 2018.02.13 sponsored text and timestamp in same format
                         let timeOrSponsoredText = target.innerText;
+                        // console.log(target.innerText);
+
+                        // 2019.08.07
+                        // sponsored text is actually inside data-content of element
+                        let getDataContent = (e) => {
+                            if (e === undefined) {
+                                return '';
+                            }
+
+                            let content = '';
+                            if(e.dataset.content) {
+                                let style = window.getComputedStyle(e);
+                                if (style.display === 'none') {
+                                    //content = content + '(' + e.dataset.content + ')';
+                                } else {
+                                    content += e.dataset.content;
+                                }
+                            }
+                            e.childNodes.forEach( (child) => {
+                                content += getDataContent(child);
+                            });
+                            return content;
+                        };
+
+                        if (timeOrSponsoredText.length == 0) {
+                            timeOrSponsoredText = getDataContent(target);
+                        }
+
                         let containNumber = /\d/.test(timeOrSponsoredText); // number test
                         if (containNumber) {
                             target.dataset.qclean = "done-ignore-"+rule;
@@ -232,9 +261,14 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                             target.dataset.qclean = "done-ignore-"+rule;
                             break;
                         }
-                        //console.log(target.innerText);
+                        if (timeOrSponsoredText.length == 0) {
+                            timeOrSponsoredTextIsEmpty = true;
+                            break;
+                        }
+
                     }
                     target.dataset.qclean = "done-"+rule;
+                    //console.log(element.nodeName);
                     if(qclean.setting.isDebug) {
                         element.style.border = "2px solid red";
                     } else {
@@ -358,7 +392,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
             element = element.parentElement;
         }
     }
-    if(!target.dataset.qclean && featureDesc.type == "hide"){
+    if(!target.dataset.qclean && featureDesc.type == "hide" && !timeOrSponsoredTextIsEmpty){
         // here means qclean didn't hide our target element.
         /*
         qclean.i13n.logEvent({

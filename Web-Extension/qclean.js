@@ -148,6 +148,7 @@ qclean.framework = qclean.framework || {};
 
 qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
+    let timeOrSponsoredTextIsEmpty = false;
     let multiLayerSpan = (featureDesc.slt) ? true : false;
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
@@ -165,6 +166,33 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
             if(featureDesc.judgeFunction(element)){
                 if (multiLayerSpan) {   // 2018.02.13 sponsored text and timestamp in same format
                     let timeOrSponsoredText = target.innerText;
+
+                    // 2019.08.07
+                    // sponsored text is actually inside data-content of element
+                    let getDataContent = (e) => {
+                        if (e === undefined) {
+                            return '';
+                        }
+
+                        let content = '';
+                        if(e.dataset.content) {
+                            let style = window.getComputedStyle(e);
+                            if (style.display === 'none') {
+                                //content = content + '(' + e.dataset.content + ')';
+                            } else {
+                                content += e.dataset.content;
+                            }
+                        }
+                        e.childNodes.forEach( (child) => {
+                            content += getDataContent(child);
+                        });
+                        return content;
+                    };
+
+                    if (timeOrSponsoredText.length == 0) {
+                        timeOrSponsoredText = getDataContent(target);
+                    }
+
                     let containNumber = /\d/.test(timeOrSponsoredText); // number test
                     if (containNumber) {
                         target.dataset.qclean = "done-ignore";
@@ -172,6 +200,10 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     }
                     if (timeOrSponsoredText.split(' ').length > 1) {
                         target.dataset.qclean = "done-ignore";
+                        break;
+                    }
+                    if (timeOrSponsoredText.length == 0) {
+                        timeOrSponsoredTextIsEmpty = true;
                         break;
                     }
                     //console.log(target.innerText);
@@ -193,7 +225,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
             element = element.parentElement;
         }
     }
-    if(!target.dataset.qclean && featureDesc.type == "hide"){
+    if(!target.dataset.qclean && featureDesc.type == "hide" && !timeOrSponsoredTextIsEmpty){
         // here means qclean didn't hide our target element.
         qclean.i13n.logEvent({
             event   : "CannotHideTargetElement",
