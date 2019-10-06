@@ -487,6 +487,19 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>i:not([data-qclean])", featureDesc);
             featureDesc.slt = undefined;
+
+            // 2019.10.06 update
+            // <h5>
+            // <div>
+            //    <span>
+            //      <span>
+            //          <span>
+            //              <a>
+            //                  <b>
+            featureDesc.slt = true; // sponsored text like timestamp text
+            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>b:not([data-qclean])", featureDesc);
+            featureDesc.slt = undefined;
+
         }
 
         // hide sponsored ADs
