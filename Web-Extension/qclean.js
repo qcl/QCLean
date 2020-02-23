@@ -59,7 +59,9 @@ qclean.hiding = qclean.hiding || {};
 // FIXME: rename this method, it's a method that judge a element is or not a story on facebook newsfeed.
 qclean.hiding.isSponsoredStoryOnNewsFeed = function(element) {
     if( (element.dataset.ft && JSON.parse(element.dataset.ft).mf_story_key) || 
-        (element.dataset.testid && element.dataset.testid == "fbfeed_story") ){
+        (element.dataset.testid && element.dataset.testid == "fbfeed_story") ||
+        (element.attributes.role && element.attributes.role.value == "article")
+    ){
         return true;
     }
     return false;
@@ -150,6 +152,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     var element = target;
     let timeOrSponsoredTextIsEmpty = false;
     let multiLayerSpan = (featureDesc.slt) ? true : false;
+    let facebook2020layout = (featureDesc.fb20beta) ? true : false;
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
@@ -207,7 +210,15 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         break;
                     }
                     //console.log(target.innerText);
+                } else if (facebook2020layout) {
+                    let maybeTimeDom = element.querySelectorAll("span>a>span");
+                    if (maybeTimeDom.length > 0) {
+                        target.dataset.qclean = "done-ignore";
+                        break;
+                    }
+
                 }
+
                 if(featureDesc.type == "hide") {
                     if(qclean.setting.isDebug) {
                         element.style.border = "2px solid red";
@@ -499,6 +510,17 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>b:not([data-qclean])", featureDesc);
             featureDesc.slt = undefined;
+
+            // 2020.02.23 update
+            // <div role=article>
+            //    ...
+            //    <div>
+            //      <span>
+            //          <span>
+            //          <a>
+            featureDesc.fb20beta = true;
+            qclean.framework.hideElementsByTargetChildSelector("div[role=article] span>span+a:not([data-qclean])", featureDesc);
+            featureDesc.fb20beta = undefined;
 
         }
 

@@ -70,7 +70,9 @@ qclean.hiding = qclean.hiding || {};
 // FIXME: rename this method, it's a method that judge a element is or not a story on facebook newsfeed.
 qclean.hiding.isSponsoredStoryOnNewsFeed = function(element) {
     if( (element.dataset.ft && JSON.parse(element.dataset.ft).mf_story_key) || 
-        (element.dataset.testid && element.dataset.testid == "fbfeed_story") ){
+        (element.dataset.testid && element.dataset.testid == "fbfeed_story") ||
+        (element.attributes.role && element.attributes.role.value == "article")
+    ){
         return true;
     }
     return false;
@@ -198,6 +200,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     let rule = (featureDesc.rule) ? featureDesc.rule : 'undefined';
     let timeOrSponsoredTextIsEmpty = false;
     let multiLayerSpan = false;
+    let facebook2020layout = false;
     if ([
         '2019-02-13--h5', '2019-02-13--h6',
         '2019-02-17--h5', '2019-02-17--h6',
@@ -206,6 +209,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
         '2019-08-05--h5', '2019-10-06--h5',
         ].indexOf(rule) >= 0) {
         multiLayerSpan = true;
+    }
+    if ([
+        '2020-02-23'
+        ].indexOf(rule) >= 0) {
+        facebook2020layout = true;
     }
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
@@ -266,6 +274,12 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                             break;
                         }
 
+                    } else if (facebook2020layout) {
+                        let maybeTimeDom = element.querySelectorAll("span>a>span");
+                        if (maybeTimeDom.length > 0) {
+                            target.dataset.qclean = "done-ignore-" + rule;
+                            break;
+                        }
                     }
                     target.dataset.qclean = "done-"+rule;
                     //console.log(element.nodeName);
@@ -557,6 +571,16 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                  <b>
             hideSponsoredStoryOnNewsFeedFeature.rule = '2019-10-06--h5';
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>b:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
+            // 2020.02.23 update
+            // <div role=article>
+            //    ...
+            //    <div>
+            //      <span>
+            //          <span>
+            //          <a>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2020-02-23';
+            qclean.framework.hideElementsByTargetChildSelector("div[role=article] span>span+a:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
         }
 
         // hide sponsored ADs
