@@ -82,6 +82,19 @@ qclean.hiding.isSponsoredADs = function(element){
     if(element.classList.contains("ego_section")){
         return true;
     }
+
+    let facebook2020layoutSponsoredADs = false;
+    if (element.querySelectorAll("div>h3").length == 1 && element.querySelectorAll("a>div").length > 0 ) {
+        element.dataset.qcleantest = "verfiying";
+        if (document.querySelectorAll("[role=complementary] [data-qcleantest=verfiying]").length == 1) {
+            facebook2020layoutSponsoredADs = true;
+        }
+        element.dataset.qcleantest = "tested";
+        if (facebook2020layoutSponsoredADs) {
+            return true;
+        }
+    }
+
     return false;
 };
 
