@@ -153,6 +153,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     let timeOrSponsoredTextIsEmpty = false;
     let multiLayerSpan = (featureDesc.slt) ? true : false;
     let facebook2020layout = (featureDesc.fb20beta) ? true : false;
+    let rule = (featureDesc.rule) ? featureDesc.rule : 'undefined';
     if(!target.dataset.qclean){
         while(element!=null&&element!=undefined){
             // 2018.08.30 speical condition for hidden <a> inside non-sponsored post
@@ -225,8 +226,8 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     } else {
                         element.style.display = "none";
                     }
-                    target.dataset.qclean = "done";
-                    console.log("Hide something ("+featureDesc.name+")");
+                    target.dataset.qclean = "done" + rule;
+                    console.log("Hide something ("+featureDesc.name+") by rule "+rule);
                     //if (featureDesc.afterHidingHandler) {
                     //    featureDesc.afterHidingHandler();
                     //}
@@ -308,63 +309,10 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
     if (qclean.setting.isInit) {
         // hide sponsored story on newsfeed
         if (qclean.setting.isRemoveSponsoredPosts) {
+            let featureDesc = qclean.feature.hideSponsoredStoryOnNewsFeed;
+            featureDesc.rule = "first";
             qclean.framework.hideElementsByTargetChildSelector(".uiStreamAdditionalLogging:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
-            // new type sponsored post's structure:
-            // <h4> or <h5>
-            // <div>
-            //     <span>
-            //         <a href="https://l.facebook.com/l.php?u="
-            //         <!-- it's a link to https://www.facebook.com/ads/about -->
-            //     </span>
-            //     <span>
-            //     <a>
-            // </div>
-            //qclean.framework.hideElementsByTargetChildSelector("div>span>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // there is a newer type sponsored post structure:
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <a href="https://l.facebook.com/l.php?u="
-            //             <!-- it's a link to https://www.facebook.com/ads/about -->
-            //         </div>
-            //     </span>
-            //     <span>
-            //     <a>
-            // </div>
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='https://l.facebook.com/l.php?']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // more newer type sponsored post sturesture:
-            // <h5> or <h6>
-            // <div>
-            //    <span>
-            //        <div>
-            //            <a href="#"
-            //        <div>
-            //    </span>
-            //    <span>
-            //    <a>
-            // </div>
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // 2017.10.21 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <div>
-            //                 <a href="#"
-            //             </div>
-            //         </div>
-            //     </span>
-            // </div>
-
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>div>div>a[href^='#']:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
 
             // 2018.04.27 update
             // <h5> or <h6>
@@ -379,98 +327,9 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //     </span>
             // </div>
 
+            featureDesc.rule = "2018-04-27";
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // 2018.08.20 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <div>
-            //                 <div>
-            //                     <div>
-            //                         <a href="#"
-            //                             <div>
-            //                                 <div>
-            //                                 <div>
-            //                              ...
-            //                             </div>
-
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>div:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // 2018.08.30 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <div>
-            //             <div>
-            //                 <div>
-            //                     <div>
-            //                         <a href="#"
-            //                             <span>
-            //                                 <span>
-            //                                 <span>
-            //                              ...
-            //                             </span>
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // 2018.10.07 update
-            // <h5> or <h6>
-            // <div>
-            //     <s>
-            //         <div>
-            //             <div>
-            //                 <a href="#"
-            //                     <span>
-            //                         <span>
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>s div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>s div>a[href^='#']>span:not([data-qclean])", qclean.feature.hideSponsoredStoryOnNewsFeed);
-
-            // 2019.02.13 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //          <span>
-            //               <span>
-            //                    <span>
-            //                        <span>
-            //                        .........
-            let featureDesc = qclean.feature.hideSponsoredStoryOnNewsFeed;
-            featureDesc.slt = true; // sponsored text like timestamp text
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span>span>span>span>span:not([data-qclean])", featureDesc);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span>span>span>span>span:not([data-qclean])", featureDesc);
-            featureDesc.slt = undefined;
-
-            // 2019.02.17 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <span>
-            //              <span>
-            //                   <span>
-            //                        <s>
-            //                         ....
-            featureDesc.slt = true; // sponsored text like timestamp text
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>s:not([data-qclean])", featureDesc);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>s:not([data-qclean])", featureDesc);
-            featureDesc.slt = undefined;
-
-            // 2019.03.07 update
-            // <h5> or <h6>
-            // <div>
-            //     <span>
-            //         <span>
-            //              <span>
-            //                   <a>
-            //                        <s>
-            //                         ....
-            featureDesc.slt = true; // sponsored text like timestamp text
-            qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>a>s:not([data-qclean])", featureDesc);
-            qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>s:not([data-qclean])", featureDesc);
-            featureDesc.slt = undefined;
 
             // 2019.03.08 update
             // <h5> or <h6>
@@ -481,6 +340,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //                   <a>
             //                        <span>
             //                         ....
+            featureDesc.rule = "2019-03-08";
             featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h6+div>span span>a>span:not([data-qclean])", featureDesc);
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>span:not([data-qclean])", featureDesc);
@@ -495,6 +355,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //          <span>
             //              <a>
             //                  <i>
+            featureDesc.rule = "2019-08-05";
             featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>i:not([data-qclean])", featureDesc);
             featureDesc.slt = undefined;
@@ -507,6 +368,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //          <span>
             //              <a>
             //                  <b>
+            featureDesc.rule = "2019-10-06";
             featureDesc.slt = true; // sponsored text like timestamp text
             qclean.framework.hideElementsByTargetChildSelector("h5+div>span span>a>b:not([data-qclean])", featureDesc);
             featureDesc.slt = undefined;
@@ -518,6 +380,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //      <span>
             //          <span>
             //          <a>
+            featureDesc.rule = "2020-02-23";
             featureDesc.fb20beta = true;
             qclean.framework.hideElementsByTargetChildSelector("div[role=article] span>span+a:not([data-qclean])", featureDesc);
             featureDesc.fb20beta = undefined;
