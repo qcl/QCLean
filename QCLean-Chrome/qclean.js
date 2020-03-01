@@ -293,6 +293,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                             target.dataset.qclean = "done-ignore-" + rule;
                             break;
                         }
+
+                        if (element.querySelectorAll(".timestampContent").length > 0) {
+                            target.dataset.qclean = "done-ignore-" + rule + "-false-postive";
+                            break;
+                        }
                     }
                     target.dataset.qclean = "done-"+rule;
                     //console.log(element.nodeName);

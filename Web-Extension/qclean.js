@@ -231,6 +231,10 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         break;
                     }
 
+                    if (element.querySelectorAll(".timestampContent").length > 0) {
+                        target.dataset.qclean = "done-ignore-false-postive";
+                        break;
+                    }
                 }
 
                 if(featureDesc.type == "hide") {
