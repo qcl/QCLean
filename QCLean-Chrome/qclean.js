@@ -204,6 +204,33 @@ qclean.feature.collaspeRecommendedGame = {
     "description"   : "Collaspe recommended game"
 };
 
+
+// Utils
+qclean.utils = qclean.utils || {};
+
+// 2019.08.07
+// sponsored text is actually inside data-content of element
+qclean.utils.getDataContent = (e) => {
+    if (e === undefined) {
+        return '';
+    }
+
+    let content = '';
+    if(e.dataset && e.dataset.content) {
+        let style = window.getComputedStyle(e);
+        if (style.display === 'none') {
+            //content = content + '(' + e.dataset.content + ')';
+        } else {
+            content += e.dataset.content;
+        }
+    }
+    e.childNodes.forEach( (child) => {
+        content += qclean.utils.getDataContent(child);
+    });
+    return content;
+};
+
+
 /* QCLean hide element framework */
 
 qclean.framework = qclean.framework || {};
@@ -247,30 +274,8 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         let timeOrSponsoredText = target.innerText;
                         // console.log(target.innerText);
 
-                        // 2019.08.07
-                        // sponsored text is actually inside data-content of element
-                        let getDataContent = (e) => {
-                            if (e === undefined) {
-                                return '';
-                            }
-
-                            let content = '';
-                            if(e.dataset.content) {
-                                let style = window.getComputedStyle(e);
-                                if (style.display === 'none') {
-                                    //content = content + '(' + e.dataset.content + ')';
-                                } else {
-                                    content += e.dataset.content;
-                                }
-                            }
-                            e.childNodes.forEach( (child) => {
-                                content += getDataContent(child);
-                            });
-                            return content;
-                        };
-
                         if (timeOrSponsoredText.length == 0) {
-                            timeOrSponsoredText = getDataContent(target);
+                            timeOrSponsoredText = qclean.utils.getDataContent(target);
                         }
 
                         let containNumber = /\d/.test(timeOrSponsoredText); // number test
@@ -288,8 +293,24 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         }
 
                     } else if (facebook2020layout) {
-                        let maybeTimeDom = element.querySelectorAll("span>a>span");
-                        if (maybeTimeDom.length > 0) {
+                        let maybeTimeDoms = element.querySelectorAll("span>a>span");
+                        let mayBeTimeString = false;
+                        for (let dom of maybeTimeDoms) {
+                            let timeOrSponsoredText = dom.innerText;
+                            if (timeOrSponsoredText.length == 0) {
+                                timeOrSponsoredText = qclean.utils.getDataContent(dom);
+                            }
+                            let containNumber = /\d/.test(timeOrSponsoredText); // number test
+                            if (containNumber) {
+                                mayBeTimeString = true;
+                                break;
+                            }
+                            if (timeOrSponsoredText.split(' ').length > 1) {
+                                mayBeTimeString = true;
+                                break;
+                            }
+                        }
+                        if (mayBeTimeString) {
                             target.dataset.qclean = "done-ignore-" + rule;
                             break;
                         }
@@ -598,7 +619,7 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //          <span>
             //          <a>
             hideSponsoredStoryOnNewsFeedFeature.rule = '2020-02-23';
-            qclean.framework.hideElementsByTargetChildSelector("div[role=article] span>span+a:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+            qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) span>span+a:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
         }
 
         // hide sponsored ADs
