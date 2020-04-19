@@ -228,6 +228,13 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                     }
                     //console.log(target.innerText);
                 } else if (facebook2020layout) {
+                    if (target != element && target.parentElement != null && target.parentElement != undefined) {
+                        let targetIndex = Array.from(target.parentElement.childNodes).indexOf(target);
+                        if (targetIndex >= 2) {
+                            target.dataset.qclean = "done-ignore-" + rule + "-may-be-app-or-location";
+                            break;
+                        }
+                    } 
                     let maybeTimeDoms = element.querySelectorAll("span>a>span");
                     let mayBeTimeString = false;
                     for (let dom of maybeTimeDoms) {
@@ -421,6 +428,17 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) span>span+a:not([data-qclean])", featureDesc);
             featureDesc.fb20beta = undefined;
 
+            // 2020.04.18 update
+            // <div role=article>
+            //    ...
+            //    <div>
+            //      <span>
+            //          <span>
+            //          <div>
+            featureDesc.rule = "2020-04-18";
+            featureDesc.fb20beta = true;
+            qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) span>span+div:not([data-qclean])", featureDesc);
+            featureDesc.fb20beta = undefined;
         }
 
         // hide sponsored ADs

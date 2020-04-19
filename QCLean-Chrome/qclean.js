@@ -293,6 +293,13 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         }
 
                     } else if (facebook2020layout) {
+                        if (target != element && target.parentElement != null && target.parentElement != undefined) {
+                            let targetIndex = Array.from(target.parentElement.childNodes).indexOf(target);
+                            if (targetIndex >= 2) {
+                                target.dataset.qclean = "done-ignore-" + rule + "-may-be-app-or-location";
+                                break;
+                            }
+                        } 
                         let maybeTimeDoms = element.querySelectorAll("span>a>span");
                         let mayBeTimeString = false;
                         for (let dom of maybeTimeDoms) {
@@ -620,6 +627,16 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //          <a>
             hideSponsoredStoryOnNewsFeedFeature.rule = '2020-02-23';
             qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) span>span+a:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
+            // 2020.04.18 update
+            // <div role=article>
+            //    ...
+            //    <div>
+            //      <span>
+            //          <span>
+            //          <div>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2020-04-18';
+            qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) span>span+div:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
         }
 
         // hide sponsored ADs
