@@ -251,7 +251,8 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
         multiLayerSpan = true;
     }
     if ([
-        '2020-02-23'
+        '2020-02-23',
+        '2020-04-18'
         ].indexOf(rule) >= 0) {
         facebook2020layout = true;
     }
@@ -300,6 +301,11 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                 break;
                             }
                         } 
+                        if (target.querySelectorAll("img").length > 0) {
+                            // 2020.04.18 span > span + div could also contian privacy setting icon
+                            target.dataset.qclean = "done-ignore-" + rule + "-may-be-privacy";
+                            break;
+                        }
                         let maybeTimeDoms = element.querySelectorAll("span>a>span");
                         let mayBeTimeString = false;
                         for (let dom of maybeTimeDoms) {
