@@ -230,6 +230,28 @@ qclean.utils.getDataContent = (e) => {
     return content;
 };
 
+// 2022.03.13
+qclean.utils.getComputedDisplayText = (e) => {
+    if (e === undefined || e.nodeName == "#comment") {
+        return '';
+    }
+
+    if (e.nodeName == "#text") {
+        return e.textContent;
+    }
+
+    let content = '';
+    let style = window.getComputedStyle(e);
+    if (style.display === 'none' || style.position === 'absolute') {
+        // no-op
+    } else {
+        e.childNodes.forEach( (child) => {
+            content += qclean.utils.getComputedDisplayText(child);
+        });
+    }
+    return content;
+};
+
 
 /* QCLean hide element framework */
 
@@ -252,7 +274,8 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
     }
     if ([
         '2020-02-23',
-        '2020-04-18'
+        '2020-04-18',
+        '2022-03-13',
         ].indexOf(rule) >= 0) {
         facebook2020layout = true;
     }
@@ -309,7 +332,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                         let maybeTimeDoms = element.querySelectorAll("span>a>span");
                         let mayBeTimeString = false;
                         for (let dom of maybeTimeDoms) {
-                            let timeOrSponsoredText = dom.innerText;
+                            let timeOrSponsoredText = qclean.utils.getComputedDisplayText(dom);
                             if (timeOrSponsoredText.length == 0) {
                                 timeOrSponsoredText = qclean.utils.getDataContent(dom);
                             }
@@ -318,6 +341,7 @@ qclean.framework._hideElementByTargetChild = function(target, featureDesc){
                                 mayBeTimeString = true;
                                 break;
                             }
+                            // may be name?
                             if (timeOrSponsoredText.split(' ').length > 1) {
                                 mayBeTimeString = true;
                                 break;
@@ -643,6 +667,19 @@ var qcleanObserver = new window.MutationObserver(function(mutation, observer){
             //          <div>
             hideSponsoredStoryOnNewsFeedFeature.rule = '2020-04-18';
             qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) span>span+div:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
+            // 2022.03.13 update
+            // <div role=article>
+            //
+            //   <div>
+            //     <span>
+            //       <span>
+            //         <a>
+            //           <span>
+            //             <span>
+            hideSponsoredStoryOnNewsFeedFeature.rule = '2022-03-13';
+            qclean.framework.hideElementsByTargetChildSelector("div[role=article]:not([data-testid=fbfeed_story]):not([data-ft]) div>span>span a>span>span:not([data-qclean])", hideSponsoredStoryOnNewsFeedFeature);
+
         }
 
         // hide sponsored ADs
